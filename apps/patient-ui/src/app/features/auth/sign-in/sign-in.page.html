@@ -1,0 +1,31 @@
+<main class="auth-layout">
+  <section class="panel">
+    <div>
+      <p class="eyebrow">Patient interface</p>
+      <h1>Patient UI</h1>
+      <p class="summary">A patient-facing entry point backed by the shared REST API.</p>
+    </div>
+
+    <div class="segmented" aria-label="Authentication mode">
+      <button type="button" [class.active]="mode() === 'login'" (click)="mode.set('login')">Login</button>
+      <button type="button" [class.active]="mode() === 'register'" (click)="mode.set('register')">Register</button>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label>
+        Email
+        <input type="email" formControlName="email" autocomplete="email">
+      </label>
+
+      <label>
+        Password
+        <input type="password" formControlName="password" autocomplete="current-password">
+      </label>
+
+      <button class="primary" type="submit">{{ mode() === "login" ? "Login" : "Create account" }}</button>
+    </form>
+
+    <p class="status">{{ message() }}</p>
+  </section>
+</main>
+

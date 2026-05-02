@@ -1,0 +1,30 @@
+{
+  "name": "triage",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.33.2",
+  "scripts": {
+    "dev": "corepack pnpm --parallel --filter @triage/api --filter @triage/patient-ui --filter @triage/ioa-dashboard dev",
+    "dev:api": "corepack pnpm --filter @triage/api dev",
+    "dev:patient-ui": "corepack pnpm --filter @triage/patient-ui dev",
+    "dev:ioa-dashboard": "corepack pnpm --filter @triage/ioa-dashboard dev",
+    "build": "corepack pnpm -r build",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "prisma:generate": "corepack pnpm --filter @triage/api prisma generate",
+    "prisma:migrate": "corepack pnpm --filter @triage/api prisma migrate dev"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@nestjs/core",
+      "@parcel/watcher",
+      "@prisma/engines",
+      "bcrypt",
+      "esbuild",
+      "lmdb",
+      "msgpackr-extract",
+      "prisma",
+      "unrs-resolver"
+    ]
+  }
+}
