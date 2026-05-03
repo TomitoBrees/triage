@@ -1,0 +1,23 @@
+@use "../styles/colors" as *;
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background: $color-neutral-50;
+}
+
+.app-header {
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  background: $color-primary;
+  padding: 0 24px;
+}
+
+h1 {
+  margin: 0;
+  color: $color-text-light;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1;
+}
