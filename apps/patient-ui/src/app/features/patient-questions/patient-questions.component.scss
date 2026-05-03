@@ -1,0 +1,11 @@
+@use "spacing";
+
+.patientQuestions {
+    display: flex;
+    flex-direction: column;
+    padding: spacing.$spacing-24 spacing.$spacing-24;
+
+    &_button {
+        width: 100%;
+    }
+}

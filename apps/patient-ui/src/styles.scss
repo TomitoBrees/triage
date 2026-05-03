@@ -1,12 +1,14 @@
-@use "./styles/colors" as *;
-@use "./styles/spacing" as *;
-@use "./styles/typography" as *;
+@use "./styles/colors";
+@use "./styles/spacing";
+@use "./styles/typography";
 
 :root {
+  @include colors.tokens;
+
   color-scheme: light;
-  font-family: $font-family-primary;
-  background: $color-neutral-50;
-  color: $color-text-primary;
+  font-family: typography.$font-family-primary;
+  background: var(--color-neutral-50);
+  color: var(--color-text-primary);
   text-size-adjust: 100%;
 }
 
@@ -23,9 +25,9 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100dvh;
-  background: $color-neutral-50;
-  color: $color-text-primary;
-  font-family: $font-family-primary;
+  background: var(--color-neutral-50);
+  color: var(--color-text-primary);
+  font-family: typography.$font-family-primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -64,5 +66,5 @@ button {
 .app-container {
   width: min(100%, 1120px);
   margin: 0 auto;
-  padding: 0 $spacing-16;
+  padding: 0 spacing.$spacing-16;
 }

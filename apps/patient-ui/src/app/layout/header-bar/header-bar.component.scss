@@ -1,26 +1,32 @@
-@use "../styles/colors" as *;
-@use "../styles/breakpoints" as *;
-@use "../styles/spacing" as *;
-@use "../styles/typography" as *;
+@use "breakpoints";
+@use "spacing";
+@use "typography";
 
 .headerBar {
   display: flex;
-  min-height: $spacing-64;
+  min-height: spacing.$spacing-64;
   align-items: center;
-  background: $color-primary;
-  padding: 0 $spacing-16;
+  gap: spacing.$spacing-8;
+  background: var(--color-primary);
+  padding: 0 spacing.$spacing-16;
 }
 
-@media (min-width: $breakpoint-md) {
-  .app-header {
-    padding: 0 $spacing-24;
+svg {
+  width: spacing.$spacing-24;
+  height: spacing.$spacing-24;
+  color: var(--color-text-light);
+}
+
+@media (min-width: breakpoints.$breakpoint-md) {
+  .headerBar {
+    padding: 0 spacing.$spacing-24;
   }
 }
 
 h1 {
-  @include typography-title;
+  @include typography.typography-title;
 
   margin: 0;
-  color: $color-text-light;
+  color: var(--color-text-light);
   line-height: 1;
 }

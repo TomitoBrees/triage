@@ -1,18 +1,5 @@
-@use "../styles/colors" as *;
-@use "../styles/breakpoints" as *;
-@use "../styles/spacing" as *;
-@use "../styles/typography" as *;
-
 :host {
   display: block;
   min-height: 100dvh;
-  background: $color-neutral-50;
-}
-
-.app-header {
-  display: flex;
-  min-height: $spacing-64;
-  align-items: center;
-  background: $color-primary;
-  padding: 0 $spacing-16;
+  background: var(--color-neutral-50);
 }

@@ -1,0 +1,32 @@
+@use 'spacing';
+@use 'typography';
+@use 'borders';
+
+.symptomButton {
+    width: 100%;
+
+    background: var(--color-neutral-0);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: borders.$radius-lg;
+    padding: spacing.$spacing-20 spacing.$spacing-20;
+
+    &_content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: spacing.$spacing-16;
+    }
+
+    &_text {
+        @include typography.typography-body-large;
+    }
+
+    &_emoji {
+        @include typography.typography-section;
+    }
+
+    &_icon {
+        padding-top: spacing.$spacing-4;
+        stroke: var(--color-text-secondary);
+    }
+}
