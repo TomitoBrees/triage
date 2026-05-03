@@ -1,13 +1,21 @@
 <div class="patientQuestions">
 	<div class="patientQuestions_header">
-		<h1 class="patientQuestions_title">{{title()}}</h1>
-		<p class="patientQuestions_description">{{description()}}</p>
+		<h1 class="patientQuestions_title">{{ title() }}</h1>
+		<p class="patientQuestions_description">{{ description() }}</p>
 	</div>
-	<app-info-box text="Si vous ne présentez aucun de ces symptômes, poursuivez le questionnaire en cliquant sur le bouton ci-dessous."/>
+	<app-info-box
+		text="Si vous ne présentez aucun de ces symptômes, poursuivez le questionnaire en cliquant sur le bouton ci-dessous."
+	/>
 	<div class="symptoms">
 		@for (symptom of patientQuestions(); track symptom.symptomText) {
-			<app-symptom-button [symptomText]="symptom.symptomText" [symptomEmoji]="symptom.symptomEmoji"/>
+			<app-symptom-button
+				[symptomText]="symptom.symptomText"
+				[symptomEmoji]="symptom.symptomEmoji"
+			/>
 		}
 	</div>
-	<app-button class="patientQuestions_button" text="Aucun de ces symptômes - Continuer"/>
+	<app-button
+		class="patientQuestions_button"
+		text="Aucun de ces symptômes - Continuer"
+	/>
 </div>

@@ -5,19 +5,18 @@ import { AuthCredentials, AuthResponse, CurrentUser } from "./auth.models";
 
 @Injectable({ providedIn: "root" })
 export class AuthApi {
-  private readonly http = inject(HttpClient);
-  private readonly apiUrl = inject(API_URL);
+	private readonly http = inject(HttpClient);
+	private readonly apiUrl = inject(API_URL);
 
-  register(credentials: AuthCredentials) {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/register`, credentials);
-  }
+	register(credentials: AuthCredentials) {
+		return this.http.post<AuthResponse>(`${this.apiUrl}/auth/register`, credentials);
+	}
 
-  login(credentials: AuthCredentials) {
-    return this.http.post<AuthResponse>(`${this.apiUrl}/auth/login`, credentials);
-  }
+	login(credentials: AuthCredentials) {
+		return this.http.post<AuthResponse>(`${this.apiUrl}/auth/login`, credentials);
+	}
 
-  me() {
-    return this.http.get<CurrentUser>(`${this.apiUrl}/auth/me`);
-  }
+	me() {
+		return this.http.get<CurrentUser>(`${this.apiUrl}/auth/me`);
+	}
 }
-

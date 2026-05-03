@@ -3,18 +3,17 @@ import { PrismaService } from "../prisma/prisma.service";
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly prisma: PrismaService) {}
+	constructor(private readonly prisma: PrismaService) {}
 
-  findByEmail(email: string) {
-    return this.prisma.user.findUnique({
-      where: { email }
-    });
-  }
+	findByEmail(email: string) {
+		return this.prisma.user.findUnique({
+			where: { email },
+		});
+	}
 
-  create(email: string, passwordHash: string) {
-    return this.prisma.user.create({
-      data: { email, passwordHash }
-    });
-  }
+	create(email: string, passwordHash: string) {
+		return this.prisma.user.create({
+			data: { email, passwordHash },
+		});
+	}
 }
-

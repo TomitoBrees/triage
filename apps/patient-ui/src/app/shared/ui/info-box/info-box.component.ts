@@ -1,11 +1,11 @@
-import { Component, input } from '@angular/core';
+import { Component, input } from "@angular/core";
 
 @Component({
-  selector: 'app-info-box',
-  imports: [],
-  templateUrl: './info-box.component.html',
-  styleUrl: './info-box.component.scss',
+	selector: "app-info-box",
+	imports: [],
+	templateUrl: "./info-box.component.html",
+	styleUrl: "./info-box.component.scss",
 })
 export class InfoBoxComponent {
-  public text = input.required<string>();
+	public text = input.required<string>();
 }

@@ -48,4 +48,3 @@ src/app/
 - Use signals for small local/client state. Add a state library only when shared state becomes complex enough to justify it.
 - Treat route guards as UX helpers only. Backend authorization remains the source of truth.
 - Keep shared cross-app code out of app folders until it is clearly reused by both frontends.
-

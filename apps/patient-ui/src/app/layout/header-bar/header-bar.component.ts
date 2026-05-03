@@ -1,11 +1,9 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-header-bar',
-  imports: [],
-  templateUrl: './header-bar.component.html',
-  styleUrl: './header-bar.component.scss',
+	selector: "app-header-bar",
+	imports: [],
+	templateUrl: "./header-bar.component.html",
+	styleUrl: "./header-bar.component.scss",
 })
-export class HeaderBar {
-
-}
+export class HeaderBar {}

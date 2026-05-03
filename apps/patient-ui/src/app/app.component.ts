@@ -4,9 +4,9 @@ import { Button } from "./shared/ui/button/button.component";
 import { PatientQuestionsComponent } from "./features/patient-questions/patient-questions.component";
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrl: "./app.component.scss",
-  imports: [HeaderBar, PatientQuestionsComponent]
+	selector: "app-root",
+	templateUrl: "./app.component.html",
+	styleUrl: "./app.component.scss",
+	imports: [HeaderBar, PatientQuestionsComponent],
 })
 export class AppComponent {}

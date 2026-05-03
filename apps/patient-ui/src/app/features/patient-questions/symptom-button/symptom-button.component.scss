@@ -1,38 +1,38 @@
-@use 'spacing';
-@use 'typography';
-@use 'borders';
+@use "spacing";
+@use "typography";
+@use "borders";
 
 .symptomButton {
-    width: 100%;
+	width: 100%;
 
-    background: var(--color-neutral-0);
-    border: 1px solid var(--color-neutral-200);
-    border-radius: borders.$radius-lg;
-    padding: spacing.$spacing-20 spacing.$spacing-20;
+	background: var(--color-neutral-0);
+	border: 1px solid var(--color-neutral-200);
+	border-radius: borders.$radius-lg;
+	padding: spacing.$spacing-20 spacing.$spacing-20;
 
-    &_content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: spacing.$spacing-16;
-    }
+	&_content {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: spacing.$spacing-16;
+	}
 
-    &_text {
-        @include typography.typography-body-large;
+	&_text {
+		@include typography.typography-body-large;
 
-        flex: 1;
-        min-width: 0;
-        text-align: left;
-    }
+		flex: 1;
+		min-width: 0;
+		text-align: left;
+	}
 
-    &_emoji {
-        @include typography.typography-section;
+	&_emoji {
+		@include typography.typography-section;
 
-        flex-shrink: 0;
-    }
+		flex-shrink: 0;
+	}
 
-    &_icon {
-        flex-shrink: 0;
-        color: var(--color-text-secondary);
-    }
+	&_icon {
+		flex-shrink: 0;
+		color: var(--color-text-secondary);
+	}
 }

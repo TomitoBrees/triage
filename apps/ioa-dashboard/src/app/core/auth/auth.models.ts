@@ -1,14 +1,13 @@
 export type AuthCredentials = {
-  email: string;
-  password: string;
+	email: string;
+	password: string;
 };
 
 export type AuthResponse = {
-  accessToken: string;
+	accessToken: string;
 };
 
 export type CurrentUser = {
-  sub: string;
-  email: string;
+	sub: string;
+	email: string;
 };
-

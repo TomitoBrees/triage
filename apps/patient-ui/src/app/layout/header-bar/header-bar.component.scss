@@ -3,30 +3,30 @@
 @use "typography";
 
 .headerBar {
-  display: flex;
-  min-height: spacing.$spacing-64;
-  align-items: center;
-  gap: spacing.$spacing-8;
-  background: var(--color-primary);
-  padding: 0 spacing.$spacing-16;
+	display: flex;
+	min-height: spacing.$spacing-64;
+	align-items: center;
+	gap: spacing.$spacing-8;
+	background: var(--color-primary);
+	padding: 0 spacing.$spacing-16;
 }
 
 svg {
-  width: spacing.$spacing-24;
-  height: spacing.$spacing-24;
-  color: var(--color-text-light);
+	width: spacing.$spacing-24;
+	height: spacing.$spacing-24;
+	color: var(--color-text-light);
 }
 
 @media (min-width: breakpoints.$breakpoint-md) {
-  .headerBar {
-    padding: 0 spacing.$spacing-24;
-  }
+	.headerBar {
+		padding: 0 spacing.$spacing-24;
+	}
 }
 
 h1 {
-  @include typography.typography-title;
+	@include typography.typography-title;
 
-  margin: 0;
-  color: var(--color-text-light);
-  line-height: 1;
+	margin: 0;
+	color: var(--color-text-light);
+	line-height: 1;
 }

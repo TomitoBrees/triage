@@ -1,0 +1,15 @@
+{
+	"useTabs": true,
+	"tabWidth": 4,
+	"printWidth": 100,
+	"singleAttributePerLine": true,
+	"bracketSameLine": false,
+	"overrides": [
+		{
+			"files": ["*.html"],
+			"options": {
+				"parser": "angular"
+			}
+		}
+	]
+}
