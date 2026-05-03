@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { SymptomButtonComponent } from "./symptom-button/symptom-button.component";
 import { Button } from "../../shared/ui/button/button.component";
 
@@ -9,5 +9,6 @@ import { Button } from "../../shared/ui/button/button.component";
   styleUrl: './patient-questions.component.scss',
 })
 export class PatientQuestionsComponent {
-
+  public title = input<string>('Symptômes d\'urgence');
+  public description = input<string>('Présentez-vous l\'un de ces symptômes nécessitant une prise en charge immédiate ?');
 }

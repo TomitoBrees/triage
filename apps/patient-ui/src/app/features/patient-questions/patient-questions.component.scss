@@ -1,11 +1,34 @@
 @use "spacing";
+@use "typography";
 
 .patientQuestions {
     display: flex;
     flex-direction: column;
+    gap: spacing.$spacing-32;
     padding: spacing.$spacing-24 spacing.$spacing-24;
+
+    &_header {
+        display: flex;
+        flex-direction: column;
+        gap: spacing.$spacing-12;
+    }
+
+    &_title {
+        @include typography.typography-section;
+    }
+
+    &_description {
+        @include typography.typography-body;
+        color: var(--color-text-secondary);
+    }
 
     &_button {
         width: 100%;
     }
+}
+
+.symptoms {
+    display: flex;
+    flex-direction: column;
+    gap: spacing.$spacing-16;
 }
