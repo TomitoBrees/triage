@@ -19,14 +19,20 @@
 
     &_text {
         @include typography.typography-body-large;
+
+        flex: 1;
+        min-width: 0;
+        text-align: left;
     }
 
     &_emoji {
         @include typography.typography-section;
+
+        flex-shrink: 0;
     }
 
     &_icon {
-        padding-top: spacing.$spacing-4;
-        stroke: var(--color-text-secondary);
+        flex-shrink: 0;
+        color: var(--color-text-secondary);
     }
 }
