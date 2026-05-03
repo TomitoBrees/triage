@@ -3,16 +3,24 @@
 @use "../styles/spacing" as *;
 @use "../styles/typography" as *;
 
-:host {
-  display: block;
-  min-height: 100dvh;
-  background: $color-neutral-50;
-}
-
-.app-header {
+.headerBar {
   display: flex;
   min-height: $spacing-64;
   align-items: center;
   background: $color-primary;
   padding: 0 $spacing-16;
+}
+
+@media (min-width: $breakpoint-md) {
+  .app-header {
+    padding: 0 $spacing-24;
+  }
+}
+
+h1 {
+  @include typography-title;
+
+  margin: 0;
+  color: $color-text-light;
+  line-height: 1;
 }

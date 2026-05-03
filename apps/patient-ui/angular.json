@@ -5,7 +5,11 @@
   "projects": {
     "patient-ui": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -46,5 +50,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "07d15d8d-e592-47c3-8a70-ea0fbc405554"
   }
 }
