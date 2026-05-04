@@ -2,10 +2,10 @@ import { Component, input, output, signal } from "@angular/core";
 import { SymptomButtonComponent } from "./symptom-button/symptom-button.component";
 import { Button } from "../../shared/ui/button/button.component";
 import { InfoBoxComponent } from "../../shared/ui/info-box/info-box.component";
-import {
+import type {
 	CriticalSymptomId,
 	PatientQuestion,
-} from "../patient-questionnaire/patient-questionnaire.component";
+} from "../patient-questionnaire/patient-questionnaire.types";
 
 @Component({
 	selector: "app-symptom-questions",
