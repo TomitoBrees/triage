@@ -1,21 +1,23 @@
 <div class="patientQuestions">
 	<div class="patientQuestions_header">
-		<h1 class="patientQuestions_title">{{ title() }}</h1>
+		<h1 class="patientQuestions_title">{{ heading() }}</h1>
 		<p class="patientQuestions_description">{{ description() }}</p>
 	</div>
 	<app-info-box
 		text="Si vous ne présentez aucun de ces symptômes, poursuivez le questionnaire en cliquant sur le bouton ci-dessous."
 	/>
 	<div class="symptoms">
-		@for (symptom of patientQuestions(); track symptom.symptomText) {
+		@for (symptom of questions(); track symptom.symptomText) {
 			<app-symptom-button
 				[symptomText]="symptom.symptomText"
 				[symptomEmoji]="symptom.symptomEmoji"
+				(click)="selectedSymptom.set(symptom.symptomId)"
 			/>
 		}
 	</div>
 	<app-button
 		class="patientQuestions_button"
-		text="Aucun de ces symptômes - Continuer"
+		[text]="selectedSymptom() ? 'Continuer' : 'Aucun de ces symptômes - Continuer'"
+		(click)="submit()"
 	/>
 </div>
