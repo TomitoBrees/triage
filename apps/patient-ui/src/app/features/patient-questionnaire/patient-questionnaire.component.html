@@ -8,5 +8,9 @@
 				(completed)="handleCriticalCompleted($event)"
 			/>
 		}
+
+		@case ("personal-information") {
+			<app-patient-identification />
+		}
 	}
 </div>

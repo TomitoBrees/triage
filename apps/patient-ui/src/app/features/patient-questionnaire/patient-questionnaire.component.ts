@@ -2,10 +2,11 @@ import { Component, signal } from "@angular/core";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
 import { criticalQuestions as criticalSymptomQuestions } from "./patient-questionnaire.questions";
 import type { Answer, CriticalSymptomId, StepId } from "./patient-questionnaire.types";
+import { PatientIdentificationComponent } from "../patient-identification/patient-identification.component";
 
 @Component({
 	selector: "app-patient-questionnaire",
-	imports: [SymptomQuestionsComponent],
+	imports: [SymptomQuestionsComponent, PatientIdentificationComponent],
 	templateUrl: "./patient-questionnaire.component.html",
 	styleUrl: "./patient-questionnaire.component.scss",
 })

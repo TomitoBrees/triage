@@ -1,0 +1,35 @@
+@use "spacing";
+@use "typography";
+@use "borders";
+
+.input {
+	@include typography.typography-body-large;
+	font-weight: typography.$font-weight-regular;
+
+	min-height: 58px;
+	width: 100%;
+
+	border: 1px solid var(--color-neutral-200);
+	border-radius: borders.$radius-lg;
+
+	padding: spacing.$spacing-16 spacing.$spacing-20;
+
+	&Container {
+		display: flex;
+		flex-direction: column;
+		gap: spacing.$spacing-8;
+	}
+
+	&_label {
+		@include typography.typography-label;
+
+		color: var(--color-neutral-700);
+	}
+
+	transition: border-color 150ms ease;
+
+	&:focus-visible {
+		border-color: var(--color-accent);
+		outline: none;
+	}
+}
