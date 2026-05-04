@@ -1,4 +1,7 @@
-<button class="symptomButton">
+<button
+	class="symptomButton"
+	[ngClass]="{ '-selected': isSelected() }"
+>
 	<div class="symptomButton_content">
 		<span class="symptomButton_emoji">{{ symptomEmoji() }}</span>
 		<span class="symptomButton_text">{{ symptomText() }}</span>

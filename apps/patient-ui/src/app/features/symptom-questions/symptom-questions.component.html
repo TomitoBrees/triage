@@ -12,6 +12,7 @@
 				[symptomText]="symptom.symptomText"
 				[symptomEmoji]="symptom.symptomEmoji"
 				(click)="selectedSymptom.set(symptom.symptomId)"
+				[isSelected]="selectedSymptom() === symptom.symptomId"
 			/>
 		}
 	</div>

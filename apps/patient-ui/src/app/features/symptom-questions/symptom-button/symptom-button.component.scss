@@ -10,6 +10,13 @@
 	border-radius: borders.$radius-lg;
 	padding: spacing.$spacing-20 spacing.$spacing-20;
 
+	cursor: pointer;
+
+	&.-selected {
+		background: var(--color-critical-light);
+		border-color: var(--color-vital-alert);
+	}
+
 	&_content {
 		display: flex;
 		align-items: center;
