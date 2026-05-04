@@ -1,5 +1,21 @@
 @use "spacing";
+@use "typography";
 
 .questionnaire {
 	padding: spacing.$spacing-24 spacing.$spacing-24;
+
+	&_header {
+		display: flex;
+		flex-direction: column;
+		gap: spacing.$spacing-12;
+	}
+
+	&_title {
+		@include typography.typography-section;
+	}
+
+	&_description {
+		@include typography.typography-body;
+		color: var(--color-text-secondary);
+	}
 }

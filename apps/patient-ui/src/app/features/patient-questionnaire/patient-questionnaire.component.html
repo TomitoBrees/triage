@@ -1,4 +1,8 @@
 <div class="questionnaire">
+	<div class="questionnaire_header">
+		<h1 class="questionnaire_title">{{ headerAndDescription().header }}</h1>
+		<p class="questionnaire_description">{{ headerAndDescription().description }}</p>
+	</div>
 	@switch (currentStep()) {
 		@case ("critical-symptoms") {
 			<app-symptom-questions
