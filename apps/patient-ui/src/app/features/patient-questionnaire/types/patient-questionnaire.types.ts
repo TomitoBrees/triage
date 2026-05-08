@@ -20,7 +20,7 @@ export type PersonalInformation = {
 	firstName: string;
 	lastName: string;
 	age: number;
-	contact: string;
+	isMale: boolean;
 };
 
 export type Answer = {

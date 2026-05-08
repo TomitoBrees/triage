@@ -5,7 +5,7 @@ import { InfoBoxComponent } from "../../shared/ui/info-box/info-box.component";
 import type {
 	CriticalSymptomId,
 	PatientQuestion,
-} from "../patient-questionnaire/patient-questionnaire.types";
+} from "../patient-questionnaire/types/patient-questionnaire.types";
 
 @Component({
 	selector: "app-symptom-questions",

@@ -1,9 +1,10 @@
-import { Component, signal } from "@angular/core";
+import { Component, output, signal } from "@angular/core";
 import { form, min, required } from "@angular/forms/signals";
 import { TextInputComponent } from "../../shared/ui/text-input/text-input.component";
 import { NumberInputComponent } from "../../shared/ui/number-input/number-input.component";
 import { SwitchComponent } from "../../shared/ui/switch/switch.component";
 import { Button } from "../../shared/ui/button/button.component";
+import { PersonalInformation } from "../patient-questionnaire/types/patient-questionnaire.types";
 
 @Component({
 	selector: "app-patient-identification",
@@ -12,6 +13,8 @@ import { Button } from "../../shared/ui/button/button.component";
 	styleUrl: "./patient-identification.component.scss",
 })
 export class PatientIdentificationComponent {
+	public completed = output<PersonalInformation>();
+
 	protected identificationModel = signal({
 		firstName: "",
 		lastName: "",
@@ -26,6 +29,6 @@ export class PatientIdentificationComponent {
 	});
 
 	protected onSubmit() {
-		console.log(this.identificationModel());
+		this.completed.emit(this.identificationModel());
 	}
 }

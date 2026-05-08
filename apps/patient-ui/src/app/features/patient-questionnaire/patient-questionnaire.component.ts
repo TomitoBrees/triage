@@ -1,8 +1,16 @@
-import { Component, computed, signal } from "@angular/core";
+import { Component, computed, inject, signal } from "@angular/core";
+import { finalize } from "rxjs";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
-import { criticalQuestions as criticalSymptomQuestions } from "./patient-questionnaire.questions";
-import type { Answer, CriticalSymptomId, StepId } from "./patient-questionnaire.types";
+import { criticalQuestions as criticalSymptomQuestions } from "./types/patient-questionnaire.questions";
+import { PatientQuestionnaireApi } from "./service/patient-questionnaire.api";
+import type {
+	Answer,
+	CriticalSymptomId,
+	PersonalInformation,
+	StepId,
+} from "./types/patient-questionnaire.types";
 import { PatientIdentificationComponent } from "../patient-identification/patient-identification.component";
+import { PatientQuestionnaireService } from "./service/patient-questionnaire.service";
 
 type headerAndDescription = {
 	header: string;
@@ -17,6 +25,7 @@ type headerAndDescription = {
 export class PatientQuestionnaireComponent {
 	protected currentStep = signal<StepId>("critical-symptoms");
 	protected answer = signal<Answer>({});
+	protected criticalQuestions = signal(criticalSymptomQuestions);
 
 	protected headerAndDescription = computed<headerAndDescription>(() => {
 		switch (this.currentStep()) {
@@ -40,7 +49,7 @@ export class PatientQuestionnaireComponent {
 		}
 	});
 
-	protected criticalQuestions = signal(criticalSymptomQuestions);
+	private readonly patientQuestionnaireService = inject(PatientQuestionnaireService);
 
 	protected handleCriticalCompleted(answer: { criticalSymptom: CriticalSymptomId | null }) {
 		this.updateAnswer({ criticalSymptom: answer.criticalSymptom ?? undefined });
@@ -50,6 +59,19 @@ export class PatientQuestionnaireComponent {
 		} else {
 			this.currentStep.set("moderate-symptoms");
 		}
+	}
+
+	protected handlePersonalInfoCompleted(info: PersonalInformation) {
+		this.updateAnswer({
+			personalInformation: {
+				firstName: info.firstName,
+				lastName: info.lastName,
+				age: info.age,
+				isMale: info.isMale,
+			},
+		});
+
+		this.patientQuestionnaireService.submitAnswer(this.answer());
 	}
 
 	private updateAnswer(newAnswer: Partial<Answer>) {

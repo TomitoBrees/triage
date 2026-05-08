@@ -14,7 +14,7 @@
 		}
 
 		@case ("personal-information") {
-			<app-patient-identification />
+			<app-patient-identification (completed)="handlePersonalInfoCompleted($event)" />
 		}
 	}
 </div>
