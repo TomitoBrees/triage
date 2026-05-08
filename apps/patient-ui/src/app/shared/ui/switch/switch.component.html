@@ -1,0 +1,28 @@
+<div class="switchContainer">
+	<label class="switch_label">{{ label() }}</label>
+	<label
+		class="switch"
+		role="switch"
+		[attr.aria-label]="ariaLabel()"
+		[attr.aria-checked]="firstSelected()"
+		[class.-secondSelected]="!firstSelected()"
+	>
+		<input
+			class="switch_input"
+			type="checkbox"
+			[formField]="field()"
+		/>
+		<span
+			class="switch_option"
+			[class.-selected]="firstSelected()"
+		>
+			{{ displayedFirstText() }}
+		</span>
+		<span
+			class="switch_option"
+			[class.-selected]="!firstSelected()"
+		>
+			{{ displayedSecondText() }}
+		</span>
+	</label>
+</div>

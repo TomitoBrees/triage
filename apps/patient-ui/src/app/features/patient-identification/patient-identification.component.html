@@ -1,15 +1,38 @@
-<div>
-	<app-text-input
-		label="Prénom"
-		placeholder="Votre prénom"
-		[field]="identificationForm.firstName"
-	/>
+<div class="patientInfo">
+	<div class="patientInfo_form">
+		<app-text-input
+			label="Prénom"
+			placeholder="Votre prénom"
+			[field]="identificationForm.firstName"
+		/>
 
-	<app-text-input
-		label="Nom"
-		placeholder="Votre nom"
-		[field]="identificationForm.lastName"
-	/>
+		<app-text-input
+			label="Nom"
+			placeholder="Votre nom"
+			[field]="identificationForm.lastName"
+		/>
 
-	
+		<div class="patientInfo_row">
+			<app-number-input
+				label="Age"
+				placeholder="Votre âge"
+				[field]="identificationForm.age"
+			/>
+			<app-switch
+				label="Sexe"
+				displayedFirstText="Homme"
+				displayedSecondText="Femme"
+				[field]="identificationForm.isMale"
+			/>
+		</div>
+	</div>
+
+	<div class="patientInfo_buttons">
+		<app-button text="Continuer" />
+		<app-button
+			text="Retour"
+			variant="lighter"
+			size="small"
+		/>
+	</div>
 </div>

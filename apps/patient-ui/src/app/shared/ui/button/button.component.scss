@@ -24,6 +24,20 @@
 		color: var(--color-text-light);
 	}
 
+	&.-lighter {
+		background: var(--color-neutral-0);
+		color: var(--color-neutral-700);
+		border: 1px solid var(--color-neutral-200);
+	}
+
+	&.-small {
+		padding: spacing.$spacing-12 spacing.$spacing-16;
+	}
+
+	&.-large {
+		padding: spacing.$spacing-20 spacing.$spacing-16;
+	}
+
 	&_text {
 		@include typography.typography-body-large;
 	}
