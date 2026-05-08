@@ -1,5 +1,4 @@
 import { Component, computed, inject, signal } from "@angular/core";
-import { firstValueFrom } from "rxjs";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
 import {
 	criticalQuestions as criticalSymptomQuestions,
@@ -44,16 +43,21 @@ export class PatientQuestionnaireComponent {
 					description:
 						"Présentez-vous l'un de ces symptômes nécessitant une prise en charge immédiate ?",
 				};
-			case "moderate-symptoms":
+			case "other-symptoms":
 				return {
-					header: "Symptômes modérés",
-					description:
-						"Présentez-vous l'un de ces symptômes pouvant nécessiter une prise en charge rapide ?",
+					header: "Symptome principal",
+					description: "Choisissez ce qui décrit le mieux votre motif de consultation ?",
 				};
 			case "personal-information":
 				return {
 					header: "Informations personnelles",
 					description: "Merci de renseigner vos informations personnelles.",
+				};
+			case "moderate-follow-up":
+				return {
+					header: "Symptômes modérés - Suivi",
+					description:
+						"Merci de répondre à ces questions complémentaires pour mieux évaluer votre situation.",
 				};
 		}
 	});
@@ -69,17 +73,17 @@ export class PatientQuestionnaireComponent {
 		if (this.answer().criticalSymptom) {
 			this.currentStep.set("personal-information");
 		} else {
-			this.currentStep.set("moderate-symptoms");
+			this.currentStep.set("other-symptoms");
 		}
 	}
 
-	protected handleModerateCompleted(answer: { symptom: PatientSymptomId | null }) {
-		this.updateAnswer({ moderateSymptom: answer.symptom ?? undefined });
+	protected handleOtherCompleted(answer: { symptom: PatientSymptomId | null }) {
+		this.updateAnswer({ otherSymptom: answer.symptom ?? undefined });
 
 		if (this.answer().criticalSymptom) {
 			this.currentStep.set("personal-information");
 		} else {
-			this.currentStep.set("moderate-symptoms");
+			this.currentStep.set("other-symptoms");
 		}
 	}
 

@@ -56,3 +56,32 @@ export const moderateSymptomQuestions: PatientQuestion[] = [
 		symptomId: "abdominalPainPregnant",
 	},
 ];
+
+export const moderateFollowUpQuestions = {
+	headInjury: [
+		{
+			id: "headInjury",
+			text: "Avez-vous perdu connaissance ?",
+			type: "boolean",
+		},
+		{
+			id: "vomiting",
+			text: "Avez-vous vomi depuis le choc ?",
+			type: "boolean",
+		},
+	],
+	sucidalIdeation: [
+		{
+			id: "currentDanger",
+			text: "Vous sentez-vous en danger immédiat ?",
+			type: "boolean",
+		},
+	],
+	abdominalPainPregnant: [
+		{
+			id: "bleeding",
+			text: "Avez-vous des saignements importants ?",
+			type: "boolean",
+		},
+	],
+};

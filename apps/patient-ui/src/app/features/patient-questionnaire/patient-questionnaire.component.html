@@ -20,10 +20,10 @@
 			/>
 		}
 
-		@case ("moderate-symptoms") {
+		@case ("other-symptoms") {
 			<app-symptom-questions
 				[questions]="moderateQuestions()"
-				(completed)="handleModerateCompleted($event)"
+				(completed)="handleOtherCompleted($event)"
 			/>
 		}
 

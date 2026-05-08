@@ -1,4 +1,8 @@
-export type StepId = "critical-symptoms" | "moderate-symptoms" | "personal-information";
+export type StepId =
+	| "critical-symptoms"
+	| "other-symptoms"
+	| "moderate-follow-up"
+	| "personal-information";
 
 export type PatientSymptomId =
 	| "chestPain"
@@ -7,9 +11,7 @@ export type PatientSymptomId =
 	| "facialDrooping"
 	| "severeBleeding"
 	| "swellingFaceLipsThroat"
-	| "fainting"
 	| "weaknessArmLeg"
-	| "confusion"
 	| "headInjury"
 	| "sucidalIdeation"
 	| "abdominalPainPregnant";
@@ -23,7 +25,7 @@ export type PersonalInformation = {
 
 export type Answer = {
 	criticalSymptom?: PatientSymptomId;
-	moderateSymptom?: PatientSymptomId;
+	otherSymptom?: PatientSymptomId;
 	personalInformation?: PersonalInformation;
 };
 

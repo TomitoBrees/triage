@@ -22,14 +22,7 @@ export const criticalSymptoms = [
 	"weaknessArmLeg",
 ] as const;
 
-export const moderateSymptoms = [
-	"fainting",
-	"weaknessArmLeg",
-	"confusion",
-	"headInjury",
-	"sucidalIdeation",
-	"abdominalPainPregnant",
-] as const;
+export const moderateSymptoms = ["headInjury", "sucidalIdeation", "abdominalPainPregnant"] as const;
 
 export const patientSymptoms = [...criticalSymptoms, ...moderateSymptoms] as const;
 
