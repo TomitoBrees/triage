@@ -1,22 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { PatientSymptom as DbPatientSymptom } from "../../generated/prisma/enums";
 import { PrismaService } from "../prisma/prisma.service";
-import { CreatePatientDto, PatientSymptom } from "./dto/create-patient.dto";
-
-const patientSymptoms: Record<PatientSymptom, DbPatientSymptom> = {
-	"chest-pain": DbPatientSymptom.chestPain,
-	"breathing-difficulty": DbPatientSymptom.breathingDifficulty,
-	"sudden-speech-difficulty": DbPatientSymptom.suddenSpeechDifficulty,
-	"facial-drooping": DbPatientSymptom.facialDrooping,
-	"severe-bleeding": DbPatientSymptom.severeBleeding,
-	"swelling-face-lips-throat": DbPatientSymptom.swellingFaceLipsThroat,
-	fainting: DbPatientSymptom.fainting,
-	"weakness-arm-leg": DbPatientSymptom.weaknessArmLeg,
-	confusion: DbPatientSymptom.confusion,
-	"head-injury": DbPatientSymptom.headInjury,
-	"sucidal-ideation": DbPatientSymptom.sucidalIdeation,
-	"abdominal-pain-pregnant": DbPatientSymptom.abdominalPainPregnant,
-};
+import { CreatePatientDto } from "./dto/create-patient.dto";
 
 @Injectable()
 export class PatientService {
@@ -32,7 +16,7 @@ export class PatientService {
 				lastName: dto.personalInformation.lastName,
 				age: dto.personalInformation.age,
 				french,
-				symptom: symptom ? patientSymptoms[symptom] : null,
+				symptom: symptom ?? null,
 			},
 		});
 	}

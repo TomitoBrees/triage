@@ -30,6 +30,11 @@
 		border: 1px solid var(--color-neutral-200);
 	}
 
+	&.-danger {
+		background: var(--color-vital-alert);
+		color: var(--color-text-light);
+	}
+
 	&.-small {
 		padding: spacing.$spacing-12 spacing.$spacing-16;
 	}

@@ -13,26 +13,26 @@ import {
 } from "class-validator";
 
 export const criticalSymptoms = [
-	"chest-pain",
-	"breathing-difficulty",
-	"sudden-speech-difficulty",
-	"facial-drooping",
-	"severe-bleeding",
-	"swelling-face-lips-throat",
+	"chestPain",
+	"breathingDifficulty",
+	"suddenSpeechDifficulty",
+	"facialDrooping",
+	"severeBleeding",
+	"swellingFaceLipsThroat",
 ] as const;
 
 export const moderateSymptoms = [
 	"fainting",
-	"weakness-arm-leg",
+	"weaknessArmLeg",
 	"confusion",
-	"head-injury",
-	"sucidal-ideation",
-	"abdominal-pain-pregnant",
+	"headInjury",
+	"sucidalIdeation",
+	"abdominalPainPregnant",
 ] as const;
 
-export type CriticalSymptom = (typeof criticalSymptoms)[number];
-export type ModerateSymptom = (typeof moderateSymptoms)[number];
-export type PatientSymptom = CriticalSymptom | ModerateSymptom;
+export const patientSymptoms = [...criticalSymptoms, ...moderateSymptoms] as const;
+
+export type PatientSymptom = (typeof patientSymptoms)[number];
 
 class PersonalInformationDto {
 	@IsString()
@@ -53,11 +53,11 @@ class PersonalInformationDto {
 export class CreatePatientDto {
 	@IsOptional()
 	@IsIn(criticalSymptoms)
-	criticalSymptom?: CriticalSymptom;
+	criticalSymptom?: PatientSymptom;
 
 	@IsOptional()
 	@IsIn(moderateSymptoms)
-	moderateSymptom?: ModerateSymptom;
+	moderateSymptom?: PatientSymptom;
 
 	@IsObject()
 	@IsNotEmptyObject()

@@ -1,35 +1,35 @@
-import type { CriticalSymptomId, PatientQuestion } from "./patient-questionnaire.types";
+import type { PatientQuestion } from "./patient-questionnaire.types";
 
-export const criticalQuestions: PatientQuestion<CriticalSymptomId>[] = [
+export const criticalQuestions: PatientQuestion[] = [
 	{
 		symptomText: "Douleur, pression ou serrement dans la poitrine",
 		symptomEmoji: "🫀",
-		symptomId: "chest-pain",
+		symptomId: "chestPain",
 	},
 	{
 		symptomText: "Difficulté à respirer ou essoufflement important au repos",
 		symptomEmoji: "🫁",
-		symptomId: "breathing-difficulty",
+		symptomId: "breathingDifficulty",
 	},
 	{
 		symptomText: "Difficulté soudaine à parler ou à comprendre",
 		symptomEmoji: "🧠",
-		symptomId: "sudden-speech-difficulty",
+		symptomId: "suddenSpeechDifficulty",
 	},
 	{
 		symptomText: "Bouche ou visage qui s'affaisse d'un côté",
 		symptomEmoji: "🧠",
-		symptomId: "facial-drooping",
+		symptomId: "facialDrooping",
 	},
 	{
 		symptomText: "Saignement important qui ne s'arrête pas",
 		symptomEmoji: "🩸",
-		symptomId: "severe-bleeding",
+		symptomId: "severeBleeding",
 	},
 	{
 		symptomText:
 			"Gonflement du visage, des lèvres ou de la gorge après avoir mangé ou pris un médicament",
 		symptomEmoji: "💊",
-		symptomId: "swelling-face-lips-throat",
+		symptomId: "swellingFaceLipsThroat",
 	},
 ];

@@ -3,27 +3,30 @@
 	[ngClass]="['-' + type]"
 >
 	<div class="dialog_header">
-		<h2 class="dialog_title">{{ data.title }}</h2>
-		@if (data.message) {
-			<p class="dialog_message">{{ data.message }}</p>
+		@if (data.type === "danger") {
+			<div class="dangerIconWrapper">
+				<svg
+					class="dangerIcon"
+					lucideTriangleAlert
+					aria-hidden="true"
+				/>
+			</div>
 		}
+		<h2 class="dialog_title">{{ data.title }}</h2>
 	</div>
 
+	@if (data.message) {
+		<div class="dialog_content">
+			<h3 class="dialog_subtitle">{{ data.subtitle }}</h3>
+			<p class="dialog_message">{{ data.message }}</p>
+		</div>
+	}
+
 	<div class="dialog_actions">
-		<button
-			type="button"
-			class="dialog_button -secondary"
-			(click)="cancel()"
-		>
-			{{ cancelLabel }}
-		</button>
-		<button
-			type="button"
-			class="dialog_button -primary"
-			[ngClass]="['-' + type]"
+		<app-button
 			(click)="confirm()"
-		>
-			{{ confirmLabel }}
-		</button>
+			variant="danger"
+			[text]="confirmLabel"
+		/>
 	</div>
 </section>

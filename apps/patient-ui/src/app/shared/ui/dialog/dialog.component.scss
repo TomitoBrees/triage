@@ -5,6 +5,11 @@
 .dialog {
 	width: min(100vw - #{spacing.$spacing-32}, 480px);
 	padding: spacing.$spacing-32;
+
+	display: flex;
+	flex-direction: column;
+	gap: spacing.$spacing-24;
+
 	border-radius: borders.$radius-xl;
 	background: var(--color-neutral-0);
 	box-shadow:
@@ -13,12 +18,25 @@
 
 	&.-danger {
 		border: 1px solid var(--color-vital-alert);
+
+		.dialog_title {
+			color: var(--color-vital-alert);
+		}
 	}
 
 	&_header {
 		display: flex;
 		flex-direction: column;
-		gap: spacing.$spacing-12;
+		justify-content: center;
+		align-items: center;
+		gap: spacing.$spacing-24;
+	}
+
+	&_content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: spacing.$spacing-8;
 	}
 
 	&_title {
@@ -26,50 +44,33 @@
 		color: var(--color-text-primary);
 	}
 
+	&_subtitle {
+		@include typography.typography-body-large;
+		color: var(--color-text-primary);
+	}
+
 	&_message {
 		@include typography.typography-body;
+
+		text-align: center;
 		color: var(--color-text-secondary);
-	}
-
-	&_actions {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: spacing.$spacing-12;
-		margin-top: spacing.$spacing-32;
-	}
-
-	&_button {
-		@include typography.typography-body-large;
-
-		min-height: 48px;
-		padding: spacing.$spacing-12 spacing.$spacing-16;
-		border-radius: borders.$radius-lg;
-		border: 1px solid transparent;
-		cursor: pointer;
-
-		&.-secondary {
-			background: var(--color-neutral-0);
-			border-color: var(--color-neutral-200);
-			color: var(--color-neutral-700);
-		}
-
-		&.-primary {
-			background: var(--color-primary);
-			color: var(--color-text-light);
-		}
-
-		&.-danger {
-			background: var(--color-vital-alert);
-		}
 	}
 }
 
-@media (max-width: 520px) {
-	.dialog {
-		padding: spacing.$spacing-24;
+.dangerIcon {
+	&Wrapper {
+		width: 80px;
+		height: 80px;
 
-		&_actions {
-			grid-template-columns: 1fr;
-		}
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: borders.$radius-full;
+
+		color: var(--color-neutral-0);
+		background-color: var(--color-vital-alert);
 	}
+
+	width: 48px;
+	height: 48px;
 }

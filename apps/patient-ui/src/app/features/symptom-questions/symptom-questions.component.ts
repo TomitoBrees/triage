@@ -3,8 +3,8 @@ import { SymptomButtonComponent } from "./symptom-button/symptom-button.componen
 import { Button } from "../../shared/ui/button/button.component";
 import { InfoBoxComponent } from "../../shared/ui/info-box/info-box.component";
 import type {
-	CriticalSymptomId,
 	PatientQuestion,
+	PatientSymptomId,
 } from "../patient-questionnaire/types/patient-questionnaire.types";
 
 @Component({
@@ -18,11 +18,11 @@ export class SymptomQuestionsComponent {
 	public description = input<string>(
 		"Présentez-vous l'un de ces symptômes nécessitant une prise en charge immédiate ?",
 	);
-	public questions = input<PatientQuestion<CriticalSymptomId>[]>([]);
+	public questions = input<PatientQuestion[]>([]);
 
-	public completed = output<{ criticalSymptom: CriticalSymptomId | null }>();
+	public completed = output<{ criticalSymptom: PatientSymptomId | null }>();
 
-	protected selectedSymptom = signal<CriticalSymptomId | null>(null);
+	protected selectedSymptom = signal<PatientSymptomId | null>(null);
 
 	protected submit() {
 		this.completed.emit({ criticalSymptom: this.selectedSymptom() });

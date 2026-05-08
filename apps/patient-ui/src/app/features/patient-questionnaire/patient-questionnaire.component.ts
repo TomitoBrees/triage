@@ -5,13 +5,14 @@ import { criticalQuestions as criticalSymptomQuestions } from "./types/patient-q
 import type { PatientResponse } from "./service/patient-questionnaire.api";
 import type {
 	Answer,
-	CriticalSymptomId,
+	PatientSymptomId,
 	PersonalInformation,
 	StepId,
 } from "./types/patient-questionnaire.types";
 import { PatientIdentificationComponent } from "../patient-identification/patient-identification.component";
 import { PatientQuestionnaireService } from "./service/patient-questionnaire.service";
 import { DialogService } from "../../shared/ui/dialog/dialog.service";
+import { patientSymptomToFrench } from "../../shared/utils/patient-symptom-label.util";
 
 type headerAndDescription = {
 	header: string;
@@ -56,7 +57,7 @@ export class PatientQuestionnaireComponent {
 	protected readonly submitStatus = this.patientQuestionnaireService.submitStatus;
 	protected readonly submitError = this.patientQuestionnaireService.submitError;
 
-	protected handleCriticalCompleted(answer: { criticalSymptom: CriticalSymptomId | null }) {
+	protected handleCriticalCompleted(answer: { criticalSymptom: PatientSymptomId | null }) {
 		this.updateAnswer({ criticalSymptom: answer.criticalSymptom ?? undefined });
 
 		if (this.answer().criticalSymptom) {
@@ -83,10 +84,11 @@ export class PatientQuestionnaireComponent {
 			if (patient.french === 1) {
 				this.dialogService.confirm({
 					type: "danger",
-					title: "Symptome d'urgence selectionne",
+					title: "Urgence détectée",
+					subtitle: patientSymptomToFrench(patient.symptom),
 					message:
-						"Ce choix indique une situation qui peut necessiter une prise en charge immediate.",
-					confirmLabel: "Continuer",
+						"Veuillez vous diriger immediatement vers le personnel d'accueil des urgences pour une prise en charge rapide.",
+					confirmLabel: "Retour au questionnaire",
 				});
 			}
 		} catch {

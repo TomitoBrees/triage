@@ -1,11 +1,13 @@
 import { DIALOG_DATA, DialogRef } from "@angular/cdk/dialog";
 import { NgClass } from "@angular/common";
 import { Component, inject } from "@angular/core";
+import { LucideTriangleAlert } from "@lucide/angular";
 import type { ConfirmDialogData } from "./dialog.types";
+import { Button } from "../button/button.component";
 
 @Component({
 	selector: "app-confirm-dialog",
-	imports: [NgClass],
+	imports: [NgClass, LucideTriangleAlert, Button],
 	templateUrl: "./dialog.component.html",
 	styleUrl: "./dialog.component.scss",
 })

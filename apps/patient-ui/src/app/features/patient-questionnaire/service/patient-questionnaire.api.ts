@@ -1,21 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { API_URL } from "../../../core/http/api-url.token";
-import type { Answer } from "../types/patient-questionnaire.types";
-
-export type PatientSymptomResponse =
-	| "chestPain"
-	| "breathingDifficulty"
-	| "suddenSpeechDifficulty"
-	| "facialDrooping"
-	| "severeBleeding"
-	| "swellingFaceLipsThroat"
-	| "fainting"
-	| "weaknessArmLeg"
-	| "confusion"
-	| "headInjury"
-	| "sucidalIdeation"
-	| "abdominalPainPregnant";
+import type { Answer, PatientSymptomId } from "../types/patient-questionnaire.types";
 
 export type PatientResponse = {
 	id: string;
@@ -23,7 +9,7 @@ export type PatientResponse = {
 	lastName: string;
 	age: number;
 	french: number;
-	symptom: PatientSymptomResponse | null;
+	symptom: PatientSymptomId | null;
 };
 
 @Injectable({ providedIn: "root" })

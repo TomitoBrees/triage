@@ -1,20 +1,18 @@
 export type StepId = "critical-symptoms" | "moderate-symptoms" | "personal-information";
 
-export type CriticalSymptomId =
-	| "chest-pain"
-	| "breathing-difficulty"
-	| "sudden-speech-difficulty"
-	| "facial-drooping"
-	| "severe-bleeding"
-	| "swelling-face-lips-throat";
-
-export type ModerateSymptomId =
+export type PatientSymptomId =
+	| "chestPain"
+	| "breathingDifficulty"
+	| "suddenSpeechDifficulty"
+	| "facialDrooping"
+	| "severeBleeding"
+	| "swellingFaceLipsThroat"
 	| "fainting"
-	| "weakness-arm-leg"
+	| "weaknessArmLeg"
 	| "confusion"
-	| "head-injury"
-	| "sucidal-ideation"
-	| "abdominal-pain-pregnant";
+	| "headInjury"
+	| "sucidalIdeation"
+	| "abdominalPainPregnant";
 
 export type PersonalInformation = {
 	firstName: string;
@@ -24,13 +22,13 @@ export type PersonalInformation = {
 };
 
 export type Answer = {
-	criticalSymptom?: CriticalSymptomId;
-	moderateSymptom?: ModerateSymptomId;
+	criticalSymptom?: PatientSymptomId;
+	moderateSymptom?: PatientSymptomId;
 	personalInformation?: PersonalInformation;
 };
 
-export type PatientQuestion<TSymptomId extends CriticalSymptomId | ModerateSymptomId> = {
+export type PatientQuestion = {
 	symptomText: string;
 	symptomEmoji: string;
-	symptomId: TSymptomId;
+	symptomId: PatientSymptomId;
 };
