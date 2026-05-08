@@ -1,7 +1,12 @@
 @use "form-input";
+@use "typography";
 
 .input {
 	@include form-input.form-input-control;
+
+	&.-error {
+		border-color: var(--color-critical-dark);
+	}
 
 	&Container {
 		@include form-input.form-input-container;
@@ -9,5 +14,11 @@
 
 	&_label {
 		@include form-input.form-input-label;
+	}
+
+	&_caption {
+		@include typography.typography-caption;
+
+		color: var(--color-critical-dark);
 	}
 }

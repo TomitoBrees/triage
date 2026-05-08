@@ -1,5 +1,5 @@
 import { Component, signal } from "@angular/core";
-import { form } from "@angular/forms/signals";
+import { form, min, required } from "@angular/forms/signals";
 import { TextInputComponent } from "../../shared/ui/text-input/text-input.component";
 import { NumberInputComponent } from "../../shared/ui/number-input/number-input.component";
 import { SwitchComponent } from "../../shared/ui/switch/switch.component";
@@ -19,5 +19,13 @@ export class PatientIdentificationComponent {
 		isMale: true,
 	});
 
-	protected identificationForm = form(this.identificationModel);
+	protected identificationForm = form(this.identificationModel, (schemaPath) => {
+		required(schemaPath.firstName, { message: "Le prénom est requis" });
+		required(schemaPath.lastName, { message: "Le nom est requis" });
+		min(schemaPath.age, 0, { message: "L'âge est requis" });
+	});
+
+	protected onSubmit() {
+		console.log(this.identificationModel());
+	}
 }

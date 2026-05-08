@@ -28,7 +28,11 @@
 	</div>
 
 	<div class="patientInfo_buttons">
-		<app-button text="Continuer" />
+		<app-button
+			text="Continuer"
+			[disabled]="identificationForm().invalid()"
+			(click)="onSubmit()"
+		/>
 		<app-button
 			text="Retour"
 			variant="lighter"

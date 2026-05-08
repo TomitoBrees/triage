@@ -1,8 +1,17 @@
 <div class="inputContainer">
-	<label class="input_label">{{ label() }}</label>
+	<label class="input_label">
+		{{ label() }}
+		@if (isRequired()) {
+			<span class="input_required">*</span>
+		}
+	</label>
 	<input
 		class="input"
+		[class.-error]="showError()"
 		[formField]="field()"
 		[placeholder]="placeholder()"
 	/>
+	@if (showError()) {
+		<span class="input_caption">{{ errorMessage() }}</span>
+	}
 </div>

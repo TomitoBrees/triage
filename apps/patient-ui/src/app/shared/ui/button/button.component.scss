@@ -41,4 +41,9 @@
 	&_text {
 		@include typography.typography-body-large;
 	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
 }
