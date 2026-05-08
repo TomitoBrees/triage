@@ -1,4 +1,5 @@
 import { Component, computed, inject, signal } from "@angular/core";
+import { firstValueFrom } from "rxjs";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
 import { criticalQuestions as criticalSymptomQuestions } from "./types/patient-questionnaire.questions";
 import type { PatientResponse } from "./service/patient-questionnaire.api";
@@ -10,6 +11,7 @@ import type {
 } from "./types/patient-questionnaire.types";
 import { PatientIdentificationComponent } from "../patient-identification/patient-identification.component";
 import { PatientQuestionnaireService } from "./service/patient-questionnaire.service";
+import { DialogService } from "../../shared/ui/dialog/dialog.service";
 
 type headerAndDescription = {
 	header: string;
@@ -50,6 +52,7 @@ export class PatientQuestionnaireComponent {
 	});
 
 	private readonly patientQuestionnaireService = inject(PatientQuestionnaireService);
+	private readonly dialogService = inject(DialogService);
 	protected readonly submitStatus = this.patientQuestionnaireService.submitStatus;
 	protected readonly submitError = this.patientQuestionnaireService.submitError;
 
@@ -76,6 +79,16 @@ export class PatientQuestionnaireComponent {
 		try {
 			const patient = await this.patientQuestionnaireService.submitAnswer(this.answer());
 			this.submittedPatient.set(patient);
+
+			if (patient.french === 1) {
+				this.dialogService.confirm({
+					type: "danger",
+					title: "Symptome d'urgence selectionne",
+					message:
+						"Ce choix indique une situation qui peut necessiter une prise en charge immediate.",
+					confirmLabel: "Continuer",
+				});
+			}
 		} catch {
 			this.submittedPatient.set(null);
 		}

@@ -1,0 +1,29 @@
+<section
+	class="dialog"
+	[ngClass]="['-' + type]"
+>
+	<div class="dialog_header">
+		<h2 class="dialog_title">{{ data.title }}</h2>
+		@if (data.message) {
+			<p class="dialog_message">{{ data.message }}</p>
+		}
+	</div>
+
+	<div class="dialog_actions">
+		<button
+			type="button"
+			class="dialog_button -secondary"
+			(click)="cancel()"
+		>
+			{{ cancelLabel }}
+		</button>
+		<button
+			type="button"
+			class="dialog_button -primary"
+			[ngClass]="['-' + type]"
+			(click)="confirm()"
+		>
+			{{ confirmLabel }}
+		</button>
+	</div>
+</section>

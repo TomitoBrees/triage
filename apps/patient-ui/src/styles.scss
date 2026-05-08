@@ -1,6 +1,7 @@
 @use "./styles/colors";
 @use "./styles/spacing";
 @use "./styles/typography";
+@import "@angular/cdk/overlay-prebuilt.css";
 
 :root {
 	@include colors.tokens;
@@ -77,4 +78,16 @@ h5,
 h6,
 p {
 	margin: 0;
+}
+
+.app-dialog-backdrop {
+	background: rgb(17 24 39 / 0.34);
+}
+
+.app-dialog-backdrop--danger {
+	background: var(--color-critical-light);
+}
+
+.app-dialog-panel {
+	max-width: calc(100vw - #{spacing.$spacing-32});
 }
