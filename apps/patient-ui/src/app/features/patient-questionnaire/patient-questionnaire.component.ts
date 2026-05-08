@@ -1,7 +1,10 @@
 import { Component, computed, inject, signal } from "@angular/core";
 import { firstValueFrom } from "rxjs";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
-import { criticalQuestions as criticalSymptomQuestions } from "./types/patient-questionnaire.questions";
+import {
+	criticalQuestions as criticalSymptomQuestions,
+	moderateSymptomQuestions,
+} from "./types/patient-questionnaire.questions";
 import type { PatientResponse } from "./service/patient-questionnaire.api";
 import type {
 	Answer,
@@ -27,7 +30,10 @@ type headerAndDescription = {
 export class PatientQuestionnaireComponent {
 	protected currentStep = signal<StepId>("critical-symptoms");
 	protected answer = signal<Answer>({});
+
 	protected criticalQuestions = signal(criticalSymptomQuestions);
+	protected moderateQuestions = signal(moderateSymptomQuestions);
+
 	protected submittedPatient = signal<PatientResponse | null>(null);
 
 	protected headerAndDescription = computed<headerAndDescription>(() => {
@@ -42,7 +48,7 @@ export class PatientQuestionnaireComponent {
 				return {
 					header: "Symptômes modérés",
 					description:
-						"Présentez-vous l'un de ces symptômes nécessitant une prise en charge rapide ?",
+						"Présentez-vous l'un de ces symptômes pouvant nécessiter une prise en charge rapide ?",
 				};
 			case "personal-information":
 				return {
@@ -57,8 +63,18 @@ export class PatientQuestionnaireComponent {
 	protected readonly submitStatus = this.patientQuestionnaireService.submitStatus;
 	protected readonly submitError = this.patientQuestionnaireService.submitError;
 
-	protected handleCriticalCompleted(answer: { criticalSymptom: PatientSymptomId | null }) {
-		this.updateAnswer({ criticalSymptom: answer.criticalSymptom ?? undefined });
+	protected handleCriticalCompleted(answer: { symptom: PatientSymptomId | null }) {
+		this.updateAnswer({ criticalSymptom: answer.symptom ?? undefined });
+
+		if (this.answer().criticalSymptom) {
+			this.currentStep.set("personal-information");
+		} else {
+			this.currentStep.set("moderate-symptoms");
+		}
+	}
+
+	protected handleModerateCompleted(answer: { symptom: PatientSymptomId | null }) {
+		this.updateAnswer({ moderateSymptom: answer.symptom ?? undefined });
 
 		if (this.answer().criticalSymptom) {
 			this.currentStep.set("personal-information");

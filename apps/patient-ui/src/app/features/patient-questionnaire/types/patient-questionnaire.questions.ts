@@ -22,6 +22,11 @@ export const criticalQuestions: PatientQuestion[] = [
 		symptomId: "facialDrooping",
 	},
 	{
+		symptomText: "Faiblesse soudaine d'un bras ou d'une jambe",
+		symptomEmoji: "🧠",
+		symptomId: "weaknessArmLeg",
+	},
+	{
 		symptomText: "Saignement important qui ne s'arrête pas",
 		symptomEmoji: "🩸",
 		symptomId: "severeBleeding",
@@ -31,5 +36,23 @@ export const criticalQuestions: PatientQuestion[] = [
 			"Gonflement du visage, des lèvres ou de la gorge après avoir mangé ou pris un médicament",
 		symptomEmoji: "💊",
 		symptomId: "swellingFaceLipsThroat",
+	},
+];
+
+export const moderateSymptomQuestions: PatientQuestion[] = [
+	{
+		symptomText: "Choc violent à la tete ou au cou",
+		symptomEmoji: "🤕",
+		symptomId: "headInjury",
+	},
+	{
+		symptomText: "Tentative de vous faire du mal ou peur de le faire",
+		symptomEmoji: "😢",
+		symptomId: "sucidalIdeation",
+	},
+	{
+		symptomText: "Douleur abdominale intense ou saignement important pendant la grossesse",
+		symptomEmoji: "🤰",
+		symptomId: "abdominalPainPregnant",
 	},
 ];

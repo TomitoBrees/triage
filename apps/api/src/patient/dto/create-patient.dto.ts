@@ -19,6 +19,7 @@ export const criticalSymptoms = [
 	"facialDrooping",
 	"severeBleeding",
 	"swellingFaceLipsThroat",
+	"weaknessArmLeg",
 ] as const;
 
 export const moderateSymptoms = [

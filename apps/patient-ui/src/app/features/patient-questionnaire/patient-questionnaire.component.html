@@ -16,9 +16,14 @@
 		@case ("critical-symptoms") {
 			<app-symptom-questions
 				[questions]="criticalQuestions()"
-				heading="Symptômes d'urgence"
-				description="Présentez-vous l'un de ces symptômes nécessitant une prise en charge immédiate ?"
 				(completed)="handleCriticalCompleted($event)"
+			/>
+		}
+
+		@case ("moderate-symptoms") {
+			<app-symptom-questions
+				[questions]="moderateQuestions()"
+				(completed)="handleModerateCompleted($event)"
 			/>
 		}
 

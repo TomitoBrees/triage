@@ -14,17 +14,13 @@ import type {
 	styleUrl: "./symptom-questions.component.scss",
 })
 export class SymptomQuestionsComponent {
-	public heading = input<string>("Symptômes d'urgence");
-	public description = input<string>(
-		"Présentez-vous l'un de ces symptômes nécessitant une prise en charge immédiate ?",
-	);
 	public questions = input<PatientQuestion[]>([]);
 
-	public completed = output<{ criticalSymptom: PatientSymptomId | null }>();
+	public completed = output<{ symptom: PatientSymptomId | null }>();
 
 	protected selectedSymptom = signal<PatientSymptomId | null>(null);
 
 	protected submit() {
-		this.completed.emit({ criticalSymptom: this.selectedSymptom() });
+		this.completed.emit({ symptom: this.selectedSymptom() });
 	}
 }
