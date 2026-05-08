@@ -3,7 +3,7 @@ import { inject, Injectable } from "@angular/core";
 import { API_URL } from "../../../core/http/api-url.token";
 import type { Answer } from "../types/patient-questionnaire.types";
 
-export type PatientQuestionnaireResponse = {
+export type PatientResponse = {
 	id: string;
 	status: "received";
 };
@@ -14,9 +14,6 @@ export class PatientQuestionnaireApi {
 	private readonly apiUrl = inject(API_URL);
 
 	submit(answer: Answer) {
-		return this.http.post<PatientQuestionnaireResponse>(
-			`${this.apiUrl}/patient-questionnaires`,
-			answer,
-		);
+		return this.http.post<PatientResponse>(`${this.apiUrl}/patient`, answer);
 	}
 }

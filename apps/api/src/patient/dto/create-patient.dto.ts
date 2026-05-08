@@ -12,7 +12,7 @@ import {
 	ValidateNested,
 } from "class-validator";
 
-const criticalSymptoms = [
+export const criticalSymptoms = [
 	"chest-pain",
 	"breathing-difficulty",
 	"sudden-speech-difficulty",
@@ -21,7 +21,7 @@ const criticalSymptoms = [
 	"swelling-face-lips-throat",
 ] as const;
 
-const moderateSymptoms = [
+export const moderateSymptoms = [
 	"fainting",
 	"weakness-arm-leg",
 	"confusion",
@@ -29,6 +29,10 @@ const moderateSymptoms = [
 	"sucidal-ideation",
 	"abdominal-pain-pregnant",
 ] as const;
+
+export type CriticalSymptom = (typeof criticalSymptoms)[number];
+export type ModerateSymptom = (typeof moderateSymptoms)[number];
+export type PatientSymptom = CriticalSymptom | ModerateSymptom;
 
 class PersonalInformationDto {
 	@IsString()
@@ -46,14 +50,14 @@ class PersonalInformationDto {
 	isMale!: boolean;
 }
 
-export class CreatePatientQuestionnaireDto {
+export class CreatePatientDto {
 	@IsOptional()
 	@IsIn(criticalSymptoms)
-	criticalSymptom?: (typeof criticalSymptoms)[number];
+	criticalSymptom?: CriticalSymptom;
 
 	@IsOptional()
 	@IsIn(moderateSymptoms)
-	moderateSymptom?: (typeof moderateSymptoms)[number];
+	moderateSymptom?: ModerateSymptom;
 
 	@IsObject()
 	@IsNotEmptyObject()

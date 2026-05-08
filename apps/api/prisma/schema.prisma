@@ -15,3 +15,27 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+model Patient {
+  id        String          @id @default(cuid())
+  firstName String
+  lastName  String
+  age       Int
+  french    Int
+  symptom   PatientSymptom?
+}
+
+enum PatientSymptom {
+  chestPain               @map("chest-pain")
+  breathingDifficulty     @map("breathing-difficulty")
+  suddenSpeechDifficulty  @map("sudden-speech-difficulty")
+  facialDrooping          @map("facial-drooping")
+  severeBleeding          @map("severe-bleeding")
+  swellingFaceLipsThroat  @map("swelling-face-lips-throat")
+  fainting
+  weaknessArmLeg          @map("weakness-arm-leg")
+  confusion
+  headInjury              @map("head-injury")
+  sucidalIdeation         @map("sucidal-ideation")
+  abdominalPainPregnant   @map("abdominal-pain-pregnant")
+}
