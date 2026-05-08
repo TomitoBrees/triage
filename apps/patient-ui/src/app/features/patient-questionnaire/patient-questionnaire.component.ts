@@ -1,8 +1,7 @@
 import { Component, computed, inject, signal } from "@angular/core";
-import { finalize } from "rxjs";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
 import { criticalQuestions as criticalSymptomQuestions } from "./types/patient-questionnaire.questions";
-import { PatientQuestionnaireApi } from "./service/patient-questionnaire.api";
+import type { PatientResponse } from "./service/patient-questionnaire.api";
 import type {
 	Answer,
 	CriticalSymptomId,
@@ -26,6 +25,7 @@ export class PatientQuestionnaireComponent {
 	protected currentStep = signal<StepId>("critical-symptoms");
 	protected answer = signal<Answer>({});
 	protected criticalQuestions = signal(criticalSymptomQuestions);
+	protected submittedPatient = signal<PatientResponse | null>(null);
 
 	protected headerAndDescription = computed<headerAndDescription>(() => {
 		switch (this.currentStep()) {
@@ -50,6 +50,8 @@ export class PatientQuestionnaireComponent {
 	});
 
 	private readonly patientQuestionnaireService = inject(PatientQuestionnaireService);
+	protected readonly submitStatus = this.patientQuestionnaireService.submitStatus;
+	protected readonly submitError = this.patientQuestionnaireService.submitError;
 
 	protected handleCriticalCompleted(answer: { criticalSymptom: CriticalSymptomId | null }) {
 		this.updateAnswer({ criticalSymptom: answer.criticalSymptom ?? undefined });
@@ -61,7 +63,7 @@ export class PatientQuestionnaireComponent {
 		}
 	}
 
-	protected handlePersonalInfoCompleted(info: PersonalInformation) {
+	protected async handlePersonalInfoCompleted(info: PersonalInformation) {
 		this.updateAnswer({
 			personalInformation: {
 				firstName: info.firstName,
@@ -71,7 +73,12 @@ export class PatientQuestionnaireComponent {
 			},
 		});
 
-		this.patientQuestionnaireService.submitAnswer(this.answer());
+		try {
+			const patient = await this.patientQuestionnaireService.submitAnswer(this.answer());
+			this.submittedPatient.set(patient);
+		} catch {
+			this.submittedPatient.set(null);
+		}
 	}
 
 	private updateAnswer(newAnswer: Partial<Answer>) {

@@ -18,4 +18,14 @@
 		@include typography.typography-body;
 		color: var(--color-text-secondary);
 	}
+
+	&_status {
+		@include typography.typography-body;
+		color: var(--color-text-secondary);
+	}
+
+	&_error {
+		@include typography.typography-body;
+		color: var(--color-french-1);
+	}
 }

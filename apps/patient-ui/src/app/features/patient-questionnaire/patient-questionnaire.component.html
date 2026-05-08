@@ -2,6 +2,15 @@
 	<div class="questionnaire_header">
 		<h1 class="questionnaire_title">{{ headerAndDescription().header }}</h1>
 		<p class="questionnaire_description">{{ headerAndDescription().description }}</p>
+		@if (submitStatus() === "submitting") {
+			<p class="questionnaire_status">Envoi en cours...</p>
+		}
+		@if (submitStatus() === "submitted") {
+			<p class="questionnaire_status">Votre demande a bien ete envoyee.</p>
+		}
+		@if (submitError()) {
+			<p class="questionnaire_error">{{ submitError() }}</p>
+		}
 	</div>
 	@switch (currentStep()) {
 		@case ("critical-symptoms") {

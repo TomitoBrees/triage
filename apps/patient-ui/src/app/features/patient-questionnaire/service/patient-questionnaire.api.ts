@@ -3,9 +3,27 @@ import { inject, Injectable } from "@angular/core";
 import { API_URL } from "../../../core/http/api-url.token";
 import type { Answer } from "../types/patient-questionnaire.types";
 
+export type PatientSymptomResponse =
+	| "chestPain"
+	| "breathingDifficulty"
+	| "suddenSpeechDifficulty"
+	| "facialDrooping"
+	| "severeBleeding"
+	| "swellingFaceLipsThroat"
+	| "fainting"
+	| "weaknessArmLeg"
+	| "confusion"
+	| "headInjury"
+	| "sucidalIdeation"
+	| "abdominalPainPregnant";
+
 export type PatientResponse = {
 	id: string;
-	status: "received";
+	firstName: string;
+	lastName: string;
+	age: number;
+	french: number;
+	symptom: PatientSymptomResponse | null;
 };
 
 @Injectable({ providedIn: "root" })

@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from "@angular/core";
 import { PatientQuestionnaireApi } from "./patient-questionnaire.api";
 import { Answer } from "../types/patient-questionnaire.types";
-import { finalize } from "rxjs";
+import { firstValueFrom } from "rxjs";
 
 @Injectable({
 	providedIn: "root",
@@ -12,28 +12,18 @@ export class PatientQuestionnaireService {
 
 	private readonly patientQuestionnaireApi = inject(PatientQuestionnaireApi);
 
-	public submitAnswer(answer: Answer) {
+	public async submitAnswer(answer: Answer) {
 		this.submitError.set(null);
 		this.submitStatus.set("submitting");
 
-		this.patientQuestionnaireApi
-			.submit(answer)
-			.pipe(
-				finalize(() => {
-					if (this.submitStatus() === "submitting") {
-						this.submitStatus.set("idle");
-					}
-				}),
-			)
-			.subscribe({
-				next: () => {
-					this.submitStatus.set("submitted");
-				},
-				error: () => {
-					this.submitError.set(
-						"Impossible d'envoyer vos informations. Merci de reessayer.",
-					);
-				},
-			});
+		try {
+			const patient = await firstValueFrom(this.patientQuestionnaireApi.submit(answer));
+			this.submitStatus.set("submitted");
+			return patient;
+		} catch (error) {
+			this.submitStatus.set("idle");
+			this.submitError.set("Impossible d'envoyer vos informations. Merci de reessayer.");
+			throw error;
+		}
 	}
 }
