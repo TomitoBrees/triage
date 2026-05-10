@@ -16,14 +16,15 @@
 		@case ("critical-symptoms") {
 			<app-symptom-questions
 				[questions]="criticalQuestions()"
+				[infoBox]="true"
 				(completed)="handleCriticalCompleted($event)"
 			/>
 		}
 
-		@case ("other-symptoms") {
+		@case ("general-symptoms") {
 			<app-symptom-questions
-				[questions]="moderateQuestions()"
-				(completed)="handleOtherCompleted($event)"
+				[questions]="generalSymptoms()"
+				(completed)="handleGeneralCompleted($event)"
 			/>
 		}
 

@@ -3,7 +3,7 @@ import { SymptomButtonComponent } from "./symptom-button/symptom-button.componen
 import { Button } from "../../shared/ui/button/button.component";
 import { InfoBoxComponent } from "../../shared/ui/info-box/info-box.component";
 import type {
-	PatientQuestion,
+	SymptomQuestion,
 	PatientSymptomId,
 } from "../patient-questionnaire/types/patient-questionnaire.types";
 
@@ -14,7 +14,8 @@ import type {
 	styleUrl: "./symptom-questions.component.scss",
 })
 export class SymptomQuestionsComponent {
-	public questions = input<PatientQuestion[]>([]);
+	public questions = input<SymptomQuestion[]>([]);
+	public infoBox = input<boolean>(false);
 
 	public completed = output<{ symptom: PatientSymptomId | null }>();
 

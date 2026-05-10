@@ -1,7 +1,9 @@
 <div class="patientQuestions">
-	<app-info-box
-		text="Si vous ne présentez aucun de ces symptômes, poursuivez le questionnaire en cliquant sur le bouton ci-dessous."
-	/>
+	@if (infoBox()) {
+		<app-info-box
+			text="Si vous ne présentez aucun de ces symptômes, poursuivez le questionnaire en cliquant sur le bouton ci-dessous."
+		/>
+	}
 	<div class="symptoms">
 		@for (symptom of questions(); track symptom.symptomText) {
 			<app-symptom-button

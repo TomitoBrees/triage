@@ -1,9 +1,6 @@
 import { Component, computed, inject, signal } from "@angular/core";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
-import {
-	criticalQuestions as criticalSymptomQuestions,
-	moderateSymptomQuestions,
-} from "./types/patient-questionnaire.questions";
+import { criticalSymptoms, generalSymptoms } from "./types/patient-questionnaire.questions";
 import type { PatientResponse } from "./service/patient-questionnaire.api";
 import type {
 	Answer,
@@ -30,8 +27,8 @@ export class PatientQuestionnaireComponent {
 	protected currentStep = signal<StepId>("critical-symptoms");
 	protected answer = signal<Answer>({});
 
-	protected criticalQuestions = signal(criticalSymptomQuestions);
-	protected moderateQuestions = signal(moderateSymptomQuestions);
+	protected criticalQuestions = signal(criticalSymptoms);
+	protected generalSymptoms = signal(generalSymptoms);
 
 	protected submittedPatient = signal<PatientResponse | null>(null);
 
@@ -43,21 +40,20 @@ export class PatientQuestionnaireComponent {
 					description:
 						"Présentez-vous l'un de ces symptômes nécessitant une prise en charge immédiate ?",
 				};
-			case "other-symptoms":
+			case "general-symptoms":
 				return {
 					header: "Symptome principal",
 					description: "Choisissez ce qui décrit le mieux votre motif de consultation ?",
+				};
+			case "shared-questions":
+				return {
+					header: "Questions complémentaires",
+					description: "Ces informations aident à mieux évaluer votre situation",
 				};
 			case "personal-information":
 				return {
 					header: "Informations personnelles",
 					description: "Merci de renseigner vos informations personnelles.",
-				};
-			case "moderate-follow-up":
-				return {
-					header: "Symptômes modérés - Suivi",
-					description:
-						"Merci de répondre à ces questions complémentaires pour mieux évaluer votre situation.",
 				};
 		}
 	});
@@ -69,22 +65,7 @@ export class PatientQuestionnaireComponent {
 
 	protected handleCriticalCompleted(answer: { symptom: PatientSymptomId | null }) {
 		this.updateAnswer({ criticalSymptom: answer.symptom ?? undefined });
-
-		if (this.answer().criticalSymptom) {
-			this.currentStep.set("personal-information");
-		} else {
-			this.currentStep.set("other-symptoms");
-		}
-	}
-
-	protected handleOtherCompleted(answer: { symptom: PatientSymptomId | null }) {
-		this.updateAnswer({ otherSymptom: answer.symptom ?? undefined });
-
-		if (this.answer().criticalSymptom) {
-			this.currentStep.set("personal-information");
-		} else {
-			this.currentStep.set("other-symptoms");
-		}
+		this.currentStep.set("personal-information");
 	}
 
 	protected async handlePersonalInfoCompleted(info: PersonalInformation) {
@@ -96,6 +77,11 @@ export class PatientQuestionnaireComponent {
 				isMale: info.isMale,
 			},
 		});
+
+		if (!this.answer().criticalSymptom) {
+			this.currentStep.set("general-symptoms");
+			return;
+		}
 
 		try {
 			const patient = await this.patientQuestionnaireService.submitAnswer(this.answer());
@@ -114,6 +100,11 @@ export class PatientQuestionnaireComponent {
 		} catch {
 			this.submittedPatient.set(null);
 		}
+	}
+
+	protected handleGeneralCompleted(answer: { symptom: PatientSymptomId | null }) {
+		this.updateAnswer({ generalSymptom: answer.symptom ?? undefined });
+		this.currentStep.set("shared-questions");
 	}
 
 	private updateAnswer(newAnswer: Partial<Answer>) {
