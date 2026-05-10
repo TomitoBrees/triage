@@ -113,7 +113,7 @@ export const sharedQuestions: PatientQuestion[] = [
 		text: "Depuis quand ce problème a-t-il commencé ?",
 		type: "single-choice",
 		options: [
-			{ id: "lessThanAnHour", label: "moins d'une heure" },
+			{ id: "lessThanAnHour", label: "Moins d'une heure" },
 			{ id: "oneToSixHours", label: "1 à 6 heures" },
 			{ id: "today", label: "Aujourd'hui" },
 			{ id: "yesterday", label: "Hier" },

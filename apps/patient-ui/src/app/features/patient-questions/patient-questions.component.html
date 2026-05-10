@@ -1,0 +1,20 @@
+<div class="questions">
+	@for (question of questions(); track question.id) {
+		<div class="question">
+			<span class="question_text">{{ question.text }}</span>
+
+			@if (question.type === "single-choice") {
+				<div class="question_options">
+					@for (option of question.options; track option.id) {
+						<app-button
+							variant="lighter"
+							size="xs"
+							(click)="setAnswer(question.id, option.id)"
+							[text]="option.label"
+						/>
+					}
+				</div>
+			}
+		</div>
+	}
+</div>

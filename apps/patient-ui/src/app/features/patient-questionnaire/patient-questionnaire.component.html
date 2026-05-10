@@ -21,6 +21,10 @@
 			/>
 		}
 
+		@case ("personal-information") {
+			<app-patient-identification (completed)="handlePersonalInfoCompleted($event)" />
+		}
+
 		@case ("general-symptoms") {
 			<app-symptom-questions
 				[questions]="generalSymptoms()"
@@ -28,8 +32,8 @@
 			/>
 		}
 
-		@case ("personal-information") {
-			<app-patient-identification (completed)="handlePersonalInfoCompleted($event)" />
+		@case ("shared-questions") {
+			<app-patient-questions [questions]="sharedQuestions()" />
 		}
 	}
 </div>

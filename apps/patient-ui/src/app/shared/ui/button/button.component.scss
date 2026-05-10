@@ -35,6 +35,15 @@
 		color: var(--color-text-light);
 	}
 
+	&.-xs {
+		justify-content: flex-start;
+		padding: spacing.$spacing-12 spacing.$spacing-16;
+
+		.button_text {
+			@include typography.typography-body;
+		}
+	}
+
 	&.-small {
 		padding: spacing.$spacing-12 spacing.$spacing-16;
 	}

@@ -1,9 +1,14 @@
 import { Component, computed, inject, signal } from "@angular/core";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
-import { criticalSymptoms, generalSymptoms } from "./types/patient-questionnaire.questions";
+import {
+	criticalSymptoms,
+	generalSymptoms,
+	sharedQuestions,
+} from "./types/patient-questionnaire.questions";
 import type { PatientResponse } from "./service/patient-questionnaire.api";
 import type {
 	Answer,
+	PatientQuestion,
 	PatientSymptomId,
 	PersonalInformation,
 	StepId,
@@ -12,6 +17,7 @@ import { PatientIdentificationComponent } from "../patient-identification/patien
 import { PatientQuestionnaireService } from "./service/patient-questionnaire.service";
 import { DialogService } from "../../shared/ui/dialog/dialog.service";
 import { patientSymptomToFrench } from "../../shared/utils/patient-symptom-label.util";
+import { PatientQuestionsComponent } from "../patient-questions/patient-questions.component";
 
 type headerAndDescription = {
 	header: string;
@@ -19,7 +25,7 @@ type headerAndDescription = {
 };
 @Component({
 	selector: "app-patient-questionnaire",
-	imports: [SymptomQuestionsComponent, PatientIdentificationComponent],
+	imports: [SymptomQuestionsComponent, PatientIdentificationComponent, PatientQuestionsComponent],
 	templateUrl: "./patient-questionnaire.component.html",
 	styleUrl: "./patient-questionnaire.component.scss",
 })
@@ -29,6 +35,8 @@ export class PatientQuestionnaireComponent {
 
 	protected criticalQuestions = signal(criticalSymptoms);
 	protected generalSymptoms = signal(generalSymptoms);
+
+	protected sharedQuestions = signal<PatientQuestion[]>(sharedQuestions);
 
 	protected submittedPatient = signal<PatientResponse | null>(null);
 
