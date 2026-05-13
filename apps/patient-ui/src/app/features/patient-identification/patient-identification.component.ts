@@ -14,6 +14,7 @@ import { PersonalInformation } from "../patient-questionnaire/types/patient-ques
 })
 export class PatientIdentificationComponent {
 	public completed = output<PersonalInformation>();
+	public goBack = output<void>();
 
 	protected identificationModel = signal({
 		firstName: "",
@@ -30,5 +31,9 @@ export class PatientIdentificationComponent {
 
 	protected onSubmit() {
 		this.completed.emit(this.identificationModel());
+	}
+
+	protected onGoBack() {
+		this.goBack.emit();
 	}
 }

@@ -9,14 +9,14 @@
 			<app-symptom-button
 				[symptomText]="symptom.symptomText"
 				[symptomEmoji]="symptom.symptomEmoji"
-				(click)="selectedSymptom.set(symptom.symptomId)"
+				(click)="submit(symptom.symptomId)"
 				[isSelected]="selectedSymptom() === symptom.symptomId"
 			/>
 		}
 	</div>
 	<app-button
 		class="patientQuestions_button"
-		[text]="selectedSymptom() ? 'Continuer' : 'Aucun de ces symptômes - Continuer'"
+		[text]="'Aucun de ces symptômes - Continuer'"
 		(click)="submit()"
 	/>
 </div>

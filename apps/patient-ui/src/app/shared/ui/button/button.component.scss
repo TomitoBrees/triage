@@ -38,6 +38,7 @@
 	&.-xs {
 		justify-content: flex-start;
 		padding: spacing.$spacing-12 spacing.$spacing-16;
+		box-shadow: none;
 
 		.button_text {
 			@include typography.typography-body;

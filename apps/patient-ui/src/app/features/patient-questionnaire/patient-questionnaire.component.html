@@ -22,7 +22,10 @@
 		}
 
 		@case ("personal-information") {
-			<app-patient-identification (completed)="handlePersonalInfoCompleted($event)" />
+			<app-patient-identification
+				(completed)="handlePersonalInfoCompleted($event)"
+				(goBack)="handleGoBack()"
+			/>
 		}
 
 		@case ("general-symptoms") {

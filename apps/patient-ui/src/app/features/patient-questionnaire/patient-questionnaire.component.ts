@@ -115,6 +115,13 @@ export class PatientQuestionnaireComponent {
 		this.currentStep.set("shared-questions");
 	}
 
+	protected handleGoBack() {
+		switch (this.currentStep()) {
+			case "personal-information":
+				this.currentStep.set("critical-symptoms");
+		}
+	}
+
 	private updateAnswer(newAnswer: Partial<Answer>) {
 		this.answer.update((currentAnswer) => ({
 			...currentAnswer,

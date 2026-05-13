@@ -21,7 +21,7 @@ export class SymptomQuestionsComponent {
 
 	protected selectedSymptom = signal<PatientSymptomId | null>(null);
 
-	protected submit() {
-		this.completed.emit({ symptom: this.selectedSymptom() });
+	protected submit(selectedSymptom?: PatientSymptomId): void {
+		this.completed.emit({ symptom: selectedSymptom ?? null });
 	}
 }
