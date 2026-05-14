@@ -1,0 +1,119 @@
+@use "borders";
+@use "spacing";
+@use "typography";
+
+.slider {
+	display: flex;
+	flex-direction: column;
+	gap: spacing.$spacing-12;
+
+	width: 100%;
+	padding: spacing.$spacing-20 spacing.$spacing-24 spacing.$spacing-16;
+
+	background: var(--color-neutral-0);
+	border: 1px solid var(--color-neutral-200);
+	border-radius: borders.$radius-lg;
+
+	&_header {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+		align-items: center;
+		gap: spacing.$spacing-16;
+	}
+
+	&_limit {
+		@include typography.typography-caption;
+
+		color: var(--color-text-secondary);
+
+		&:last-child {
+			text-align: right;
+		}
+	}
+
+	&_value {
+		@include typography.typography-subsection;
+
+		min-width: 42px;
+
+		color: var(--color-primary);
+		text-align: center;
+	}
+
+	&_input {
+		--slider-progress: 0%;
+
+		width: 100%;
+		min-height: 24px;
+		margin: 0;
+
+		appearance: none;
+		background: transparent;
+		cursor: pointer;
+
+		&:focus-visible {
+			outline: 3px solid var(--color-accent);
+			outline-offset: 4px;
+			border-radius: borders.$radius-full;
+		}
+
+		&::-webkit-slider-runnable-track {
+			height: 8px;
+
+			background: linear-gradient(
+				to right,
+				var(--color-accent) 0 var(--slider-progress),
+				var(--color-neutral-200) var(--slider-progress) 100%
+			);
+			border-radius: borders.$radius-full;
+		}
+
+		&::-webkit-slider-thumb {
+			width: 20px;
+			height: 20px;
+			margin-top: -6px;
+
+			appearance: none;
+			background: var(--color-neutral-0);
+			border: 1px solid var(--color-neutral-400);
+			border-radius: borders.$radius-full;
+			box-shadow: 0 2px 5px #0000001f;
+		}
+
+		&::-moz-range-track {
+			height: 8px;
+
+			background: var(--color-neutral-200);
+			border-radius: borders.$radius-full;
+		}
+
+		&::-moz-range-progress {
+			height: 8px;
+
+			background: var(--color-accent);
+			border-radius: borders.$radius-full;
+		}
+
+		&::-moz-range-thumb {
+			width: 20px;
+			height: 20px;
+
+			background: var(--color-neutral-0);
+			border: 1px solid var(--color-neutral-400);
+			border-radius: borders.$radius-full;
+			box-shadow: 0 2px 5px #0000001f;
+		}
+	}
+
+	&_ticks {
+		@include typography.typography-micro;
+
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: minmax(0, 1fr);
+		align-items: center;
+
+		color: var(--color-neutral-400);
+		text-align: center;
+	}
+}

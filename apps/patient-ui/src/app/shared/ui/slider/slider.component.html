@@ -1,0 +1,33 @@
+<div class="slider">
+	<div class="slider_header">
+		<span class="slider_limit">{{ minLabel() }}</span>
+		<output
+			class="slider_value"
+			[attr.for]="id()"
+		>
+			{{ value() }}
+		</output>
+		<span class="slider_limit">{{ maxLabel() }}</span>
+	</div>
+
+	<input
+		class="slider_input"
+		type="range"
+		[id]="id()"
+		[value]="value()"
+		[min]="min()"
+		[max]="max()"
+		[step]="step()"
+		[style.--slider-progress]="progressStyle()"
+		(input)="onValueChange($event)"
+	/>
+
+	<div
+		class="slider_ticks"
+		aria-hidden="true"
+	>
+		@for (tick of ticks(); track tick) {
+			<span>{{ tick }}</span>
+		}
+	</div>
+</div>

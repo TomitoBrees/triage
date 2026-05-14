@@ -7,12 +7,27 @@
 				<div class="question_options">
 					@for (option of question.options; track option.id) {
 						<app-button
-							[variant]="answers[question.id] === option.id ? 'primary' : 'lighter'"
+							[variant]="answers()[question.id] === option.id ? 'primary' : 'lighter'"
 							size="xs"
 							(click)="setAnswer(question.id, option.id)"
 							[text]="option.label"
 						/>
 					}
+				</div>
+			}
+
+			@if (question.type === "number") {
+				<div class="question_options">
+					<app-slider
+						[value]="numericAnswers().painScale"
+						(valueChange)="setNumericAnswer('painScale', $event)"
+						[min]="question.min ?? 0"
+						[max]="question.max ?? 10"
+						[step]="question.step ?? 1"
+						[minLabel]="question.minLabel ?? 'Pas du tout'"
+						[maxLabel]="question.maxLabel ?? 'Extrêmement'"
+						[ariaLabel]="question.text"
+					/>
 				</div>
 			}
 		</div>

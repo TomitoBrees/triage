@@ -56,6 +56,16 @@ export type PatientQuestion =
 			text: string;
 			type: "single-choice";
 			options: FollowUpOption[];
+	  }
+	| {
+			id: string;
+			text: string;
+			type: "number";
+			min?: number;
+			max?: number;
+			step?: number;
+			minLabel?: string;
+			maxLabel?: string;
 	  };
 
 export type FollowUpOption = {

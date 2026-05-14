@@ -143,8 +143,12 @@ export const sharedQuestions: PatientQuestion[] = [
 	{
 		id: "painScale",
 		text: "À quel point cela vous gêne, vous fait mal ou vous inquiète ?",
-		type: "single-choice",
-		options: [{ id: "scale", label: "Echelle ici" }],
+		type: "number",
+		min: 0,
+		max: 10,
+		step: 1,
+		minLabel: "Pas du tout",
+		maxLabel: "Extrêmement",
 	},
 	{
 		id: "evolution",
