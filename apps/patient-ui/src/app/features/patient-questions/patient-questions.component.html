@@ -32,4 +32,18 @@
 			}
 		</div>
 	}
+
+	<div class="submitButtons">
+		<app-button
+			text="Continuer"
+			[disabled]="disableSubmit()"
+			(click)="onSubmit()"
+		/>
+		<app-button
+			text="Retour"
+			variant="lighter"
+			size="small"
+			(click)="onGoBack()"
+		/>
+	</div>
 </div>

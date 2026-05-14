@@ -25,3 +25,9 @@
 		color: var(--color-text-primary);
 	}
 }
+
+.submitButtons {
+	display: flex;
+	flex-direction: column;
+	gap: spacing.$spacing-12;
+}
