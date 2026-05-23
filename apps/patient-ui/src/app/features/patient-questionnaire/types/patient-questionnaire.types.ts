@@ -2,7 +2,8 @@ export type StepId =
 	| "critical-symptoms"
 	| "general-symptoms"
 	| "shared-questions"
-	| "personal-information";
+	| "personal-information"
+	| "specific-questions";
 
 export type PatientSymptomId =
 	| "chestPain"
@@ -38,6 +39,14 @@ export type Answer = {
 	generalSymptom?: PatientSymptomId;
 	personalInformation?: PersonalInformation;
 	sharedAnswers?: Record<string, string | number | boolean>;
+	specificAnswers?: Record<string, string | number | boolean>;
+};
+
+export type PatientQuestionAnswer = string | number | boolean;
+
+export type PatientQuestionCondition = {
+	questionId: string;
+	answer: PatientQuestionAnswer | PatientQuestionAnswer[];
 };
 
 export type SymptomQuestion = {
@@ -46,28 +55,28 @@ export type SymptomQuestion = {
 	symptomId: PatientSymptomId;
 };
 
+type PatientQuestionBase = {
+	id: string;
+	text: string;
+	conditions?: PatientQuestionCondition[];
+};
+
 export type PatientQuestion =
-	| {
-			id: string;
-			text: string;
+	| (PatientQuestionBase & {
 			type: "boolean";
-	  }
-	| {
-			id: string;
-			text: string;
+	  })
+	| (PatientQuestionBase & {
 			type: "single-choice";
 			options: FollowUpOption[];
-	  }
-	| {
-			id: string;
-			text: string;
+	  })
+	| (PatientQuestionBase & {
 			type: "number";
 			min?: number;
 			max?: number;
 			step?: number;
 			minLabel?: string;
 			maxLabel?: string;
-	  };
+	  });
 
 export type FollowUpOption = {
 	id: string;

@@ -4,11 +4,13 @@ import {
 	criticalSymptoms,
 	generalSymptoms,
 	sharedQuestions,
+	traumaQuestions,
 } from "./types/patient-questionnaire.questions";
 import type { PatientResponse } from "./service/patient-questionnaire.api";
 import type {
 	Answer,
 	PatientQuestion,
+	PatientQuestionAnswer,
 	PatientSymptomId,
 	PersonalInformation,
 	StepId,
@@ -38,6 +40,17 @@ export class PatientQuestionnaireComponent {
 
 	protected sharedQuestions = signal<PatientQuestion[]>(sharedQuestions);
 
+	protected specificQuestions = computed<PatientQuestion[]>(() => {
+		const symptom = this.answer().generalSymptom;
+
+		switch (symptom) {
+			case "traumatological":
+				return traumaQuestions;
+			default:
+				return [];
+		}
+	});
+
 	protected submittedPatient = signal<PatientResponse | null>(null);
 
 	protected headerAndDescription = computed<headerAndDescription>(() => {
@@ -62,6 +75,13 @@ export class PatientQuestionnaireComponent {
 				return {
 					header: "Informations personnelles",
 					description: "Merci de renseigner vos informations personnelles.",
+				};
+
+			case "specific-questions":
+				return {
+					header: "Questions spécifiques",
+					description:
+						"Merci de répondre à ces questions complémentaires en fonction de votre symptôme principal.",
 				};
 		}
 	});
@@ -115,9 +135,9 @@ export class PatientQuestionnaireComponent {
 		this.currentStep.set("shared-questions");
 	}
 
-	protected handleSharedCompleted(answers: Record<string, string | number>) {
+	protected handleSharedCompleted(answers: Record<string, PatientQuestionAnswer>) {
 		this.updateAnswer({ sharedAnswers: answers });
-		this.currentStep.set("personal-information");
+		this.currentStep.set("specific-questions");
 	}
 
 	protected handleGoBack() {

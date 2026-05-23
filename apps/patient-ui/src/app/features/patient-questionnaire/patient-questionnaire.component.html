@@ -42,5 +42,12 @@
 				(goBack)="handleGoBack()"
 			/>
 		}
+
+		@case ("specific-questions") {
+			<app-patient-questions
+				[questions]="specificQuestions()"
+				(goBack)="handleGoBack()"
+			/>
+		}
 	}
 </div>

@@ -1,5 +1,5 @@
 <div class="questions">
-	@for (question of questions(); track question.id) {
+	@for (question of visibleQuestions(); track question.id) {
 		<div class="question">
 			<span class="question_text">{{ question.text }}</span>
 
@@ -19,8 +19,8 @@
 			@if (question.type === "number") {
 				<div class="question_options">
 					<app-slider
-						[value]="numericAnswers().painScale"
-						(valueChange)="setNumericAnswer('painScale', $event)"
+						[value]="numericAnswers()[question.id]"
+						(valueChange)="setNumericAnswer(question.id, $event)"
 						[min]="question.min ?? 0"
 						[max]="question.max ?? 10"
 						[step]="question.step ?? 1"
