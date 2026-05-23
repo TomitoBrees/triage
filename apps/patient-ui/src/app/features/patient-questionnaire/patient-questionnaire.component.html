@@ -36,7 +36,11 @@
 		}
 
 		@case ("shared-questions") {
-			<app-patient-questions [questions]="sharedQuestions()" />
+			<app-patient-questions
+				[questions]="sharedQuestions()"
+				(completed)="handleSharedCompleted($event)"
+				(goBack)="handleGoBack()"
+			/>
 		}
 	}
 </div>

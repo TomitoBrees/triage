@@ -37,6 +37,7 @@ export type Answer = {
 	criticalSymptom?: PatientSymptomId;
 	generalSymptom?: PatientSymptomId;
 	personalInformation?: PersonalInformation;
+	sharedAnswers?: Record<string, string | number | boolean>;
 };
 
 export type SymptomQuestion = {

@@ -115,10 +115,19 @@ export class PatientQuestionnaireComponent {
 		this.currentStep.set("shared-questions");
 	}
 
+	protected handleSharedCompleted(answers: Record<string, string | number>) {
+		this.updateAnswer({ sharedAnswers: answers });
+		this.currentStep.set("personal-information");
+	}
+
 	protected handleGoBack() {
 		switch (this.currentStep()) {
 			case "personal-information":
 				this.currentStep.set("critical-symptoms");
+				break;
+			case "shared-questions":
+				this.currentStep.set("general-symptoms");
+				break;
 		}
 	}
 

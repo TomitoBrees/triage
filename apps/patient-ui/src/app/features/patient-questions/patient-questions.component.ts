@@ -12,7 +12,7 @@ import { SliderComponent } from "../../shared/ui/slider/slider.component";
 export class PatientQuestionsComponent {
 	public questions = input.required<PatientQuestion[]>();
 
-	public submitted = output<Record<string, string | number>>();
+	public completed = output<Record<string, string | number>>();
 	public goBack = output<void>();
 
 	protected selectedAnswers = signal<Record<string, string>>({});
@@ -46,7 +46,7 @@ export class PatientQuestionsComponent {
 	}
 
 	protected onSubmit(): void {
-		this.submitted.emit(this.answers());
+		this.completed.emit(this.answers());
 	}
 
 	protected onGoBack(): void {
