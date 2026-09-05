@@ -38,4 +38,17 @@ enum PatientSymptom {
   headInjury              @map("head-injury")
   sucidalIdeation         @map("sucidal-ideation")
   abdominalPainPregnant   @map("abdominal-pain-pregnant")
+  traumatological
+  abdominal
+  cardiac
+  respiratory
+  infection
+  neurological
+  urinary
+  gynecological
+  dermatological
+  ent
+  psychological
+  intoxication
+  generalWeakness         @map("general-weakness")
 }

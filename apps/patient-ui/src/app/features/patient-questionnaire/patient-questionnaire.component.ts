@@ -148,6 +148,9 @@ export class PatientQuestionnaireComponent {
 			case "shared-questions":
 				this.currentStep.set("general-symptoms");
 				break;
+			case "specific-questions":
+				this.currentStep.set("shared-questions");
+				break;
 		}
 	}
 

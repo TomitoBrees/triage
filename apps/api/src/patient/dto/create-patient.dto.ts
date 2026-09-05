@@ -24,9 +24,35 @@ export const criticalSymptoms = [
 
 export const moderateSymptoms = ["headInjury", "sucidalIdeation", "abdominalPainPregnant"] as const;
 
-export const patientSymptoms = [...criticalSymptoms, ...moderateSymptoms] as const;
+export const generalSymptoms = [
+	"traumatological",
+	"abdominal",
+	"cardiac",
+	"respiratory",
+	"infection",
+	"neurological",
+	"urinary",
+	"gynecological",
+	"dermatological",
+	"ent",
+	"psychological",
+	"intoxication",
+	"generalWeakness",
+] as const;
+
+export const patientSymptoms = [
+	...criticalSymptoms,
+	...moderateSymptoms,
+	...generalSymptoms,
+] as const;
 
 export type PatientSymptom = (typeof patientSymptoms)[number];
+
+export type CriticalSymptom = (typeof criticalSymptoms)[number];
+export type ModerateSymptom = (typeof moderateSymptoms)[number];
+export type GeneralSymptom = (typeof generalSymptoms)[number];
+
+export type PatientAnswerValue = string | number | boolean;
 
 class PersonalInformationDto {
 	@IsString()
@@ -47,15 +73,27 @@ class PersonalInformationDto {
 export class CreatePatientDto {
 	@IsOptional()
 	@IsIn(criticalSymptoms)
-	criticalSymptom?: PatientSymptom;
+	criticalSymptom?: CriticalSymptom;
 
 	@IsOptional()
 	@IsIn(moderateSymptoms)
-	moderateSymptom?: PatientSymptom;
+	moderateSymptom?: ModerateSymptom;
+
+	@IsOptional()
+	@IsIn(generalSymptoms)
+	generalSymptom?: GeneralSymptom;
 
 	@IsObject()
 	@IsNotEmptyObject()
 	@ValidateNested()
 	@Type(() => PersonalInformationDto)
 	personalInformation!: PersonalInformationDto;
+
+	@IsOptional()
+	@IsObject()
+	sharedAnswers?: Record<string, PatientAnswerValue>;
+
+	@IsOptional()
+	@IsObject()
+	specificAnswers?: Record<string, PatientAnswerValue>;
 }

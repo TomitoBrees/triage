@@ -7,8 +7,8 @@ export class PatientService {
 	constructor(private readonly prisma: PrismaService) {}
 
 	create(dto: CreatePatientDto) {
-		const symptom = dto.criticalSymptom ?? dto.moderateSymptom;
-		const french = dto.criticalSymptom ? 1 : dto.moderateSymptom ? 2 : 5;
+		const symptom = dto.criticalSymptom ?? dto.moderateSymptom ?? dto.generalSymptom;
+		const french = this.computeFrench(dto);
 
 		return this.prisma.patient.create({
 			data: {
@@ -19,5 +19,14 @@ export class PatientService {
 				symptom: symptom ?? null,
 			},
 		});
+	}
+
+	private computeFrench(dto: CreatePatientDto): number {
+		if (dto.criticalSymptom) return 1;
+		if (dto.moderateSymptom) return 2;
+
+		// TODO: déléguer à un scorer par generalSymptom à partir de
+		// dto.generalSymptom / dto.sharedAnswers / dto.specificAnswers.
+		return 5;
 	}
 }
