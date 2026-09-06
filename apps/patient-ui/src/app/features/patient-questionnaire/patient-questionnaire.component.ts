@@ -111,23 +111,7 @@ export class PatientQuestionnaireComponent {
 			return;
 		}
 
-		try {
-			const patient = await this.patientQuestionnaireService.submitAnswer(this.answer());
-			this.submittedPatient.set(patient);
-
-			if (patient.french === 1) {
-				this.dialogService.confirm({
-					type: "danger",
-					title: "Urgence détectée",
-					subtitle: patientSymptomToFrench(patient.symptom),
-					message:
-						"Veuillez vous diriger immediatement vers le personnel d'accueil des urgences pour une prise en charge rapide.",
-					confirmLabel: "Retour au questionnaire",
-				});
-			}
-		} catch {
-			this.submittedPatient.set(null);
-		}
+		this.submitAnswer();
 	}
 
 	protected handleGeneralCompleted(answer: { symptom: PatientSymptomId | null }) {
@@ -138,6 +122,11 @@ export class PatientQuestionnaireComponent {
 	protected handleSharedCompleted(answers: Record<string, PatientQuestionAnswer>) {
 		this.updateAnswer({ sharedAnswers: answers });
 		this.currentStep.set("specific-questions");
+	}
+
+	protected async handleSpecificCompleted(answers: Record<string, PatientQuestionAnswer>) {
+		this.updateAnswer({ specificAnswers: answers });
+		this.submitAnswer();
 	}
 
 	protected handleGoBack() {
@@ -159,5 +148,34 @@ export class PatientQuestionnaireComponent {
 			...currentAnswer,
 			...newAnswer,
 		}));
+	}
+
+	private async submitAnswer() {
+		try {
+			const patient = await this.patientQuestionnaireService.submitAnswer(this.answer());
+			this.submittedPatient.set(patient);
+
+			if (patient.french === 1) {
+				this.dialogService.confirm({
+					type: "danger",
+					title: "Urgence détectée",
+					subtitle: patientSymptomToFrench(patient.symptom),
+					message:
+						"Veuillez vous diriger immediatement vers le personnel d'accueil des urgences pour une prise en charge rapide.",
+					confirmLabel: "Retour au questionnaire",
+				});
+			} else {
+				this.dialogService.confirm({
+					type: "regular",
+					title: "Réponses enregistrés",
+					subtitle: patientSymptomToFrench(patient.symptom),
+					message:
+						"Votre réponse a bien été enregistrée. Merci de patienter, une infirmière d’accueil vous appellera pour organiser votre prise en charge.",
+					confirmLabel: "Retour au questionnaire",
+				});
+			}
+		} catch {
+			this.submittedPatient.set(null);
+		}
 	}
 }
