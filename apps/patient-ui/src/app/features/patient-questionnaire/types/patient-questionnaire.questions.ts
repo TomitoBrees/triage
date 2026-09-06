@@ -237,7 +237,6 @@ export const traumaQuestions: PatientQuestion[] = [
 		options: [
 			{ id: "personHeight", label: "De ma hauteur" },
 			{ id: "moderateHeight", label: "Entre 2 et 3 mètres" },
-			{ id: "neck", label: "Cou" },
 			{ id: "stairs", label: "Dans les escaliers" },
 			{
 				id: "importantHeight",
@@ -265,10 +264,7 @@ export const traumaQuestions: PatientQuestion[] = [
 		id: "alarmingSymptoms",
 		text: "Depuis le choc, avez-vous eu l'un de ces signes ?",
 		type: "single-choice",
-		conditions: [
-			{ questionId: "bodyPart", answer: ["head", "neck"] },
-			{ questionId: "highSpeedAccident", answer: "yes" },
-		],
+		conditions: [{ questionId: "bodyPart", answer: ["head", "neck"] }],
 		options: [
 			{ id: "lostConsciousness", label: "Perte de connaissance, même courte" },
 			{
@@ -292,7 +288,7 @@ export const traumaQuestions: PatientQuestion[] = [
 		type: "single-choice",
 		conditions: [
 			{ questionId: "bodyPart", answer: ["head", "neck"] },
-			{ questionId: "highSpeedAccident", answer: "yes" },
+			{ questionId: "highSpeedAccident", answer: "highSpeed" },
 		],
 		options: [
 			{ id: "yes", label: "Oui" },
@@ -337,7 +333,7 @@ export const traumaQuestions: PatientQuestion[] = [
 		id: "openWound",
 		text: "Y a-t-il une plaie ouverte ?",
 		type: "single-choice",
-		conditions: [{ questionId: "traumaType", answer: ["bite", "cut", "foreignBody"] }],
+		conditions: [{ questionId: "traumaType", answer: ["bite", "cut", "foreignObject"] }],
 		options: [
 			{ id: "deepWound", label: "Oui, une plaie profonde ou large" },
 			{
@@ -353,7 +349,7 @@ export const traumaQuestions: PatientQuestion[] = [
 		id: "bleeding",
 		text: "Le saignement :",
 		type: "single-choice",
-		conditions: [{ questionId: "traumaType", answer: ["bite", "cut", "foreignBody"] }],
+		conditions: [{ questionId: "traumaType", answer: ["bite", "cut", "foreignObject"] }],
 		options: [
 			{ id: "continuousBleeding", label: "Ne s'arrête pas malgré une compression" },
 			{
@@ -370,9 +366,9 @@ export const traumaQuestions: PatientQuestion[] = [
 		id: "electricShockSymptoms",
 		text: "Après le choc électrique, avez-vous eu :",
 		type: "single-choice",
-		conditions: [{ questionId: "traumaType", answer: ["electricShock"] }],
+		conditions: [{ questionId: "traumaType", answer: ["electrical"] }],
 		options: [
-			{ id: "continuousBleeding", label: "Une perte de connaissance" },
+			{ id: "lostConsciousness", label: "Une perte de connaissance" },
 			{ id: "burns", label: "Une brûlure visible" },
 			{ id: "none", label: "Aucun de ces signes" },
 		],
@@ -381,7 +377,7 @@ export const traumaQuestions: PatientQuestion[] = [
 		id: "electricShockSource",
 		text: "D'où provient le choc électrique ?",
 		type: "single-choice",
-		conditions: [{ questionId: "traumaType", answer: ["electricShock"] }],
+		conditions: [{ questionId: "traumaType", answer: ["electrical"] }],
 		options: [
 			{ id: "lightning", label: "Foudre" },
 			{ id: "highVoltage", label: "Courant haute tension" },
@@ -393,7 +389,7 @@ export const traumaQuestions: PatientQuestion[] = [
 		id: "electricShockDuration",
 		text: "Le choc electrique a-t-il duré + de 1 seconde ?",
 		type: "single-choice",
-		conditions: [{ questionId: "traumaType", answer: ["electricShock"] }],
+		conditions: [{ questionId: "traumaType", answer: ["electrical"] }],
 		options: [
 			{ id: "longElectricShock", label: "Oui" },
 			{ id: "shortElectricShock", label: "Non" },
