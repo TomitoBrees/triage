@@ -4,6 +4,7 @@ import { PatientService } from "./patient.service";
 import { FrenchScoreService } from "./scoring/french-score.service";
 import { TraumaScorer } from "./scoring/scorers/trauma.scorer";
 import { AbdomenScorer } from "./scoring/scorers/abdomen.scorer";
+import { CardiacScorer } from "./scoring/scorers/cardiac.scorer";
 import { SYMPTOM_SCORERS } from "./scoring/symptom-scorers.token";
 
 @Module({
@@ -13,10 +14,15 @@ import { SYMPTOM_SCORERS } from "./scoring/symptom-scorers.token";
 		FrenchScoreService,
 		TraumaScorer,
 		AbdomenScorer,
+		CardiacScorer,
 		{
 			provide: SYMPTOM_SCORERS,
-			useFactory: (trauma: TraumaScorer, abdomen: AbdomenScorer) => [trauma, abdomen],
-			inject: [TraumaScorer, AbdomenScorer],
+			useFactory: (trauma: TraumaScorer, abdomen: AbdomenScorer, cardiac: CardiacScorer) => [
+				trauma,
+				abdomen,
+				cardiac,
+			],
+			inject: [TraumaScorer, AbdomenScorer, CardiacScorer],
 		},
 	],
 })

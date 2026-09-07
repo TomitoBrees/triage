@@ -2,6 +2,7 @@ import { Component, computed, effect, inject, signal } from "@angular/core";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
 import {
 	abdominalQuestions,
+	cardiacQuestions,
 	criticalSymptoms,
 	generalSymptoms,
 	sharedQuestions,
@@ -49,6 +50,8 @@ export class PatientFormControllerComponent {
 				return traumaQuestions;
 			case "abdominal":
 				return abdominalQuestions;
+			case "cardiac":
+				return cardiacQuestions;
 			default:
 				return [];
 		}
