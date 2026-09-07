@@ -1,4 +1,4 @@
-import type { PatientSymptomId } from "../../features/patient-form-controller/types/patient-form-controller.types";
+import type { PatientSymptomId } from "../../features/patient-form-controller/types/patient-form.types";
 
 export const patientSymptomFrenchLabels: Record<PatientSymptomId, string> = {
 	chestPain: "Douleur ou oppression dans la poitrine",

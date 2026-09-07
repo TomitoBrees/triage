@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from "@angular/core";
 import { PatientFormControllerApi } from "./patient-form-controller.api";
-import { Answer } from "../types/patient-form-controller.types";
+import { Answer } from "../types/patient-form.types";
 import { firstValueFrom } from "rxjs";
 
 @Injectable({

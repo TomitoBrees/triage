@@ -1,11 +1,12 @@
 import { Component, computed, inject, signal } from "@angular/core";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
 import {
+	abdominalQuestions,
 	criticalSymptoms,
 	generalSymptoms,
 	sharedQuestions,
 	traumaQuestions,
-} from "./types/patient-form-controller.questions";
+} from "./types/patient-form.questions";
 import type { PatientResponse } from "./service/patient-form-controller.api";
 import type {
 	Answer,
@@ -14,7 +15,7 @@ import type {
 	PatientSymptomId,
 	PersonalInformation,
 	StepId,
-} from "./types/patient-form-controller.types";
+} from "./types/patient-form.types";
 import { PatientIdentificationComponent } from "../patient-identification/patient-identification.component";
 import { PatientFormControllerService } from "./service/patient-form-controller.service";
 import { DialogService } from "../../shared/ui/dialog/dialog.service";
@@ -46,6 +47,8 @@ export class PatientFormControllerComponent {
 		switch (symptom) {
 			case "traumatological":
 				return traumaQuestions;
+			case "abdominal":
+				return abdominalQuestions;
 			default:
 				return [];
 		}

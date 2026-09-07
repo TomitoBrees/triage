@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { API_URL } from "../../../core/http/api-url.token";
-import type { Answer, PatientSymptomId } from "../types/patient-form-controller.types";
+import type { Answer, PatientSymptomId } from "../types/patient-form.types";
 
 export type PatientResponse = {
 	id: string;

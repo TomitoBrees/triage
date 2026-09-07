@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import type { PatientSymptomId } from "../../features/patient-form-controller/types/patient-form-controller.types";
+import type { PatientSymptomId } from "../../features/patient-form-controller/types/patient-form.types";
 import { patientSymptomToFrench } from "../utils/patient-symptom-label.util";
 
 @Pipe({
