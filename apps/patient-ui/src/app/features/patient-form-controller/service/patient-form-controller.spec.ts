@@ -2,11 +2,11 @@ import { TestBed } from "@angular/core/testing";
 import { provideHttpClient } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 
-import { PatientQuestionnaireService } from "./patient-questionnaire.service";
+import { PatientFormControllerService } from "./patient-form-controller.service";
 import { API_URL } from "../../../core/http/api-url.token";
 
-describe("PatientQuestionnaireService", () => {
-	let service: PatientQuestionnaireService;
+describe("PatientFormControllerService", () => {
+	let service: PatientFormControllerService;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -16,7 +16,7 @@ describe("PatientQuestionnaireService", () => {
 				{ provide: API_URL, useValue: "http://localhost:3000" },
 			],
 		});
-		service = TestBed.inject(PatientQuestionnaireService);
+		service = TestBed.inject(PatientFormControllerService);
 	});
 
 	it("should be created", () => {

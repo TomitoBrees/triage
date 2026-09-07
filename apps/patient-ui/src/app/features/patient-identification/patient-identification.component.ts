@@ -4,7 +4,7 @@ import { TextInputComponent } from "../../shared/ui/text-input/text-input.compon
 import { NumberInputComponent } from "../../shared/ui/number-input/number-input.component";
 import { SwitchComponent } from "../../shared/ui/switch/switch.component";
 import { Button } from "../../shared/ui/button/button.component";
-import { PersonalInformation } from "../patient-questionnaire/types/patient-questionnaire.types";
+import { PersonalInformation } from "../patient-form-controller/types/patient-form-controller.types";
 
 @Component({
 	selector: "app-patient-identification",

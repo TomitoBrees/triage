@@ -5,8 +5,8 @@ import {
 	generalSymptoms,
 	sharedQuestions,
 	traumaQuestions,
-} from "./types/patient-questionnaire.questions";
-import type { PatientResponse } from "./service/patient-questionnaire.api";
+} from "./types/patient-form-controller.questions";
+import type { PatientResponse } from "./service/patient-form-controller.api";
 import type {
 	Answer,
 	PatientQuestion,
@@ -14,9 +14,9 @@ import type {
 	PatientSymptomId,
 	PersonalInformation,
 	StepId,
-} from "./types/patient-questionnaire.types";
+} from "./types/patient-form-controller.types";
 import { PatientIdentificationComponent } from "../patient-identification/patient-identification.component";
-import { PatientQuestionnaireService } from "./service/patient-questionnaire.service";
+import { PatientFormControllerService } from "./service/patient-form-controller.service";
 import { DialogService } from "../../shared/ui/dialog/dialog.service";
 import { patientSymptomToFrench } from "../../shared/utils/patient-symptom-label.util";
 import { PatientQuestionsComponent } from "../patient-questions/patient-questions.component";
@@ -26,12 +26,12 @@ type headerAndDescription = {
 	description: string;
 };
 @Component({
-	selector: "app-patient-questionnaire",
+	selector: "app-patient-form-controller",
 	imports: [SymptomQuestionsComponent, PatientIdentificationComponent, PatientQuestionsComponent],
-	templateUrl: "./patient-questionnaire.component.html",
-	styleUrl: "./patient-questionnaire.component.scss",
+	templateUrl: "./patient-form-controller.component.html",
+	styleUrl: "./patient-form-controller.component.scss",
 })
-export class PatientQuestionnaireComponent {
+export class PatientFormControllerComponent {
 	protected currentStep = signal<StepId>("critical-symptoms");
 	protected answer = signal<Answer>({});
 
@@ -86,10 +86,10 @@ export class PatientQuestionnaireComponent {
 		}
 	});
 
-	private readonly patientQuestionnaireService = inject(PatientQuestionnaireService);
+	private readonly patientFormControllerService = inject(PatientFormControllerService);
 	private readonly dialogService = inject(DialogService);
-	protected readonly submitStatus = this.patientQuestionnaireService.submitStatus;
-	protected readonly submitError = this.patientQuestionnaireService.submitError;
+	protected readonly submitStatus = this.patientFormControllerService.submitStatus;
+	protected readonly submitError = this.patientFormControllerService.submitError;
 
 	protected handleCriticalCompleted(answer: { symptom: PatientSymptomId | null }) {
 		this.updateAnswer({ criticalSymptom: answer.symptom ?? undefined });
@@ -152,7 +152,7 @@ export class PatientQuestionnaireComponent {
 
 	private async submitAnswer() {
 		try {
-			const patient = await this.patientQuestionnaireService.submitAnswer(this.answer());
+			const patient = await this.patientFormControllerService.submitAnswer(this.answer());
 			this.submittedPatient.set(patient);
 
 			if (patient.french === 1) {

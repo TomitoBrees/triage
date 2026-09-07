@@ -1,5 +1,5 @@
-import { GeneralSymptom, PatientAnswerValue } from "../dto/create-patient.dto";
-import { SymptomScorer } from "./symptom-scorer.interface";
+import { GeneralSymptom, PatientAnswerValue } from "../../dto/create-patient.dto";
+import { SymptomScorer } from "../symptom-scorer.interface";
 
 const WOUND_TRAUMA_TYPES = ["cut", "bite", "sting", "foreignObject"];
 const LIMB_BODY_PARTS = ["arm", "hand", "feet"];

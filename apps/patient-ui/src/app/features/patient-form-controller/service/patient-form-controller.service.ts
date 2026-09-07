@@ -1,23 +1,23 @@
 import { inject, Injectable, signal } from "@angular/core";
-import { PatientQuestionnaireApi } from "./patient-questionnaire.api";
-import { Answer } from "../types/patient-questionnaire.types";
+import { PatientFormControllerApi } from "./patient-form-controller.api";
+import { Answer } from "../types/patient-form-controller.types";
 import { firstValueFrom } from "rxjs";
 
 @Injectable({
 	providedIn: "root",
 })
-export class PatientQuestionnaireService {
+export class PatientFormControllerService {
 	public submitError = signal<string | null>(null);
 	public submitStatus = signal<"idle" | "submitting" | "submitted">("idle");
 
-	private readonly patientQuestionnaireApi = inject(PatientQuestionnaireApi);
+	private readonly patientFormControllerApi = inject(PatientFormControllerApi);
 
 	public async submitAnswer(answer: Answer) {
 		this.submitError.set(null);
 		this.submitStatus.set("submitting");
 
 		try {
-			const patient = await firstValueFrom(this.patientQuestionnaireApi.submit(answer));
+			const patient = await firstValueFrom(this.patientFormControllerApi.submit(answer));
 			this.submitStatus.set("submitted");
 			return patient;
 		} catch (error) {

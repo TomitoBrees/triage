@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { API_URL } from "../../../core/http/api-url.token";
-import type { Answer, PatientSymptomId } from "../types/patient-questionnaire.types";
+import type { Answer, PatientSymptomId } from "../types/patient-form-controller.types";
 
 export type PatientResponse = {
 	id: string;
@@ -13,7 +13,7 @@ export type PatientResponse = {
 };
 
 @Injectable({ providedIn: "root" })
-export class PatientQuestionnaireApi {
+export class PatientFormControllerApi {
 	private readonly http = inject(HttpClient);
 	private readonly apiUrl = inject(API_URL);
 

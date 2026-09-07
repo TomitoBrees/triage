@@ -1,4 +1,4 @@
-import type { PatientQuestion, SymptomQuestion } from "./patient-questionnaire.types";
+import type { PatientQuestion, SymptomQuestion } from "./patient-form-controller.types";
 
 export const criticalSymptoms: SymptomQuestion[] = [
 	{

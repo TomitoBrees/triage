@@ -3,7 +3,7 @@ import {
 	PatientQuestion,
 	PatientQuestionAnswer,
 	PatientQuestionCondition,
-} from "../patient-questionnaire/types/patient-questionnaire.types";
+} from "../patient-form-controller/types/patient-form-controller.types";
 import { Button } from "../../shared/ui/button/button.component";
 import { SliderComponent } from "../../shared/ui/slider/slider.component";
 
