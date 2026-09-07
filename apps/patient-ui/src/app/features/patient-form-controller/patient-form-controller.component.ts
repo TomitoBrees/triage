@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from "@angular/core";
+import { Component, computed, effect, inject, signal } from "@angular/core";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
 import {
 	abdominalQuestions,
@@ -93,6 +93,13 @@ export class PatientFormControllerComponent {
 	private readonly dialogService = inject(DialogService);
 	protected readonly submitStatus = this.patientFormControllerService.submitStatus;
 	protected readonly submitError = this.patientFormControllerService.submitError;
+
+	constructor() {
+		effect(() => {
+			this.currentStep();
+			window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+		});
+	}
 
 	protected handleCriticalCompleted(answer: { symptom: PatientSymptomId | null }) {
 		this.updateAnswer({ criticalSymptom: answer.symptom ?? undefined });
