@@ -35,6 +35,11 @@
 		color: var(--color-text-light);
 	}
 
+	&.-valid {
+		background: var(--color-stable);
+		color: var(--color-text-light);
+	}
+
 	&.-xs {
 		justify-content: flex-start;
 		text-align: left;

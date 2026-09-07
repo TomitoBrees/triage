@@ -4,10 +4,18 @@
 >
 	<div class="dialog_header">
 		@if (data.type === "danger") {
-			<div class="dangerIconWrapper">
+			<div class="iconWrapper -danger">
 				<svg
-					class="dangerIcon"
+					class="icon"
 					lucideTriangleAlert
+					aria-hidden="true"
+				/>
+			</div>
+		} @else {
+			<div class="iconWrapper -success">
+				<svg
+					class="icon"
+					lucideCheck
 					aria-hidden="true"
 				/>
 			</div>
@@ -25,7 +33,7 @@
 	<div class="dialog_actions">
 		<app-button
 			(click)="confirm()"
-			variant="danger"
+			[variant]="type === 'danger' ? 'danger' : 'valid'"
 			[text]="confirmLabel"
 		/>
 	</div>

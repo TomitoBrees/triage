@@ -57,7 +57,7 @@
 	}
 }
 
-.dangerIcon {
+.icon {
 	&Wrapper {
 		width: 80px;
 		height: 80px;
@@ -68,7 +68,14 @@
 		border-radius: borders.$radius-full;
 
 		color: var(--color-neutral-0);
-		background-color: var(--color-vital-alert);
+
+		&.-danger {
+			background-color: var(--color-vital-alert);
+		}
+
+		&.-success {
+			background-color: var(--color-stable);
+		}
 	}
 
 	width: 48px;

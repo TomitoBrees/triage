@@ -2,6 +2,7 @@ import { Component, computed, input, output, signal } from "@angular/core";
 import {
 	PatientQuestion,
 	PatientQuestionAnswer,
+	PatientQuestionCondition,
 } from "../patient-questionnaire/types/patient-questionnaire.types";
 import { Button } from "../../shared/ui/button/button.component";
 import { SliderComponent } from "../../shared/ui/slider/slider.component";
@@ -75,13 +76,17 @@ export class PatientQuestionsComponent {
 			return true;
 		}
 
-		return question.conditions.some((condition) => {
+		const matchesCondition = (condition: PatientQuestionCondition) => {
 			const answer = this.answers()[condition.questionId];
 			const expectedAnswers = Array.isArray(condition.answer)
 				? condition.answer
 				: [condition.answer];
 
 			return expectedAnswers.includes(answer);
-		});
+		};
+
+		return question.requireAllConditions
+			? question.conditions.every(matchesCondition)
+			: question.conditions.some(matchesCondition);
 	}
 }

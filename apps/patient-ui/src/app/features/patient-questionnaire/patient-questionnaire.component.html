@@ -46,6 +46,7 @@
 		@case ("specific-questions") {
 			<app-patient-questions
 				[questions]="specificQuestions()"
+				(completed)="handleSpecificCompleted($event)"
 				(goBack)="handleGoBack()"
 			/>
 		}

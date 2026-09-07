@@ -14,7 +14,7 @@ export class TraumaScorer implements SymptomScorer {
 	): number {
 		const traumaType = specificAnswers.traumaType as string | undefined;
 		const bodyPart = specificAnswers.bodyPart as string | undefined;
-		const painScale = Number(specificAnswers.painScale ?? sharedAnswers.painScale ?? 0);
+		const painScale = Number(sharedAnswers.painScale ?? 0);
 
 		if (traumaType === "burn") {
 			return this.scoreBurn(specificAnswers, sharedAnswers);

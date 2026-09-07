@@ -167,7 +167,7 @@ export class PatientQuestionnaireComponent {
 			} else {
 				this.dialogService.confirm({
 					type: "regular",
-					title: "Réponses enregistrés",
+					title: "Réponse enregistrée",
 					subtitle: patientSymptomToFrench(patient.symptom),
 					message:
 						"Votre réponse a bien été enregistrée. Merci de patienter, une infirmière d’accueil vous appellera pour organiser votre prise en charge.",

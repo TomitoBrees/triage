@@ -59,6 +59,7 @@ type PatientQuestionBase = {
 	id: string;
 	text: string;
 	conditions?: PatientQuestionCondition[];
+	requireAllConditions?: boolean;
 };
 
 export type PatientQuestion =

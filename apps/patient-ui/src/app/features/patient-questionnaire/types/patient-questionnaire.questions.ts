@@ -217,16 +217,6 @@ export const traumaQuestions: PatientQuestion[] = [
 			{ id: "idk", label: "Je ne sais pas" },
 		],
 	},
-	{
-		id: "painScale",
-		text: "À quel point cela vous gêne, vous fait mal ou vous inquiète ?",
-		type: "number",
-		min: 0,
-		max: 10,
-		step: 1,
-		minLabel: "Pas du tout",
-		maxLabel: "Extrêmement",
-	},
 
 	// Question spécifique pour les chutes
 	{
@@ -259,12 +249,16 @@ export const traumaQuestions: PatientQuestion[] = [
 		],
 	},
 
-	// Questions spécifiques pour les traumatismes de la tête et du cou ou les accidents à violents
+	// Questions spécifiques pour les traumatismes de la tête et du cou ou les accidents violents
 	{
 		id: "alarmingSymptoms",
 		text: "Depuis le choc, avez-vous eu l'un de ces signes ?",
 		type: "single-choice",
-		conditions: [{ questionId: "bodyPart", answer: ["head", "neck"] }],
+		conditions: [
+			{ questionId: "bodyPart", answer: ["head", "neck"] },
+			{ questionId: "traumaType", answer: ["fall", "blow", "accident", "foreignObject"] },
+		],
+		requireAllConditions: true,
 		options: [
 			{ id: "lostConsciousness", label: "Perte de connaissance, même courte" },
 			{
@@ -288,8 +282,9 @@ export const traumaQuestions: PatientQuestion[] = [
 		type: "single-choice",
 		conditions: [
 			{ questionId: "bodyPart", answer: ["head", "neck"] },
-			{ questionId: "highSpeedAccident", answer: "highSpeed" },
+			{ questionId: "traumaType", answer: ["fall", "blow", "accident", "foreignObject"] },
 		],
+		requireAllConditions: true,
 		options: [
 			{ id: "yes", label: "Oui" },
 			{ id: "no", label: "Non" },

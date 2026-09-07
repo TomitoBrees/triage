@@ -9,7 +9,7 @@ import { NgClass } from "@angular/common";
 })
 export class Button {
 	public text = input<string>("text");
-	public variant = input<"primary" | "lighter" | "danger">("primary");
+	public variant = input<"primary" | "lighter" | "danger" | "valid">("primary");
 	public size = input<"xs" | "small" | "regular" | "large">("regular");
 	public disabled = input<boolean>(false);
 }
