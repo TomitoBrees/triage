@@ -3,6 +3,7 @@ import { PatientController } from "./patient.controller";
 import { PatientService } from "./patient.service";
 import { FrenchScoreService } from "./scoring/french-score.service";
 import { TraumaScorer } from "./scoring/scorers/trauma.scorer";
+import { AbdomenScorer } from "./scoring/scorers/abdomen.scorer";
 import { SYMPTOM_SCORERS } from "./scoring/symptom-scorers.token";
 
 @Module({
@@ -11,10 +12,11 @@ import { SYMPTOM_SCORERS } from "./scoring/symptom-scorers.token";
 		PatientService,
 		FrenchScoreService,
 		TraumaScorer,
+		AbdomenScorer,
 		{
 			provide: SYMPTOM_SCORERS,
-			useFactory: (trauma: TraumaScorer) => [trauma],
-			inject: [TraumaScorer],
+			useFactory: (trauma: TraumaScorer, abdomen: AbdomenScorer) => [trauma, abdomen],
+			inject: [TraumaScorer, AbdomenScorer],
 		},
 	],
 })
