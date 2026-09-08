@@ -61,7 +61,8 @@ export const generalSymptoms: SymptomQuestion[] = [
 		symptomId: "respiratory",
 	},
 	{
-		symptomText: "Fièvre, frissons, infection possible",
+		symptomText:
+			"Fièvre, frissons, infection possible, contact avec un liquide biologique étranger",
 		symptomEmoji: "🌡️",
 		symptomId: "infection",
 	},

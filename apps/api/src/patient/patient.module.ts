@@ -6,6 +6,7 @@ import { TraumaScorer } from "./scoring/scorers/trauma.scorer";
 import { AbdomenScorer } from "./scoring/scorers/abdomen.scorer";
 import { CardiacScorer } from "./scoring/scorers/cardiac.scorer";
 import { RespiratoryScorer } from "./scoring/scorers/respiratory.scorer";
+import { InfectionScorer } from "./scoring/scorers/infection.scorer";
 import { SYMPTOM_SCORERS } from "./scoring/symptom-scorers.token";
 
 @Module({
@@ -17,6 +18,7 @@ import { SYMPTOM_SCORERS } from "./scoring/symptom-scorers.token";
 		AbdomenScorer,
 		CardiacScorer,
 		RespiratoryScorer,
+		InfectionScorer,
 		{
 			provide: SYMPTOM_SCORERS,
 			useFactory: (
@@ -24,8 +26,15 @@ import { SYMPTOM_SCORERS } from "./scoring/symptom-scorers.token";
 				abdomen: AbdomenScorer,
 				cardiac: CardiacScorer,
 				respiratory: RespiratoryScorer,
-			) => [trauma, abdomen, cardiac, respiratory],
-			inject: [TraumaScorer, AbdomenScorer, CardiacScorer, RespiratoryScorer],
+				infection: InfectionScorer,
+			) => [trauma, abdomen, cardiac, respiratory, infection],
+			inject: [
+				TraumaScorer,
+				AbdomenScorer,
+				CardiacScorer,
+				RespiratoryScorer,
+				InfectionScorer,
+			],
 		},
 	],
 })
