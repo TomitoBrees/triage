@@ -11,6 +11,7 @@ import { NeurologicalScorer } from "./scoring/scorers/neurological.scorer";
 import { UrinaryScorer } from "./scoring/scorers/urinary.scorer";
 import { GynecologicalScorer } from "./scoring/scorers/gynecological.scorer";
 import { DermatologicalScorer } from "./scoring/scorers/dermatological.scorer";
+import { EntScorer } from "./scoring/scorers/ent.scorer";
 import { SYMPTOM_SCORERS } from "./scoring/symptom-scorers.token";
 
 @Module({
@@ -27,6 +28,7 @@ import { SYMPTOM_SCORERS } from "./scoring/symptom-scorers.token";
 		UrinaryScorer,
 		GynecologicalScorer,
 		DermatologicalScorer,
+		EntScorer,
 		{
 			provide: SYMPTOM_SCORERS,
 			useFactory: (
@@ -39,6 +41,7 @@ import { SYMPTOM_SCORERS } from "./scoring/symptom-scorers.token";
 				urinary: UrinaryScorer,
 				gynecological: GynecologicalScorer,
 				dermatological: DermatologicalScorer,
+				ent: EntScorer,
 			) => [
 				trauma,
 				abdomen,
@@ -49,6 +52,7 @@ import { SYMPTOM_SCORERS } from "./scoring/symptom-scorers.token";
 				urinary,
 				gynecological,
 				dermatological,
+				ent,
 			],
 			inject: [
 				TraumaScorer,
@@ -60,6 +64,7 @@ import { SYMPTOM_SCORERS } from "./scoring/symptom-scorers.token";
 				UrinaryScorer,
 				GynecologicalScorer,
 				DermatologicalScorer,
+				EntScorer,
 			],
 		},
 	],
