@@ -11,6 +11,7 @@ import { dermatologicalQuestions } from "./questions/patient-form.questions.derm
 import { entQuestions } from "./questions/patient-form.questions.ent";
 import { gynecologicalQuestions } from "./questions/patient-form.questions.gynecological";
 import { infectionQuestions } from "./questions/patient-form.questions.infection";
+import { intoxicationQuestions } from "./questions/patient-form.questions.intoxication";
 import { neurologicalQuestions } from "./questions/patient-form.questions.neurological";
 import { psychologicalQuestions } from "./questions/patient-form.questions.psychological";
 import { respiratoryQuestions } from "./questions/patient-form.questions.respiratory";
@@ -76,6 +77,8 @@ export class PatientFormControllerComponent {
 				return entQuestions;
 			case "psychological":
 				return psychologicalQuestions;
+			case "intoxication":
+				return intoxicationQuestions;
 			default:
 				return [];
 		}
