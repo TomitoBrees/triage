@@ -1,5 +1,10 @@
-import { GeneralSymptom, PatientAnswerValue } from "../../dto/create-patient.dto";
+import {
+	GeneralSymptom,
+	PatientAnswerValue,
+	PersonalInformationDto,
+} from "../../dto/create-patient.dto";
 import { SymptomScorer } from "../symptom-scorer.interface";
+import { isChild } from "../age.util";
 
 const POOR_TOLERANCE = ["drowsiness", "vomiting", "faintness", "breathingTrouble", "multipleSigns"];
 const SUICIDAL_INTENT = ["suicidal", "noAnswer"];
@@ -21,19 +26,28 @@ export class IntoxicationScorer implements SymptomScorer {
 	computeScore(
 		sharedAnswers: Record<string, PatientAnswerValue>,
 		specificAnswers: Record<string, PatientAnswerValue>,
+		personalInformation: PersonalInformationDto,
 	): number {
 		const intoxicationProblem = specificAnswers.intoxicationProblem as string | undefined;
 		const painScale = Number(sharedAnswers.painScale ?? 0);
 
 		switch (intoxicationProblem) {
 			case "drugIntoxication":
-				return this.scoreDrugIntoxication(sharedAnswers, specificAnswers);
+				return this.scoreDrugIntoxication(
+					sharedAnswers,
+					specificAnswers,
+					personalInformation,
+				);
 			case "nonDrugIntoxication":
-				return this.scoreNonDrugIntoxication(sharedAnswers, specificAnswers);
+				return this.scoreNonDrugIntoxication(
+					sharedAnswers,
+					specificAnswers,
+					personalInformation,
+				);
 			case "withdrawalRequest":
-				return this.scoreWithdrawalRequest(specificAnswers);
+				return this.scoreWithdrawalRequest(specificAnswers, personalInformation);
 			case "drunkenness":
-				return this.scoreDrunkenness(specificAnswers);
+				return this.scoreDrunkenness(specificAnswers, personalInformation);
 			default:
 				return this.scoreFromPain(painScale);
 		}
@@ -42,6 +56,7 @@ export class IntoxicationScorer implements SymptomScorer {
 	private scoreDrugIntoxication(
 		sharedAnswers: Record<string, PatientAnswerValue>,
 		specificAnswers: Record<string, PatientAnswerValue>,
+		personalInformation: PersonalInformationDto,
 	): number {
 		const intoxicationIntent = specificAnswers.intoxicationIntent as string | undefined;
 		const drugType = specificAnswers.drugType as string | undefined;
@@ -53,6 +68,9 @@ export class IntoxicationScorer implements SymptomScorer {
 		) {
 			return 2;
 		}
+		if (isChild(personalInformation)) {
+			return 3;
+		}
 		if (this.isWellToleratedAndSeenLate(sharedAnswers, specificAnswers)) {
 			return 5;
 		}
@@ -62,6 +80,7 @@ export class IntoxicationScorer implements SymptomScorer {
 	private scoreNonDrugIntoxication(
 		sharedAnswers: Record<string, PatientAnswerValue>,
 		specificAnswers: Record<string, PatientAnswerValue>,
+		personalInformation: PersonalInformationDto,
 	): number {
 		const toxicProductType = specificAnswers.toxicProductType as string | undefined;
 
@@ -71,17 +90,26 @@ export class IntoxicationScorer implements SymptomScorer {
 		) {
 			return 2;
 		}
+		if (isChild(personalInformation)) {
+			return 3;
+		}
 		if (this.isWellToleratedAndSeenLate(sharedAnswers, specificAnswers)) {
 			return 5;
 		}
 		return 3;
 	}
 
-	private scoreWithdrawalRequest(specificAnswers: Record<string, PatientAnswerValue>): number {
+	private scoreWithdrawalRequest(
+		specificAnswers: Record<string, PatientAnswerValue>,
+		personalInformation: PersonalInformationDto,
+	): number {
 		const withdrawalContext = specificAnswers.withdrawalContext as string | undefined;
 
 		if (SEVERE_WITHDRAWAL.includes(withdrawalContext ?? "")) {
 			return 2;
+		}
+		if (isChild(personalInformation)) {
+			return 3;
 		}
 		if (withdrawalContext === "prescriptionRequest") {
 			return 5;
@@ -89,13 +117,16 @@ export class IntoxicationScorer implements SymptomScorer {
 		return 4;
 	}
 
-	private scoreDrunkenness(specificAnswers: Record<string, PatientAnswerValue>): number {
+	private scoreDrunkenness(
+		specificAnswers: Record<string, PatientAnswerValue>,
+		personalInformation: PersonalInformationDto,
+	): number {
 		const drunkennessContext = specificAnswers.drunkennessContext as string | undefined;
 
 		if (SEVERE_DRUNKENNESS.includes(drunkennessContext ?? "")) {
 			return 2;
 		}
-		if (drunkennessContext === "policeRequest") {
+		if (isChild(personalInformation) || drunkennessContext === "policeRequest") {
 			return 3;
 		}
 		return 4;

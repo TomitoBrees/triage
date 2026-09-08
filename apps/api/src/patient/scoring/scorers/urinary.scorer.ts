@@ -1,5 +1,10 @@
-import { GeneralSymptom, PatientAnswerValue } from "../../dto/create-patient.dto";
+import {
+	GeneralSymptom,
+	PatientAnswerValue,
+	PersonalInformationDto,
+} from "../../dto/create-patient.dto";
 import { SymptomScorer } from "../symptom-scorer.interface";
+import { isChild } from "../age.util";
 
 const FEVER_ANSWERS = ["yes", "idk"];
 const TORSION_SIGNS = ["highRidingTestis", "swollenHardScrotum", "nausea", "multipleSigns"];
@@ -13,6 +18,7 @@ export class UrinaryScorer implements SymptomScorer {
 	computeScore(
 		sharedAnswers: Record<string, PatientAnswerValue>,
 		specificAnswers: Record<string, PatientAnswerValue>,
+		personalInformation: PersonalInformationDto,
 	): number {
 		const urinaryProblem = specificAnswers.urinaryProblem as string | undefined;
 		const painScale = Number(sharedAnswers.painScale ?? 0);
@@ -29,7 +35,7 @@ export class UrinaryScorer implements SymptomScorer {
 			case "hematuria":
 				return this.scoreHematuria(specificAnswers);
 			case "dysuria":
-				return this.scoreDysuria(specificAnswers);
+				return this.scoreDysuria(specificAnswers, personalInformation);
 			case "genitalLesion":
 				return this.scoreGenitalLesion(specificAnswers);
 			default:
@@ -91,8 +97,14 @@ export class UrinaryScorer implements SymptomScorer {
 		return ACTIVE_HEAVY_BLEEDING.includes(hematuriaSeverity ?? "") ? 2 : 3;
 	}
 
-	private scoreDysuria(specificAnswers: Record<string, PatientAnswerValue>): number {
-		return this.hasFever(specificAnswers) ? 3 : 5;
+	private scoreDysuria(
+		specificAnswers: Record<string, PatientAnswerValue>,
+		personalInformation: PersonalInformationDto,
+	): number {
+		if (this.hasFever(specificAnswers)) {
+			return 3;
+		}
+		return isChild(personalInformation) ? 4 : 5;
 	}
 
 	private scoreGenitalLesion(specificAnswers: Record<string, PatientAnswerValue>): number {

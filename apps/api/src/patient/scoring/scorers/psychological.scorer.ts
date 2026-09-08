@@ -1,5 +1,10 @@
-import { GeneralSymptom, PatientAnswerValue } from "../../dto/create-patient.dto";
+import {
+	GeneralSymptom,
+	PatientAnswerValue,
+	PersonalInformationDto,
+} from "../../dto/create-patient.dto";
 import { SymptomScorer } from "../symptom-scorer.interface";
+import { isChild } from "../age.util";
 
 const BEHAVIOR_EMERGENCY_SIGNS = [
 	"agitation",
@@ -16,6 +21,7 @@ export class PsychologicalScorer implements SymptomScorer {
 	computeScore(
 		sharedAnswers: Record<string, PatientAnswerValue>,
 		specificAnswers: Record<string, PatientAnswerValue>,
+		personalInformation: PersonalInformationDto,
 	): number {
 		const psychologicalProblem = specificAnswers.psychologicalProblem as string | undefined;
 		const painScale = Number(sharedAnswers.painScale ?? 0);
@@ -26,7 +32,7 @@ export class PsychologicalScorer implements SymptomScorer {
 			case "behaviorTrouble":
 				return this.scoreBehaviorTrouble(specificAnswers);
 			case "anxietyOrDepression":
-				return this.scoreAnxietyOrDepression(specificAnswers);
+				return this.scoreAnxietyOrDepression(specificAnswers, personalInformation);
 			default:
 				return this.scoreFromPain(painScale);
 		}
@@ -38,10 +44,16 @@ export class PsychologicalScorer implements SymptomScorer {
 		return BEHAVIOR_EMERGENCY_SIGNS.includes(behaviorTroubleSigns ?? "") ? 2 : 3;
 	}
 
-	private scoreAnxietyOrDepression(specificAnswers: Record<string, PatientAnswerValue>): number {
+	private scoreAnxietyOrDepression(
+		specificAnswers: Record<string, PatientAnswerValue>,
+		personalInformation: PersonalInformationDto,
+	): number {
 		const anxietySeverity = specificAnswers.anxietySeverity as string | undefined;
 
-		return MAJOR_ANXIETY.includes(anxietySeverity ?? "") ? 2 : 4;
+		if (MAJOR_ANXIETY.includes(anxietySeverity ?? "")) {
+			return 2;
+		}
+		return isChild(personalInformation) ? 3 : 4;
 	}
 
 	private scoreFromPain(painScale: number): number {

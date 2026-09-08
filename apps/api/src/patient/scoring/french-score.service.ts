@@ -13,7 +13,11 @@ export class FrenchScoreService {
 
 		const scorer = this.scorers.find((candidate) => candidate.symptomId === dto.generalSymptom);
 		if (scorer) {
-			return scorer.computeScore(dto.sharedAnswers ?? {}, dto.specificAnswers ?? {});
+			return scorer.computeScore(
+				dto.sharedAnswers ?? {},
+				dto.specificAnswers ?? {},
+				dto.personalInformation,
+			);
 		}
 
 		return 5;

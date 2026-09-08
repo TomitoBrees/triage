@@ -54,7 +54,7 @@ export type GeneralSymptom = (typeof generalSymptoms)[number];
 
 export type PatientAnswerValue = string | number | boolean;
 
-class PersonalInformationDto {
+export class PersonalInformationDto {
 	@IsString()
 	firstName!: string;
 
