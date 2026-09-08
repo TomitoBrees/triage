@@ -1,13 +1,13 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
 import {
-	abdominalQuestions,
-	cardiacQuestions,
 	criticalSymptoms,
 	generalSymptoms,
 	sharedQuestions,
-	traumaQuestions,
-} from "./types/patient-form.questions";
+} from "./questions/patient-form.questions";
+import { abdominalQuestions } from "./questions/patient-form.questions.abdominal";
+import { cardiacQuestions } from "./questions/patient-form.questions.cardiac";
+import { traumaQuestions } from "./questions/patient-form.questions.trauma";
 import type { PatientResponse } from "./service/patient-form-controller.api";
 import type {
 	Answer,
