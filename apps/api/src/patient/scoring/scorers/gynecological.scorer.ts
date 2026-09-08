@@ -46,10 +46,7 @@ export class GynecologicalScorer implements SymptomScorer {
 		if (pregnancyStage === "earlyStage") {
 			return this.scoreEarlyPregnancy(specificAnswers);
 		}
-		if (pregnancyStage === "lateStage") {
-			return this.scoreLatePregnancy(specificAnswers);
-		}
-		return 3;
+		return this.scoreLatePregnancy(specificAnswers);
 	}
 
 	private scoreEarlyPregnancy(specificAnswers: Record<string, PatientAnswerValue>): number {
