@@ -7,6 +7,7 @@ import {
 } from "./questions/patient-form.questions";
 import { abdominalQuestions } from "./questions/patient-form.questions.abdominal";
 import { cardiacQuestions } from "./questions/patient-form.questions.cardiac";
+import { gynecologicalQuestions } from "./questions/patient-form.questions.gynecological";
 import { infectionQuestions } from "./questions/patient-form.questions.infection";
 import { neurologicalQuestions } from "./questions/patient-form.questions.neurological";
 import { respiratoryQuestions } from "./questions/patient-form.questions.respiratory";
@@ -64,6 +65,8 @@ export class PatientFormControllerComponent {
 				return neurologicalQuestions;
 			case "urinary":
 				return urinaryQuestions;
+			case "gynecological":
+				return gynecologicalQuestions;
 			default:
 				return [];
 		}
