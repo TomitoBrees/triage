@@ -11,6 +11,7 @@ import { infectionQuestions } from "./questions/patient-form.questions.infection
 import { neurologicalQuestions } from "./questions/patient-form.questions.neurological";
 import { respiratoryQuestions } from "./questions/patient-form.questions.respiratory";
 import { traumaQuestions } from "./questions/patient-form.questions.trauma";
+import { urinaryQuestions } from "./questions/patient-form.questions.urinary";
 import type { PatientResponse } from "./service/patient-form-controller.api";
 import type {
 	Answer,
@@ -61,6 +62,8 @@ export class PatientFormControllerComponent {
 				return infectionQuestions;
 			case "neurological":
 				return neurologicalQuestions;
+			case "urinary":
+				return urinaryQuestions;
 			default:
 				return [];
 		}
