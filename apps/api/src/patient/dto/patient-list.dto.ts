@@ -7,6 +7,7 @@ export class PatientBaseData {
 	isMale!: boolean;
 	symptom?: PatientSymptom;
 	arrivalTime!: Date;
+	french: number;
 }
 
 export type PatientList = PatientBaseData[];

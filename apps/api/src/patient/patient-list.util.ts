@@ -10,6 +10,7 @@ function toPatientBaseData(patient: Patient): PatientBaseData {
 		isMale: patient.isMale,
 		symptom: (patient.symptom as PatientSymptom) ?? undefined,
 		arrivalTime: patient.arrivalTime,
+		french: patient.french,
 	};
 }
 
