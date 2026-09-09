@@ -42,6 +42,12 @@ $font-weight-bold: 700;
 	font-weight: $font-weight-regular;
 }
 
+@mixin typography-body-small {
+	font-family: $font-family-primary;
+	font-size: 14px;
+	font-weight: $font-weight-medium;
+}
+
 @mixin typography-label {
 	font-family: $font-family-primary;
 	font-size: 12px;

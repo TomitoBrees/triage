@@ -1,0 +1,62 @@
+@use "spacing";
+@use "typography";
+
+:host {
+	display: block;
+	flex: none;
+}
+
+.navBar {
+	display: flex;
+	align-items: center;
+	gap: spacing.$spacing-16;
+
+	min-height: spacing.$spacing-56;
+	padding: 0 spacing.$spacing-20;
+
+	color: var(--color-text-light);
+	background: var(--color-primary);
+
+	&_title {
+		@include typography.typography-section;
+		font-weight: typography.$font-weight-bold;
+
+		margin: 0;
+		line-height: 1;
+	}
+
+	&_subtitle {
+		@include typography.typography-label;
+		font-weight: typography.$font-weight-semibold;
+
+		opacity: 0.72;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	&_meta {
+		display: flex;
+		align-items: center;
+		gap: spacing.$spacing-8;
+
+		margin-left: auto;
+	}
+
+	&_update {
+		@include typography.typography-body-small;
+
+		opacity: 0.72;
+	}
+
+	&_divider {
+		width: 1px;
+		height: spacing.$spacing-16;
+
+		background: rgb(255 255 255 / 0.24);
+	}
+
+	&_operator {
+		@include typography.typography-body-small;
+		font-weight: typography.$font-weight-semibold;
+	}
+}
