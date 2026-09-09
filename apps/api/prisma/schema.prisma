@@ -21,9 +21,11 @@ model Patient {
   firstName          String
   lastName           String
   age                Int
+  isMale             Boolean         @default(false)
   french             Int
   symptom            PatientSymptom?
   symptomDescription String?
+  arrivalTime        DateTime        @default(now())
 }
 
 enum PatientSymptom {
