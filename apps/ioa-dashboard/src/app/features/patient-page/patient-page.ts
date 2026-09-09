@@ -4,6 +4,6 @@ import { Component } from "@angular/core";
 	selector: "app-patient-page",
 	imports: [],
 	templateUrl: "./patient-page.html",
-	styleUrl: "./patient-page.css",
+	styleUrl: "./patient-page.scss",
 })
 export class PatientPage {}
