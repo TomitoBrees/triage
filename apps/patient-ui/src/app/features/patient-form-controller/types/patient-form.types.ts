@@ -3,7 +3,8 @@ export type StepId =
 	| "general-symptoms"
 	| "shared-questions"
 	| "personal-information"
-	| "specific-questions";
+	| "specific-questions"
+	| "symptom-description";
 
 export type PatientSymptomId =
 	| "chestPain"
@@ -40,6 +41,7 @@ export type Answer = {
 	personalInformation?: PersonalInformation;
 	sharedAnswers?: Record<string, string | number | boolean>;
 	specificAnswers?: Record<string, string | number | boolean>;
+	symptomDescription?: string;
 };
 
 export type PatientQuestionAnswer = string | number | boolean;

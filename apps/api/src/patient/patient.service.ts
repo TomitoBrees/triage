@@ -21,6 +21,7 @@ export class PatientService {
 				age: dto.personalInformation.age,
 				french,
 				symptom: symptom ?? null,
+				symptomDescription: dto.symptomDescription ?? null,
 			},
 		});
 	}

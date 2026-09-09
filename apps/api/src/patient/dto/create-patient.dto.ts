@@ -96,4 +96,8 @@ export class CreatePatientDto {
 	@IsOptional()
 	@IsObject()
 	specificAnswers?: Record<string, PatientAnswerValue>;
+
+	@IsOptional()
+	@IsString()
+	symptomDescription?: string;
 }

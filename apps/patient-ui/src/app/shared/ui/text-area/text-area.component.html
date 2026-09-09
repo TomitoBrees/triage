@@ -1,0 +1,23 @@
+<div class="textAreaContainer">
+	<label class="textArea_label">
+		{{ label() }}
+		@if (isRequired()) {
+			<span class="textArea_required">*</span>
+		}
+	</label>
+	<textarea
+		class="textArea"
+		[class.-error]="showError()"
+		[formField]="field()"
+		[placeholder]="placeholder()"
+		[rows]="rows()"
+	></textarea>
+	<div class="textArea_footer">
+		@if (showError()) {
+			<span class="textArea_caption">{{ errorMessage() }}</span>
+		}
+		@if (maxLength() !== null) {
+			<span class="textArea_counter">{{ characterCount() }} / {{ maxLength() }}</span>
+		}
+	</div>
+</div>

@@ -31,6 +31,7 @@ import { PatientFormControllerService } from "./service/patient-form-controller.
 import { DialogService } from "../../shared/ui/dialog/dialog.service";
 import { patientSymptomToFrench } from "../../shared/utils/patient-symptom-label.util";
 import { PatientQuestionsComponent } from "../patient-questions/patient-questions.component";
+import { PatientSymptomDescriptionComponent } from "../patient-symptom-description/patient-symptom-description.component";
 
 type headerAndDescription = {
 	header: string;
@@ -38,7 +39,12 @@ type headerAndDescription = {
 };
 @Component({
 	selector: "app-patient-form-controller",
-	imports: [SymptomQuestionsComponent, PatientIdentificationComponent, PatientQuestionsComponent],
+	imports: [
+		SymptomQuestionsComponent,
+		PatientIdentificationComponent,
+		PatientQuestionsComponent,
+		PatientSymptomDescriptionComponent,
+	],
 	templateUrl: "./patient-form-controller.component.html",
 	styleUrl: "./patient-form-controller.component.scss",
 })
@@ -116,6 +122,13 @@ export class PatientFormControllerComponent {
 					description:
 						"Merci de répondre à ces questions complémentaires en fonction de votre symptôme principal.",
 				};
+
+			case "symptom-description":
+				return {
+					header: "Décrivez votre situation",
+					description:
+						"Aucun symptôme de la liste ne correspond : expliquez avec vos mots ce qui vous amène.",
+				};
 		}
 	});
 
@@ -161,11 +174,22 @@ export class PatientFormControllerComponent {
 
 	protected handleSharedCompleted(answers: Record<string, PatientQuestionAnswer>) {
 		this.updateAnswer({ sharedAnswers: answers });
+
+		if (!this.answer().generalSymptom) {
+			this.currentStep.set("symptom-description");
+			return;
+		}
+
 		this.currentStep.set("specific-questions");
 	}
 
 	protected async handleSpecificCompleted(answers: Record<string, PatientQuestionAnswer>) {
 		this.updateAnswer({ specificAnswers: answers });
+		this.submitAnswer();
+	}
+
+	protected handleSymptomDescriptionCompleted(description: string) {
+		this.updateAnswer({ symptomDescription: description });
 		this.submitAnswer();
 	}
 
@@ -178,6 +202,7 @@ export class PatientFormControllerComponent {
 				this.currentStep.set("general-symptoms");
 				break;
 			case "specific-questions":
+			case "symptom-description":
 				this.currentStep.set("shared-questions");
 				break;
 		}

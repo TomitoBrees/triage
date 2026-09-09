@@ -1,0 +1,22 @@
+<div class="symptomDescription">
+	<app-text-area
+		label="Décrivez votre problème"
+		placeholder="Expliquez avec vos mots ce qui vous amène aux urgences aujourd'hui"
+		[rows]="6"
+		[field]="descriptionForm.description"
+	/>
+
+	<div class="symptomDescription_buttons">
+		<app-button
+			text="Continuer"
+			[disabled]="descriptionForm().invalid()"
+			(click)="onSubmit()"
+		/>
+		<app-button
+			text="Retour"
+			variant="lighter"
+			size="small"
+			(click)="onGoBack()"
+		/>
+	</div>
+</div>

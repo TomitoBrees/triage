@@ -50,5 +50,12 @@
 				(goBack)="handleGoBack()"
 			/>
 		}
+
+		@case ("symptom-description") {
+			<app-patient-symptom-description
+				(completed)="handleSymptomDescriptionCompleted($event)"
+				(goBack)="handleGoBack()"
+			/>
+		}
 	}
 </div>

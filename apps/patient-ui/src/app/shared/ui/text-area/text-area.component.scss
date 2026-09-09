@@ -1,0 +1,41 @@
+@use "form-input";
+@use "spacing";
+@use "typography";
+
+.textArea {
+	@include form-input.form-input-control;
+
+	min-height: 120px;
+	resize: vertical;
+
+	&.-error {
+		border-color: var(--color-critical-dark);
+	}
+
+	&Container {
+		@include form-input.form-input-container;
+	}
+
+	&_label {
+		@include form-input.form-input-label;
+	}
+
+	&_footer {
+		display: flex;
+		justify-content: space-between;
+		gap: spacing.$spacing-8;
+	}
+
+	&_caption {
+		@include typography.typography-caption;
+
+		color: var(--color-critical-dark);
+	}
+
+	&_counter {
+		@include typography.typography-caption;
+
+		margin-left: auto;
+		color: var(--color-neutral-700);
+	}
+}

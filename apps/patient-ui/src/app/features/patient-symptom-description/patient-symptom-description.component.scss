@@ -1,0 +1,15 @@
+@use "spacing";
+
+.symptomDescription {
+	margin-top: spacing.$spacing-32;
+
+	display: flex;
+	flex-direction: column;
+	gap: spacing.$spacing-48;
+
+	&_buttons {
+		display: flex;
+		flex-direction: column;
+		gap: spacing.$spacing-12;
+	}
+}

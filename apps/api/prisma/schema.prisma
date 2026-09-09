@@ -17,12 +17,13 @@ model User {
 }
 
 model Patient {
-  id        String          @id @default(cuid())
-  firstName String
-  lastName  String
-  age       Int
-  french    Int
-  symptom   PatientSymptom?
+  id                 String          @id @default(cuid())
+  firstName          String
+  lastName           String
+  age                Int
+  french             Int
+  symptom            PatientSymptom?
+  symptomDescription String?
 }
 
 enum PatientSymptom {
