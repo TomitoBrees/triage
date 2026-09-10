@@ -1,1 +1,19 @@
-<p>french-section works!</p>
+<section class="frenchSection">
+	<header class="frenchSection_header">
+		<span
+			class="frenchSection_dot"
+			[ngClass]="'-french-' + tier()"
+		></span>
+		<span class="frenchSection_label">{{ heading() }}</span>
+		<span class="frenchSection_rule"></span>
+	</header>
+	<div class="frenchSection_list">
+		@for (patient of sortedPatients(); track patient) {
+			<app-patient-row
+				[patient]="patient"
+				[selected]="patient === selectedPatient()"
+				(select)="select.emit(patient)"
+			/>
+		}
+	</div>
+</section>

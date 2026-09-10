@@ -1,6 +1,25 @@
+@use "spacing";
+
 :host {
 	display: flex;
 	flex-direction: column;
-	min-height: 100dvh;
+	// Fixed height so the sidebar and the content scroll on their own instead of the page.
+	height: 100dvh;
 	background: var(--color-neutral-50);
+}
+
+.app {
+	&_body {
+		display: flex;
+		flex: 1;
+		min-height: 0;
+	}
+
+	&_content {
+		flex: 1;
+		min-width: 0;
+		overflow-y: auto;
+
+		padding: spacing.$spacing-16 spacing.$spacing-24 spacing.$spacing-32;
+	}
 }

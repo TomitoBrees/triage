@@ -1,1 +1,16 @@
-<p>dashboard-sidebar works!</p>
+<aside class="dashboardSidebar">
+	<div class="dashboardSidebar_header">
+		<span class="dashboardSidebar_title">File d'attente</span>
+		<span class="dashboardSidebar_subtitle">Score FRENCH, puis heure d'arrivée</span>
+	</div>
+	<div class="dashboardSidebar_sections">
+		@for (section of sections(); track section.tier) {
+			<app-french-section
+				[tier]="section.tier"
+				[patients]="section.patients"
+				[selectedPatient]="selectedPatient()"
+				(select)="selectPatient($event)"
+			/>
+		}
+	</div>
+</aside>

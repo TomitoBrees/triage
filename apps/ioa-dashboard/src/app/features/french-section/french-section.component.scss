@@ -1,0 +1,77 @@
+@use "borders";
+@use "spacing";
+@use "typography";
+
+:host {
+	display: block;
+}
+
+.frenchSection {
+	&_header {
+		display: flex;
+		align-items: center;
+		gap: spacing.$spacing-8;
+
+		position: sticky;
+		top: 0;
+		z-index: 1;
+
+		padding: spacing.$spacing-8 spacing.$spacing-4 spacing.$spacing-4;
+
+		background: var(--color-neutral-0);
+	}
+
+	&_dot {
+		flex: none;
+		width: spacing.$spacing-8;
+		height: spacing.$spacing-8;
+
+		border-radius: borders.$radius-full;
+
+		&.-french-0 {
+			background: var(--color-neutral-400);
+		}
+
+		&.-french-1 {
+			background: var(--color-french-1);
+		}
+
+		&.-french-2 {
+			background: var(--color-french-2);
+		}
+
+		&.-french-3 {
+			background: var(--color-french-3);
+		}
+
+		&.-french-4 {
+			background: var(--color-french-4);
+		}
+
+		&.-french-5 {
+			background: var(--color-french-5);
+		}
+	}
+
+	&_label {
+		@include typography.typography-body-small;
+		font-weight: typography.$font-weight-bold;
+
+		color: var(--color-neutral-700);
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+	}
+
+	&_rule {
+		flex: 1;
+		height: 1px;
+
+		background: var(--color-neutral-100);
+	}
+
+	&_list {
+		display: flex;
+		flex-direction: column;
+		gap: spacing.$spacing-4;
+	}
+}
