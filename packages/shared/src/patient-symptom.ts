@@ -8,8 +8,6 @@ export const criticalSymptoms = [
 	"weaknessArmLeg",
 ] as const;
 
-export const moderateSymptoms = ["headInjury", "sucidalIdeation", "abdominalPainPregnant"] as const;
-
 export const generalSymptoms = [
 	"traumatological",
 	"abdominal",
@@ -26,14 +24,9 @@ export const generalSymptoms = [
 	"generalWeakness",
 ] as const;
 
-export const patientSymptoms = [
-	...criticalSymptoms,
-	...moderateSymptoms,
-	...generalSymptoms,
-] as const;
+export const patientSymptoms = [...criticalSymptoms, ...generalSymptoms] as const;
 
 export type PatientSymptom = (typeof patientSymptoms)[number];
 
 export type CriticalSymptom = (typeof criticalSymptoms)[number];
-export type ModerateSymptom = (typeof moderateSymptoms)[number];
 export type GeneralSymptom = (typeof generalSymptoms)[number];

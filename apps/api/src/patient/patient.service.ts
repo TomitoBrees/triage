@@ -13,7 +13,7 @@ export class PatientService {
 	) {}
 
 	create(dto: CreatePatientDto) {
-		const symptom = dto.criticalSymptom ?? dto.moderateSymptom ?? dto.generalSymptom;
+		const symptom = dto.criticalSymptom ?? dto.generalSymptom;
 		const french = this.frenchScoreService.computeFrench(dto);
 
 		return this.prisma.patient.create({

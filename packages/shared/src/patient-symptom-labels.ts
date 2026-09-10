@@ -8,9 +8,6 @@ export const patientSymptomFrenchLabels: Record<PatientSymptom, string> = {
 	severeBleeding: "Saignement important",
 	swellingFaceLipsThroat: "Gonflement du visage, des lèvres ou de la gorge",
 	weaknessArmLeg: "Faiblesse dans un bras ou une jambe",
-	headInjury: "Traumatisme crânien",
-	sucidalIdeation: "Idées suicidaires",
-	abdominalPainPregnant: "Douleur abdominale pendant la grossesse",
 	traumatological: "Traumatisme, blessure",
 	abdominal: "Douleur ou problème digestif",
 	cardiac: "Problème de cœur ou palpitations",
@@ -28,5 +25,9 @@ export const patientSymptomFrenchLabels: Record<PatientSymptom, string> = {
 };
 
 export function patientSymptomToFrench(symptom: PatientSymptom | null | undefined): string {
-	return symptom ? patientSymptomFrenchLabels[symptom] : "Aucun symptôme signalé";
+	if (!symptom) return "Aucun symptôme signalé";
+
+	// La base peut encore contenir des identifiants retirés de l'union (anciennes
+	// lignes, valeurs orphelines de l'enum Prisma) : ne jamais rendre "undefined".
+	return patientSymptomFrenchLabels[symptom] ?? "Symptôme non reconnu";
 }

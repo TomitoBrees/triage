@@ -11,7 +11,6 @@ export class FrenchScoreService {
 
 	public computeFrench(dto: CreatePatientDto): number {
 		if (dto.criticalSymptom) return 1;
-		if (dto.moderateSymptom) return 2;
 
 		const scorer = this.scorers.find((candidate) => candidate.symptomId === dto.generalSymptom);
 		if (scorer) {
