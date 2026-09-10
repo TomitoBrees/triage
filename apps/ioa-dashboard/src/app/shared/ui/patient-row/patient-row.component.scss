@@ -1,0 +1,165 @@
+@use "borders";
+@use "spacing";
+@use "typography";
+
+:host {
+	display: block;
+}
+
+.patientRow {
+	display: flex;
+	flex-direction: column;
+	gap: spacing.$spacing-4;
+
+	width: 100%;
+	padding: spacing.$spacing-8 spacing.$spacing-12;
+
+	text-align: left;
+	cursor: pointer;
+
+	background: var(--color-neutral-0);
+	border: 1px solid var(--color-neutral-200);
+	border-radius: borders.$radius-md;
+
+	transition: background 120ms ease;
+
+	&:hover {
+		background: var(--color-neutral-100);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
+	}
+
+	&.-selected {
+		background: var(--color-primary-light);
+		border-color: var(--color-primary);
+	}
+
+	// Declare after -selected so the triage colour always owns the left edge.
+	&.-french-0 {
+		border-left: 3px solid var(--color-neutral-400);
+	}
+
+	&.-french-1 {
+		border-left: 3px solid var(--color-french-1);
+	}
+
+	&.-french-2 {
+		border-left: 3px solid var(--color-french-2);
+	}
+
+	&.-french-3 {
+		border-left: 3px solid var(--color-french-3);
+	}
+
+	&.-french-4 {
+		border-left: 3px solid var(--color-french-4);
+	}
+
+	&.-french-5 {
+		border-left: 3px solid var(--color-french-5);
+	}
+
+	&_head,
+	&_details {
+		display: flex;
+		align-items: baseline;
+		gap: spacing.$spacing-8;
+		width: 100%;
+	}
+
+	&_name {
+		@include typography.typography-body-small;
+		font-weight: typography.$font-weight-semibold;
+
+		min-width: 0;
+		color: var(--color-text-primary);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	&_identity {
+		@include typography.typography-label;
+
+		flex: none;
+		margin-right: auto;
+		color: var(--color-neutral-400);
+	}
+
+	&_overdue {
+		@include typography.typography-label;
+		font-weight: typography.$font-weight-bold;
+
+		flex: none;
+		color: var(--color-vital-alert);
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	&_status {
+		@include typography.typography-label;
+		font-weight: typography.$font-weight-semibold;
+
+		flex: none;
+		padding: spacing.$spacing-4 spacing.$spacing-8;
+		border: 1px solid transparent;
+		border-radius: borders.$radius-full;
+
+		&.-waiting {
+			color: var(--color-neutral-600);
+			background: var(--color-neutral-100);
+			border-color: var(--color-neutral-200);
+		}
+
+		&.-inProgress {
+			color: var(--color-text-info);
+			background: var(--color-primary-light);
+			border-color: var(--color-info);
+		}
+
+		&.-seen {
+			color: var(--color-stable-dark);
+			background: var(--color-stable-light);
+			border-color: var(--color-stable);
+		}
+
+		&.-discharged {
+			color: var(--color-neutral-500);
+			background: var(--color-neutral-0);
+			border-color: var(--color-neutral-200);
+		}
+	}
+
+	&_symptom {
+		@include typography.typography-label;
+
+		flex: 1;
+		min-width: 0;
+		color: var(--color-neutral-600);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	&_arrival {
+		@include typography.typography-label;
+
+		flex: none;
+		color: var(--color-neutral-400);
+	}
+
+	&_elapsed {
+		@include typography.typography-label;
+		font-weight: typography.$font-weight-semibold;
+
+		flex: none;
+		color: var(--color-neutral-500);
+
+		&.-overdue {
+			color: var(--color-vital-alert);
+		}
+	}
+}

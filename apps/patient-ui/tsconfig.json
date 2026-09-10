@@ -1,7 +1,10 @@
 {
 	"compileOnSave": false,
 	"compilerOptions": {
-		"rootDir": "./src",
+		"baseUrl": "./",
+		"paths": {
+			"@triage/shared": ["../../packages/shared/src/index.ts"]
+		},
 		"outDir": "./dist/out-tsc",
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,

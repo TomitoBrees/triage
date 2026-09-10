@@ -1,1 +1,30 @@
-<p>patient-row works!</p>
+<button
+	class="patientRow"
+	type="button"
+	[ngClass]="'-french-' + tier()"
+	[class.-selected]="selected()"
+	[attr.aria-pressed]="selected()"
+	(click)="select.emit()"
+>
+	<span class="patientRow_head">
+		<span class="patientRow_name">{{ fullName() }}</span>
+		<span class="patientRow_identity">{{ identity() }}</span>
+		@if (overdue()) {
+			<span class="patientRow_overdue">Retard</span>
+		}
+		<span
+			class="patientRow_status"
+			[ngClass]="'-' + status()"
+			>{{ statusLabel() }}</span
+		>
+	</span>
+	<span class="patientRow_details">
+		<span class="patientRow_symptom">{{ patient().symptom | patientSymptomFrench }}</span>
+		<span class="patientRow_arrival">{{ arrivalLabel() }}</span>
+		<span
+			class="patientRow_elapsed"
+			[class.-overdue]="overdue()"
+			>{{ elapsedLabel() }}</span
+		>
+	</span>
+</button>

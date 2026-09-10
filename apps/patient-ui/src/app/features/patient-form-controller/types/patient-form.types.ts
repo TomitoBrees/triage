@@ -1,3 +1,7 @@
+import type { PatientSymptom } from "@triage/shared";
+
+export type PatientSymptomId = PatientSymptom;
+
 export type StepId =
 	| "critical-symptoms"
 	| "general-symptoms"
@@ -5,28 +9,6 @@ export type StepId =
 	| "personal-information"
 	| "specific-questions"
 	| "symptom-description";
-
-export type PatientSymptomId =
-	| "chestPain"
-	| "breathingDifficulty"
-	| "suddenSpeechDifficulty"
-	| "facialDrooping"
-	| "severeBleeding"
-	| "swellingFaceLipsThroat"
-	| "weaknessArmLeg"
-	| "traumatological"
-	| "abdominal"
-	| "cardiac"
-	| "respiratory"
-	| "infection"
-	| "neurological"
-	| "urinary"
-	| "gynecological"
-	| "dermatological"
-	| "ent"
-	| "psychological"
-	| "intoxication"
-	| "generalWeakness";
 
 export type PersonalInformation = {
 	firstName: string;
