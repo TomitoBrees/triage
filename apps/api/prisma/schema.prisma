@@ -33,7 +33,7 @@ model Patient {
 enum PatientStatus {
   waiting
   seen
-  released
+  discharged
 }
 
 enum PatientSymptom {

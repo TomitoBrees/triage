@@ -11,6 +11,7 @@ function toPatientBaseData(patient: Patient): PatientBaseData {
 		symptom: (patient.symptom as PatientSymptom) ?? undefined,
 		arrivalTime: patient.arrivalTime,
 		french: patient.french,
+		status: patient.status,
 	};
 }
 

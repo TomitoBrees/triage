@@ -15,7 +15,6 @@ import { patientStatusFrenchLabels, type PatientStatus } from "../../utils/patie
 })
 export class PatientRow {
 	public patient = input.required<PatientBaseData>();
-	public status = input<PatientStatus>("waiting");
 	public selected = input<boolean>(false);
 
 	public select = output<void>();
@@ -29,7 +28,7 @@ export class PatientRow {
 		return `${patient.age} ans · ${patient.isMale ? "H" : "F"}`;
 	});
 
-	protected statusLabel = computed(() => patientStatusFrenchLabels[this.status()]);
+	protected statusLabel = computed(() => patientStatusFrenchLabels[this.patient().status]);
 
 	protected arrivalLabel = computed(() =>
 		new Date(this.patient().arrivalTime).toLocaleTimeString("fr-FR", {
@@ -44,6 +43,8 @@ export class PatientRow {
 
 	protected overdue = computed(() => {
 		const limit = frenchTiers[this.tier()].limitMinutes;
-		return this.status() === "waiting" && limit !== null && this.elapsedMinutes() > limit;
+		return (
+			this.patient().status === "waiting" && limit !== null && this.elapsedMinutes() > limit
+		);
 	});
 }
