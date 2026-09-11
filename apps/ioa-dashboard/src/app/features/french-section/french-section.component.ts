@@ -18,7 +18,7 @@ import {
 export class FrenchSection {
 	public tier = input.required<FrenchTier>();
 	public patients = input.required<PatientBaseData[]>();
-	public selectedPatient = input<PatientBaseData | null>(null);
+	public selectedPatientId = input<string | null>(null);
 
 	public select = output<PatientBaseData>();
 

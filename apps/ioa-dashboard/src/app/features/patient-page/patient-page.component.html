@@ -1,1 +1,8 @@
-<p>patient-page works!</p>
+@if (patient(); as patient) {
+	<article class="patientPage">
+		<h1 class="patientPage_name">{{ patient.firstName }} {{ patient.lastName }}</h1>
+		<p class="patientPage_identity">{{ patient.age }} ans · {{ patient.isMale ? "H" : "F" }}</p>
+	</article>
+} @else {
+	<p class="patientPage_notFound">Patient introuvable.</p>
+}

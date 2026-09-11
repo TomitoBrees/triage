@@ -1,4 +1,7 @@
-import { Component, computed, inject, output, signal } from "@angular/core";
+import { Component, computed, inject } from "@angular/core";
+import { toSignal } from "@angular/core/rxjs-interop";
+import { NavigationEnd, Router } from "@angular/router";
+import { filter, map, startWith } from "rxjs";
 
 import { FrenchSection } from "../../features/french-section/french-section.component";
 import { PatientBaseData } from "../../services/patient-base-data";
@@ -17,11 +20,17 @@ type FrenchSectionData = {
 	styleUrl: "./dashboard-sidebar.component.scss",
 })
 export class DashboardSidebar {
-	public patientSelect = output<PatientBaseData>();
-
 	private readonly patientScoreService = inject(PatientScoreService);
+	private readonly router = inject(Router);
 
-	protected selectedPatient = signal<PatientBaseData | null>(null);
+	protected selectedPatientId = toSignal(
+		this.router.events.pipe(
+			filter((event) => event instanceof NavigationEnd),
+			startWith(null),
+			map(() => this.router.routerState.snapshot.root.firstChild?.paramMap.get("id") ?? null),
+		),
+		{ initialValue: this.router.routerState.snapshot.root.firstChild?.paramMap.get("id") ?? null },
+	);
 
 	protected sections = computed(() => {
 		const sections: FrenchSectionData[] = [
@@ -37,7 +46,6 @@ export class DashboardSidebar {
 	});
 
 	protected selectPatient(patient: PatientBaseData): void {
-		this.selectedPatient.set(patient);
-		this.patientSelect.emit(patient);
+		this.router.navigate(["/patient", patient.id]);
 	}
 }

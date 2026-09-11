@@ -4,6 +4,7 @@ export const patientStatuses = ["waiting", "seen", "discharged"] as const;
 export type PatientStatus = (typeof patientStatuses)[number];
 
 export class PatientBaseData {
+	id!: string;
 	firstName!: string;
 	lastName!: string;
 	age!: number;

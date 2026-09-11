@@ -11,7 +11,7 @@
 		@for (patient of sortedPatients(); track patient) {
 			<app-patient-row
 				[patient]="patient"
-				[selected]="patient === selectedPatient()"
+				[selected]="patient.id === selectedPatientId()"
 				(select)="select.emit(patient)"
 			/>
 		}

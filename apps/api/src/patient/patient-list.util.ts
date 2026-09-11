@@ -4,6 +4,7 @@ import { PatientBaseData, PatientList } from "./dto/patient-list.dto";
 
 function toPatientBaseData(patient: Patient): PatientBaseData {
 	return {
+		id: patient.id,
 		firstName: patient.firstName,
 		lastName: patient.lastName,
 		age: patient.age,
