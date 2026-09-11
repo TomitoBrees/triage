@@ -26,6 +26,14 @@ model Patient {
   symptom            PatientSymptom?
   symptomDescription String?
   arrivalTime        DateTime        @default(now())
+  status             PatientStatus   @default(waiting)
+  iaoNote            String          @default("")
+}
+
+enum PatientStatus {
+  waiting
+  seen
+  released
 }
 
 enum PatientSymptom {
