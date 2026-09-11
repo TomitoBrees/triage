@@ -1,0 +1,82 @@
+<section class="patientPageHeader">
+	<div class="patientPageHeader_main">
+		<div
+			class="patientPageHeader_score"
+			[ngClass]="'-french-' + tier()"
+		>
+			<span class="patientPageHeader_scoreLabel">FRENCH</span>
+			<span class="patientPageHeader_scoreValue">{{ patient().french }}</span>
+		</div>
+
+		<div class="patientPageHeader_identity">
+			<div class="patientPageHeader_identityHead">
+				<h2 class="patientPageHeader_name">{{ fullName() }}</h2>
+				<span class="patientPageHeader_age">{{ identity() }}</span>
+				<span
+					class="patientPageHeader_status"
+					[ngClass]="'-' + patient().status"
+					>{{ statusLabel() }}</span
+				>
+			</div>
+			<span class="patientPageHeader_symptom">{{
+				patient().symptom | patientSymptomFrench
+			}}</span>
+			<div class="patientPageHeader_timing">
+				<span class="patientPageHeader_arrival">Arrivée {{ arrivalLabel() }}</span>
+				<span class="patientPageHeader_separator"></span>
+				<span
+					class="patientPageHeader_elapsed"
+					[class.-overdue]="overdue()"
+					>{{ elapsedLabel() }} d'attente</span
+				>
+			</div>
+		</div>
+
+		<div class="patientPageHeader_actions">
+			<div class="patientPageHeader_statusOptions">
+				@for (option of statusOptions; track option) {
+					<button
+						class="patientPageHeader_statusButton"
+						type="button"
+						[class.-active]="option === patient().status"
+						[attr.aria-pressed]="option === patient().status"
+						(click)="statusChange.emit(option)"
+					>
+						{{ statusLabels[option] }}
+					</button>
+				}
+			</div>
+			<button
+				class="patientPageHeader_scoreEditToggle"
+				type="button"
+				[attr.aria-expanded]="scoreEditOpen()"
+				(click)="toggleScoreEdit()"
+			>
+				{{ scoreEditLabel() }}
+			</button>
+		</div>
+	</div>
+
+	@if (scoreEditOpen()) {
+		<div class="patientPageHeader_scoreEditor">
+			<span class="patientPageHeader_scoreEditorLabel">Surclasser le tri</span>
+			<div class="patientPageHeader_scoreChoices">
+				@for (option of scoreOptions; track option) {
+					<button
+						class="patientPageHeader_scoreChoice"
+						type="button"
+						[ngClass]="'-french-' + option"
+						[class.-active]="option === tier()"
+						[attr.aria-pressed]="option === tier()"
+						(click)="frenchChange.emit(option)"
+					>
+						{{ option }}
+					</button>
+				}
+			</div>
+			<span class="patientPageHeader_scoreEditorNote">
+				Score calculé automatiquement à partir du questionnaire.
+			</span>
+		</div>
+	}
+</section>

@@ -1,0 +1,311 @@
+@use "borders";
+@use "spacing";
+@use "typography";
+
+:host {
+	display: block;
+}
+
+.patientPageHeader {
+	padding: spacing.$spacing-16;
+
+	background: var(--color-neutral-0);
+	border: 1px solid var(--color-neutral-200);
+	border-radius: borders.$radius-lg;
+
+	&_main {
+		display: flex;
+		align-items: flex-start;
+		gap: spacing.$spacing-16;
+		flex-wrap: wrap;
+	}
+
+	&_score {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: spacing.$spacing-4;
+		flex: none;
+
+		width: spacing.$spacing-64;
+		height: spacing.$spacing-64;
+
+		color: var(--color-text-light);
+		border-radius: borders.$radius-md;
+
+		&.-french-0 {
+			background: var(--color-neutral-400);
+		}
+
+		&.-french-1 {
+			background: var(--color-french-1);
+		}
+
+		&.-french-2 {
+			background: var(--color-french-2);
+		}
+
+		&.-french-3 {
+			background: var(--color-french-3);
+		}
+
+		&.-french-4 {
+			background: var(--color-french-4);
+		}
+
+		&.-french-5 {
+			background: var(--color-french-5);
+		}
+	}
+
+	&_scoreLabel {
+		@include typography.typography-label;
+		font-weight: typography.$font-weight-semibold;
+		line-height: 1;
+
+		opacity: 0.85;
+		letter-spacing: 0.08em;
+	}
+
+	&_scoreValue {
+		@include typography.typography-section;
+		font-weight: typography.$font-weight-bold;
+		line-height: 1;
+	}
+
+	&_identity {
+		display: flex;
+		flex-direction: column;
+		gap: spacing.$spacing-4;
+		// Base de 300px : le bloc passe à la ligne au lieu de s'écraser sous les actions.
+		flex: 1 1 300px;
+	}
+
+	&_identityHead {
+		display: flex;
+		align-items: baseline;
+		gap: spacing.$spacing-8;
+		flex-wrap: wrap;
+	}
+
+	&_name {
+		@include typography.typography-section;
+		font-weight: typography.$font-weight-bold;
+
+		margin: 0;
+		color: var(--color-text-primary);
+	}
+
+	&_age {
+		@include typography.typography-label;
+
+		color: var(--color-text-secondary);
+	}
+
+	&_status {
+		@include typography.typography-label;
+		font-weight: typography.$font-weight-semibold;
+		line-height: 1;
+
+		flex: none;
+		padding: spacing.$spacing-4 spacing.$spacing-8;
+		border-radius: borders.$radius-full;
+
+		&.-waiting {
+			color: var(--color-neutral-600);
+			background: var(--color-neutral-100);
+		}
+
+		&.-inProgress {
+			color: var(--color-text-info);
+			background: var(--color-primary-light);
+		}
+
+		&.-seen {
+			color: var(--color-stable-dark);
+			background: var(--color-stable-light);
+		}
+
+		&.-discharged {
+			color: var(--color-neutral-500);
+			background: var(--color-neutral-100);
+		}
+	}
+
+	&_symptom {
+		@include typography.typography-body-small;
+		font-weight: typography.$font-weight-semibold;
+
+		color: var(--color-neutral-700);
+		text-wrap: pretty;
+	}
+
+	&_timing {
+		display: flex;
+		align-items: center;
+		gap: spacing.$spacing-8;
+		flex-wrap: wrap;
+	}
+
+	&_arrival {
+		@include typography.typography-label;
+
+		color: var(--color-text-secondary);
+	}
+
+	&_separator {
+		width: spacing.$spacing-4;
+		height: spacing.$spacing-4;
+
+		background: var(--color-neutral-300);
+		border-radius: borders.$radius-full;
+	}
+
+	&_elapsed {
+		@include typography.typography-label;
+		font-weight: typography.$font-weight-semibold;
+
+		color: var(--color-text-secondary);
+
+		&.-overdue {
+			color: var(--color-vital-alert);
+		}
+	}
+
+	&_actions {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: spacing.$spacing-8;
+		flex: none;
+	}
+
+	&_statusOptions {
+		display: flex;
+		gap: spacing.$spacing-4;
+		flex-wrap: wrap;
+	}
+
+	&_statusButton,
+	&_scoreEditToggle {
+		@include typography.typography-label;
+		font-weight: typography.$font-weight-semibold;
+
+		padding: spacing.$spacing-8 spacing.$spacing-12;
+		cursor: pointer;
+		border-radius: borders.$radius-md;
+
+		&:focus-visible {
+			outline: 2px solid var(--color-accent);
+			outline-offset: 2px;
+		}
+	}
+
+	&_statusButton {
+		color: var(--color-neutral-600);
+		background: var(--color-neutral-0);
+		border: 1px solid var(--color-neutral-200);
+
+		&:hover:not(.-active) {
+			background: var(--color-neutral-100);
+		}
+
+		&.-active {
+			color: var(--color-text-light);
+			background: var(--color-primary);
+			border-color: var(--color-primary);
+		}
+	}
+
+	&_scoreEditToggle {
+		color: var(--color-text-info);
+		background: var(--color-primary-light);
+		border: 1px solid var(--color-neutral-300);
+	}
+
+	&_scoreEditor {
+		display: flex;
+		align-items: center;
+		gap: spacing.$spacing-12;
+		flex-wrap: wrap;
+
+		margin-top: spacing.$spacing-16;
+		padding: spacing.$spacing-12;
+
+		background: var(--color-neutral-50);
+		border: 1px solid var(--color-neutral-200);
+		border-radius: borders.$radius-md;
+	}
+
+	&_scoreEditorLabel {
+		@include typography.typography-label;
+		font-weight: typography.$font-weight-semibold;
+
+		color: var(--color-neutral-700);
+	}
+
+	&_scoreChoices {
+		display: flex;
+		gap: spacing.$spacing-4;
+	}
+
+	&_scoreChoice {
+		@include typography.typography-body-small;
+		font-weight: typography.$font-weight-bold;
+
+		width: spacing.$spacing-32;
+		height: spacing.$spacing-32;
+		cursor: pointer;
+
+		color: var(--color-neutral-600);
+		background: var(--color-neutral-0);
+		border: 1px solid var(--color-neutral-200);
+		border-radius: borders.$radius-md;
+
+		&:focus-visible {
+			outline: 2px solid var(--color-accent);
+			outline-offset: 2px;
+		}
+
+		&:hover:not(.-active) {
+			background: var(--color-neutral-100);
+		}
+
+		&.-active {
+			color: var(--color-text-light);
+
+			&.-french-1 {
+				background: var(--color-french-1);
+				border-color: var(--color-french-1);
+			}
+
+			&.-french-2 {
+				background: var(--color-french-2);
+				border-color: var(--color-french-2);
+			}
+
+			&.-french-3 {
+				background: var(--color-french-3);
+				border-color: var(--color-french-3);
+			}
+
+			&.-french-4 {
+				background: var(--color-french-4);
+				border-color: var(--color-french-4);
+			}
+
+			&.-french-5 {
+				background: var(--color-french-5);
+				border-color: var(--color-french-5);
+			}
+		}
+	}
+
+	&_scoreEditorNote {
+		@include typography.typography-label;
+
+		flex: 1;
+		color: var(--color-text-secondary);
+	}
+}

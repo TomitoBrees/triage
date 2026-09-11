@@ -1,0 +1,20 @@
+@use "spacing";
+@use "typography";
+
+:host {
+	display: block;
+}
+
+.patientPage {
+	display: flex;
+	flex-direction: column;
+	gap: spacing.$spacing-12;
+	width: 100%;
+
+	&_notFound {
+		@include typography.typography-body-small;
+
+		margin: 0;
+		color: var(--color-text-secondary);
+	}
+}
