@@ -1,9 +1,12 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
 import { CreatePatientDto } from "./dto/create-patient.dto";
 import { FrenchScoreService } from "./scoring/french-score.service";
 import { PatientList } from "./dto/patient-list.dto";
+import { PatientDetail } from "./dto/patient-detail.dto";
 import { toPatientList } from "./patient-list.util";
+import { toPatientDetail } from "./patient-detail.util";
+import { Prisma } from "../../generated/prisma/client";
 
 @Injectable()
 export class PatientService {
@@ -25,6 +28,8 @@ export class PatientService {
 				french,
 				symptom: symptom ?? null,
 				symptomDescription: dto.symptomDescription ?? null,
+				sharedAnswers: dto.sharedAnswers ?? Prisma.JsonNull,
+				specificAnswers: dto.specificAnswers ?? Prisma.JsonNull,
 			},
 		});
 	}
@@ -33,5 +38,15 @@ export class PatientService {
 		const patients = await this.prisma.patient.findMany();
 
 		return toPatientList(patients);
+	}
+
+	async getPatientById(id: string): Promise<PatientDetail> {
+		const patient = await this.prisma.patient.findUnique({ where: { id } });
+
+		if (!patient) {
+			throw new NotFoundException(`Patient ${id} not found`);
+		}
+
+		return toPatientDetail(patient);
 	}
 }

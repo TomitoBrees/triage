@@ -25,6 +25,8 @@ model Patient {
   french             Int
   symptom            PatientSymptom?
   symptomDescription String?
+  sharedAnswers      Json?
+  specificAnswers    Json?
   arrivalTime        DateTime        @default(now())
   status             PatientStatus   @default(waiting)
   iaoNote            String          @default("")

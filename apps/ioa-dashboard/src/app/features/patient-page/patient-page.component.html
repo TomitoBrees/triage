@@ -5,7 +5,8 @@
 			(statusChange)="updateStatus($event)"
 			(frenchChange)="updateFrench($event)"
 		/>
+		<app-patient-summary [patient]="patient" />
 	</article>
-} @else {
+} @else if (notFound()) {
 	<p class="patientPage_notFound">Patient introuvable.</p>
 }

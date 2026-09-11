@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { CreatePatientDto } from "./dto/create-patient.dto";
 import { PatientService } from "./patient.service";
 import { PatientList } from "./dto/patient-list.dto";
+import { PatientDetail } from "./dto/patient-detail.dto";
 
 @Controller("patient")
 export class PatientController {
@@ -15,5 +16,10 @@ export class PatientController {
 	@Get()
 	getPatientList(): Promise<PatientList> {
 		return this.patientService.getPatientList();
+	}
+
+	@Get(":id")
+	getPatientById(@Param("id") id: string): Promise<PatientDetail> {
+		return this.patientService.getPatientById(id);
 	}
 }

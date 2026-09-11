@@ -1,10 +1,7 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
-import {
-	criticalSymptoms,
-	generalSymptoms,
-	sharedQuestions,
-} from "./questions/patient-form.questions";
+import { sharedQuestions } from "@triage/shared";
+import { criticalSymptoms, generalSymptoms } from "./questions/patient-form.questions";
 import { abdominalQuestions } from "./questions/patient-form.questions.abdominal";
 import { cardiacQuestions } from "./questions/patient-form.questions.cardiac";
 import { dermatologicalQuestions } from "./questions/patient-form.questions.dermatological";

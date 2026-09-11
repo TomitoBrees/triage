@@ -1,5 +1,14 @@
 import type { PatientSymptom } from "@triage/shared";
 
+// Le modèle de question vit dans @triage/shared : le dashboard IAO en dérive les
+// libellés des réponses. Ce barrel reste le point d'import du formulaire.
+export type {
+	FollowUpOption,
+	PatientQuestion,
+	PatientQuestionAnswer,
+	PatientQuestionCondition,
+} from "@triage/shared";
+
 export type PatientSymptomId = PatientSymptom;
 
 export type StepId =
@@ -26,44 +35,8 @@ export type Answer = {
 	symptomDescription?: string;
 };
 
-export type PatientQuestionAnswer = string | number | boolean;
-
-export type PatientQuestionCondition = {
-	questionId: string;
-	answer: PatientQuestionAnswer | PatientQuestionAnswer[];
-};
-
 export type SymptomQuestion = {
 	symptomText: string;
 	symptomEmoji: string;
 	symptomId: PatientSymptomId;
-};
-
-type PatientQuestionBase = {
-	id: string;
-	text: string;
-	conditions?: PatientQuestionCondition[];
-	requireAllConditions?: boolean;
-};
-
-export type PatientQuestion =
-	| (PatientQuestionBase & {
-			type: "boolean";
-	  })
-	| (PatientQuestionBase & {
-			type: "single-choice";
-			options: FollowUpOption[];
-	  })
-	| (PatientQuestionBase & {
-			type: "number";
-			min?: number;
-			max?: number;
-			step?: number;
-			minLabel?: string;
-			maxLabel?: string;
-	  });
-
-export type FollowUpOption = {
-	id: string;
-	label: string;
 };

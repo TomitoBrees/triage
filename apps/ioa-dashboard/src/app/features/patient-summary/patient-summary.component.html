@@ -1,0 +1,8 @@
+<section class="patientSummary">
+	@for (fact of facts(); track fact.label) {
+		<div class="patientSummary_fact">
+			<span class="patientSummary_label">{{ fact.label }}</span>
+			<span class="patientSummary_value">{{ fact.value }}</span>
+		</div>
+	}
+</section>
