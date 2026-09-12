@@ -59,5 +59,6 @@ export class PatientPage {
 
 	protected updateNote(iaoNote: string): void {
 		this.patient.update((patient) => (patient ? { ...patient, iaoNote } : patient));
+		this.patientScoreApi.updatePatient(this.id(), { iaoNote }).subscribe();
 	}
 }

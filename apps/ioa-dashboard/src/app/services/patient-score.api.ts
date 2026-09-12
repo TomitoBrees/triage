@@ -17,7 +17,7 @@ export class PatientScoreApi {
 		return this.http.get<PatientDetail>(`${this.apiUrl}/patient/${id}`);
 	}
 
-	updatePatient(id: string, changes: Partial<Pick<PatientBaseData, "status" | "french">>) {
+	updatePatient(id: string, changes: Partial<Pick<PatientDetail, "status" | "french" | "iaoNote">>) {
 		return this.http.patch<PatientDetail>(`${this.apiUrl}/patient/${id}`, changes);
 	}
 }

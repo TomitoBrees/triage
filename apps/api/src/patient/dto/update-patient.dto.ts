@@ -1,4 +1,4 @@
-import { IsIn, IsInt, IsOptional, Max, Min } from "class-validator";
+import { IsIn, IsInt, IsOptional, IsString, Max, Min } from "class-validator";
 import { patientStatuses, PatientStatus } from "./patient-list.dto";
 
 export class UpdatePatientDto {
@@ -11,4 +11,8 @@ export class UpdatePatientDto {
 	@IsOptional()
 	@IsIn(patientStatuses)
 	status?: PatientStatus;
+
+	@IsOptional()
+	@IsString()
+	iaoNote?: string;
 }
