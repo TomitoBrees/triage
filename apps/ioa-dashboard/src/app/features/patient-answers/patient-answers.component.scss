@@ -87,7 +87,6 @@
 			border-bottom: none;
 		}
 
-		// La question ne tient plus sur deux colonnes quand le volet se resserre.
 		@media (max-width: breakpoints.$breakpoint-md) {
 			grid-template-columns: minmax(0, 1fr);
 			gap: spacing.$spacing-4;

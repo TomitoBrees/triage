@@ -34,7 +34,6 @@ export class PatientScoreService {
 
 	private readonly patientScoreApi = inject(PatientScoreApi);
 
-	// Purement local : l'API n'expose pas encore de mise à jour d'un patient.
 	public updatePatient(id: string, changes: Partial<Pick<PatientBaseData, "status" | "french">>) {
 		this.patients.update((patients) =>
 			patients.map((patient) => (patient.id === id ? { ...patient, ...changes } : patient)),

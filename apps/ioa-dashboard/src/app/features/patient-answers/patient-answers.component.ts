@@ -16,8 +16,6 @@ export class PatientAnswers {
 
 	protected open = signal(true);
 
-	// Ordre du questionnaire plutôt que celui des clés stockées, et questions sans
-	// réponse écartées : le formulaire n'affiche pas celles dont la condition est fausse.
 	protected rows = computed(() => {
 		const answers = this.answers();
 

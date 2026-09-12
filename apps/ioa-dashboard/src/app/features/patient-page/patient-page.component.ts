@@ -27,7 +27,6 @@ export class PatientPage {
 	protected patient = signal<PatientDetail | null>(null);
 	protected notFound = signal(false);
 
-	// L'échelle de douleur a sa propre section, comme dans le design.
 	protected readonly commonQuestions = sharedQuestions.filter(
 		(question) => question.id !== "painScale",
 	);
@@ -58,7 +57,6 @@ export class PatientPage {
 		this.patient.update((patient) => (patient ? { ...patient, french } : patient));
 	}
 
-	// Purement local en attendant l'endpoint de mise à jour de la note.
 	protected updateNote(iaoNote: string): void {
 		this.patient.update((patient) => (patient ? { ...patient, iaoNote } : patient));
 	}

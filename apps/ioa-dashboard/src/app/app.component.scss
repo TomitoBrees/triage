@@ -3,7 +3,6 @@
 :host {
 	display: flex;
 	flex-direction: column;
-	// Fixed height so the sidebar and the content scroll on their own instead of the page.
 	height: 100dvh;
 	background: var(--color-neutral-50);
 }

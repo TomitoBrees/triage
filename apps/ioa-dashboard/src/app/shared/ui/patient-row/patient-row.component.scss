@@ -37,7 +37,6 @@
 		border-color: var(--color-primary);
 	}
 
-	// Declare after -selected so the triage colour always owns the left edge.
 	&.-french-0 {
 		border-left: 3px solid var(--color-neutral-400);
 	}
@@ -101,7 +100,6 @@
 	&_status {
 		@include typography.typography-label;
 		font-weight: typography.$font-weight-semibold;
-		// Sans interlignage, la pastille garde la proportion du design : hauteur = 1,67 × la police.
 		line-height: 1;
 
 		flex: none;

@@ -78,7 +78,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: spacing.$spacing-4;
-		// Base de 300px : le bloc passe à la ligne au lieu de s'écraser sous les actions.
 		flex: 1 1 300px;
 	}
 
