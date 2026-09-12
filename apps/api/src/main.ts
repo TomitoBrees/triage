@@ -11,6 +11,8 @@ async function bootstrap() {
 			"http://127.0.0.1:4200",
 			"http://localhost:4201",
 			"http://127.0.0.1:4201",
+			"https://triage-patient-ui.vercel.app",
+			"https://triage-ioa-dashboard.vercel.app",
 		],
 		credentials: true,
 	});
