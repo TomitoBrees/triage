@@ -1,0 +1,35 @@
+<section class="patientIaoNote">
+	<label
+		class="patientIaoNote_title"
+		for="patient-iao-note-draft"
+		>Note de l'IAO</label
+	>
+	@if (note()) {
+		<p class="patientIaoNote_saved">{{ note() }}</p>
+	}
+	<textarea
+		id="patient-iao-note-draft"
+		class="patientIaoNote_draft"
+		rows="2"
+		placeholder="Observation, constante relevée, orientation proposée…"
+		[value]="draft()"
+		(input)="updateDraft($event)"
+	></textarea>
+	<div class="patientIaoNote_actions">
+		<button
+			class="patientIaoNote_clear"
+			type="button"
+			(click)="clear()"
+		>
+			Effacer
+		</button>
+		<button
+			class="patientIaoNote_save"
+			type="button"
+			[disabled]="!canSave()"
+			(click)="save()"
+		>
+			Enregistrer la note
+		</button>
+	</div>
+</section>

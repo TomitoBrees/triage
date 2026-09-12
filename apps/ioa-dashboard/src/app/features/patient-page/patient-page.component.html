@@ -19,6 +19,10 @@
 				[answers]="patient.specificAnswers ?? {}"
 			/>
 		}
+		<app-patient-iao-note
+			[note]="patient.iaoNote"
+			(noteChange)="updateNote($event)"
+		/>
 	</article>
 } @else if (notFound()) {
 	<p class="patientPage_notFound">Patient introuvable.</p>

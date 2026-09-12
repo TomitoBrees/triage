@@ -2,6 +2,7 @@ import { Component, computed, effect, inject, input, signal } from "@angular/cor
 import { sharedQuestions, specificQuestionsFor } from "@triage/shared";
 
 import { PatientAnswers } from "../patient-answers/patient-answers.component";
+import { PatientIaoNote } from "../patient-iao-note/patient-iao-note.component";
 import { PatientPageHeader } from "../patient-page-header/patient-page-header.component";
 import { PatientPainScale } from "../patient-pain-scale/patient-pain-scale.component";
 import { PatientSummary } from "../patient-summary/patient-summary.component";
@@ -13,7 +14,7 @@ import { type PatientStatus } from "../../shared/utils/patient-status.util";
 
 @Component({
 	selector: "app-patient-page",
-	imports: [PatientPageHeader, PatientSummary, PatientPainScale, PatientAnswers],
+	imports: [PatientPageHeader, PatientSummary, PatientPainScale, PatientAnswers, PatientIaoNote],
 	templateUrl: "./patient-page.component.html",
 	styleUrl: "./patient-page.component.scss",
 })
@@ -55,5 +56,10 @@ export class PatientPage {
 	protected updateFrench(french: FrenchTier): void {
 		this.patientScoreService.updatePatient(this.id(), { french });
 		this.patient.update((patient) => (patient ? { ...patient, french } : patient));
+	}
+
+	// Purement local en attendant l'endpoint de mise à jour de la note.
+	protected updateNote(iaoNote: string): void {
+		this.patient.update((patient) => (patient ? { ...patient, iaoNote } : patient));
 	}
 }
