@@ -1,6 +1,7 @@
 import { Component, effect, inject, input, signal } from "@angular/core";
 
 import { PatientPageHeader } from "../patient-page-header/patient-page-header.component";
+import { PatientPainScale } from "../patient-pain-scale/patient-pain-scale.component";
 import { PatientSummary } from "../patient-summary/patient-summary.component";
 import { PatientScoreApi } from "../../services/patient-score.api";
 import { PatientScoreService } from "../../services/patient-score.service";
@@ -10,7 +11,7 @@ import { type PatientStatus } from "../../shared/utils/patient-status.util";
 
 @Component({
 	selector: "app-patient-page",
-	imports: [PatientPageHeader, PatientSummary],
+	imports: [PatientPageHeader, PatientSummary, PatientPainScale],
 	templateUrl: "./patient-page.component.html",
 	styleUrl: "./patient-page.component.scss",
 })

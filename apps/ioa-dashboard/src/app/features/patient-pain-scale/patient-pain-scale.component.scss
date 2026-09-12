@@ -1,0 +1,100 @@
+@use "borders";
+@use "spacing";
+@use "typography";
+
+:host {
+	display: block;
+}
+
+.patientPainScale {
+	display: flex;
+	flex-direction: column;
+	gap: spacing.$spacing-8;
+
+	padding: spacing.$spacing-16;
+
+	background: var(--color-neutral-0);
+	border: 1px solid var(--color-neutral-200);
+	border-radius: borders.$radius-lg;
+
+	&_head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: spacing.$spacing-8;
+	}
+
+	&_title {
+		@include typography.typography-body-large;
+
+		color: var(--color-text-primary);
+	}
+
+	&_value {
+		@include typography.typography-subsection;
+		font-weight: typography.$font-weight-bold;
+
+		&.-low {
+			color: var(--color-stable);
+		}
+
+		&.-moderate {
+			color: var(--color-moderate-alert);
+		}
+
+		&.-high {
+			color: var(--color-vital-alert);
+		}
+	}
+
+	&_max {
+		@include typography.typography-label;
+
+		color: var(--color-neutral-400);
+	}
+
+	&_missing {
+		@include typography.typography-label;
+
+		color: var(--color-neutral-400);
+	}
+
+	&_track {
+		height: spacing.$spacing-8;
+		width: 100%;
+		overflow: hidden;
+
+		background: var(--color-neutral-100);
+		border-radius: borders.$radius-full;
+	}
+
+	&_fill {
+		height: 100%;
+
+		border-radius: borders.$radius-full;
+
+		&.-low {
+			background: var(--color-stable);
+		}
+
+		&.-moderate {
+			background: var(--color-moderate-alert);
+		}
+
+		&.-high {
+			background: var(--color-vital-alert);
+		}
+	}
+
+	&_bounds {
+		display: flex;
+		justify-content: space-between;
+		gap: spacing.$spacing-8;
+	}
+
+	&_bound {
+		@include typography.typography-label;
+
+		color: var(--color-neutral-400);
+	}
+}

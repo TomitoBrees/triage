@@ -1,0 +1,25 @@
+<section class="patientPainScale">
+	<div class="patientPainScale_head">
+		<span class="patientPainScale_title">Douleur / gêne déclarée</span>
+		@if (pain() !== null) {
+			<span
+				class="patientPainScale_value"
+				[ngClass]="level()"
+				>{{ pain() }}<span class="patientPainScale_max"> / {{ max }}</span></span
+			>
+		} @else {
+			<span class="patientPainScale_missing">Non renseigné</span>
+		}
+	</div>
+	<div class="patientPainScale_track">
+		<div
+			class="patientPainScale_fill"
+			[ngClass]="level()"
+			[style.width]="fillWidth()"
+		></div>
+	</div>
+	<div class="patientPainScale_bounds">
+		<span class="patientPainScale_bound">Pas du tout</span>
+		<span class="patientPainScale_bound">Extrêmement</span>
+	</div>
+</section>
