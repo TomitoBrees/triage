@@ -38,6 +38,8 @@ export class PatientScoreService {
 		this.patients.update((patients) =>
 			patients.map((patient) => (patient.id === id ? { ...patient, ...changes } : patient)),
 		);
+
+		this.patientScoreApi.updatePatient(id, changes).subscribe();
 	}
 
 	constructor() {

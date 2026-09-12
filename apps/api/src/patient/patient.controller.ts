@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Patch, Post } from "@nestjs/common";
 import { CreatePatientDto } from "./dto/create-patient.dto";
+import { UpdatePatientDto } from "./dto/update-patient.dto";
 import { PatientService } from "./patient.service";
 import { PatientList } from "./dto/patient-list.dto";
 import { PatientDetail } from "./dto/patient-detail.dto";
@@ -21,5 +22,13 @@ export class PatientController {
 	@Get(":id")
 	getPatientById(@Param("id") id: string): Promise<PatientDetail> {
 		return this.patientService.getPatientById(id);
+	}
+
+	@Patch(":id")
+	updatePatient(
+		@Param("id") id: string,
+		@Body() dto: UpdatePatientDto,
+	): Promise<PatientDetail> {
+		return this.patientService.updatePatient(id, dto);
 	}
 }
