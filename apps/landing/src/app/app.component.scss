@@ -1,0 +1,19 @@
+@use "spacing";
+
+:host {
+	display: flex;
+	flex-direction: column;
+	min-height: 100dvh;
+	background: var(--color-neutral-50);
+}
+
+.app {
+	&_content {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		padding: 72px spacing.$spacing-24 spacing.$spacing-56;
+	}
+}

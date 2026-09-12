@@ -4,10 +4,11 @@
 	"private": true,
 	"packageManager": "pnpm@10.33.2",
 	"scripts": {
-		"dev": "corepack pnpm --parallel --filter @triage/api --filter @triage/patient-ui --filter @triage/ioa-dashboard dev",
+		"dev": "corepack pnpm --parallel --filter @triage/api --filter @triage/patient-ui --filter @triage/ioa-dashboard --filter @triage/landing dev",
 		"dev:api": "corepack pnpm --filter @triage/api dev",
 		"dev:patient-ui": "corepack pnpm --filter @triage/patient-ui dev",
 		"dev:ioa-dashboard": "corepack pnpm --filter @triage/ioa-dashboard dev",
+		"dev:landing": "corepack pnpm --filter @triage/landing dev",
 		"format": "prettier --write \"**/*.{ts,html,scss,css,json,md}\"",
 		"format:check": "prettier --check \"**/*.{ts,html,scss,css,json,md}\"",
 		"build": "corepack pnpm -r build",

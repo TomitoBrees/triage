@@ -1,0 +1,64 @@
+<div class="landingPage">
+	<section class="landingPage_hero">
+		<span class="landingPage_eyebrow">Aide au triage aux urgences</span>
+		<h2 class="landingPage_headline">
+			Recueillir le motif de venue dès l'arrivée, et présenter une file d'attente déjà
+			priorisée.
+		</h2>
+		<ul class="landingPage_points">
+			@for (point of points; track point) {
+				<li class="landingPage_point">
+					<span class="landingPage_bullet"></span>
+					<span class="landingPage_pointText">{{ point }}</span>
+				</li>
+			}
+		</ul>
+	</section>
+
+	<section class="landingPage_access">
+		<span class="landingPage_accessLabel">Accéder aux interfaces</span>
+		<div class="landingPage_cards">
+			<a
+				class="landingPage_card landingPage_card--primary"
+				[href]="patientUiUrl"
+			>
+				<span class="landingPage_cardBody">
+					<span class="landingPage_cardTitle">Ouvrir le questionnaire patient</span>
+					<span class="landingPage_cardText">Ce que le patient voit après le scan</span>
+				</span>
+				<span
+					class="landingPage_cardArrow"
+					aria-hidden="true"
+					>→</span
+				>
+			</a>
+			<a
+				class="landingPage_card landingPage_card--secondary"
+				[href]="ioaDashboardUrl"
+			>
+				<span class="landingPage_cardBody">
+					<span class="landingPage_cardTitle">Ouvrir le dashboard IAO</span>
+					<span class="landingPage_cardText">Le poste de l'infirmière d'accueil</span>
+				</span>
+				<span
+					class="landingPage_cardArrow"
+					aria-hidden="true"
+					>→</span
+				>
+			</a>
+		</div>
+	</section>
+
+	<section class="landingPage_how">
+		<h3 class="landingPage_howTitle">Comment ça marche</h3>
+		<div class="landingPage_steps">
+			@for (step of steps; track step.n) {
+				<div class="landingPage_step">
+					<span class="landingPage_stepNumber">{{ step.n }}</span>
+					<span class="landingPage_stepTitle">{{ step.title }}</span>
+					<span class="landingPage_stepText">{{ step.text }}</span>
+				</div>
+			}
+		</div>
+	</section>
+</div>

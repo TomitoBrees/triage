@@ -1,0 +1,25 @@
+@use "./styles/colors";
+@use "./styles/typography";
+
+:root {
+	@include colors.tokens;
+
+	color-scheme: light;
+	font-family: typography.$font-family-primary;
+	background: var(--color-neutral-50);
+	color: var(--color-text-primary);
+	-webkit-font-smoothing: antialiased;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+}
+
+a {
+	color: var(--color-primary);
+	text-decoration: none;
+}

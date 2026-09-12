@@ -9,7 +9,7 @@ Full-stack starter using the latest stable versions verified from npm on 2026-05
 - class-validator `0.15.1`
 - TypeScript `5.9.3` (latest stable version supported by Angular 21)
 - REST API with JWT access tokens
-- Two Angular interfaces: `patient-ui` and `ioa-dashboard`
+- Three Angular interfaces: `patient-ui`, `ioa-dashboard` and `landing`
 
 ## Requirements
 
@@ -28,6 +28,6 @@ corepack pnpm prisma:migrate
 corepack pnpm dev
 ```
 
-The API runs on `http://localhost:3000`, patient UI runs on `http://localhost:4200`, and IOA dashboard runs on `http://localhost:4201`.
+The API runs on `http://localhost:3000`, patient UI runs on `http://localhost:4200`, IOA dashboard runs on `http://localhost:4201`, and the landing page runs on `http://localhost:4202`.
 
 See [FRONTEND_ARCHITECTURE.md](FRONTEND_ARCHITECTURE.md) for where frontend code should live as the two Angular apps grow.
