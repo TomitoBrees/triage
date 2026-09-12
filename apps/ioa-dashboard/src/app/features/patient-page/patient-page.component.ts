@@ -1,5 +1,7 @@
-import { Component, effect, inject, input, signal } from "@angular/core";
+import { Component, computed, effect, inject, input, signal } from "@angular/core";
+import { sharedQuestions, specificQuestionsFor } from "@triage/shared";
 
+import { PatientAnswers } from "../patient-answers/patient-answers.component";
 import { PatientPageHeader } from "../patient-page-header/patient-page-header.component";
 import { PatientPainScale } from "../patient-pain-scale/patient-pain-scale.component";
 import { PatientSummary } from "../patient-summary/patient-summary.component";
@@ -11,7 +13,7 @@ import { type PatientStatus } from "../../shared/utils/patient-status.util";
 
 @Component({
 	selector: "app-patient-page",
-	imports: [PatientPageHeader, PatientSummary, PatientPainScale],
+	imports: [PatientPageHeader, PatientSummary, PatientPainScale, PatientAnswers],
 	templateUrl: "./patient-page.component.html",
 	styleUrl: "./patient-page.component.scss",
 })
@@ -23,6 +25,13 @@ export class PatientPage {
 
 	protected patient = signal<PatientDetail | null>(null);
 	protected notFound = signal(false);
+
+	// L'échelle de douleur a sa propre section, comme dans le design.
+	protected readonly commonQuestions = sharedQuestions.filter(
+		(question) => question.id !== "painScale",
+	);
+
+	protected specificQuestions = computed(() => specificQuestionsFor(this.patient()?.symptom));
 
 	constructor() {
 		effect(() => {

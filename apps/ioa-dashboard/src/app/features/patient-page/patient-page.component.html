@@ -7,6 +7,18 @@
 		/>
 		<app-patient-summary [patient]="patient" />
 		<app-patient-pain-scale [patient]="patient" />
+		<app-patient-answers
+			heading="Questions communes"
+			[questions]="commonQuestions"
+			[answers]="patient.sharedAnswers ?? {}"
+		/>
+		@if (specificQuestions().length) {
+			<app-patient-answers
+				heading="Questions spécifiques"
+				[questions]="specificQuestions()"
+				[answers]="patient.specificAnswers ?? {}"
+			/>
+		}
 	</article>
 } @else if (notFound()) {
 	<p class="patientPage_notFound">Patient introuvable.</p>

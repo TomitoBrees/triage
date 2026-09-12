@@ -103,14 +103,11 @@ export const sharedQuestions: PatientQuestion[] = [
 	},
 ];
 
-export function sharedAnswerLabel(
-	questionId: string,
+export function answerLabel(
+	question: PatientQuestion,
 	value: PatientQuestionAnswer | null | undefined,
 ): string | null {
 	if (value === null || value === undefined) return null;
-
-	const question = sharedQuestions.find((candidate) => candidate.id === questionId);
-	if (!question) return null;
 
 	if (question.type === "single-choice") {
 		return question.options.find((option) => option.id === value)?.label ?? null;
@@ -119,4 +116,14 @@ export function sharedAnswerLabel(
 	if (question.type === "boolean") return value ? "Oui" : "Non";
 
 	return String(value);
+}
+
+export function sharedAnswerLabel(
+	questionId: string,
+	value: PatientQuestionAnswer | null | undefined,
+): string | null {
+	const question = sharedQuestions.find((candidate) => candidate.id === questionId);
+	if (!question) return null;
+
+	return answerLabel(question, value);
 }

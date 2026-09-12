@@ -1,19 +1,7 @@
 import { Component, computed, effect, inject, signal } from "@angular/core";
 import { SymptomQuestionsComponent } from "../symptom-questions/symptom-questions.component";
-import { sharedQuestions } from "@triage/shared";
+import { sharedQuestions, specificQuestionsFor } from "@triage/shared";
 import { criticalSymptoms, generalSymptoms } from "./questions/patient-form.questions";
-import { abdominalQuestions } from "./questions/patient-form.questions.abdominal";
-import { cardiacQuestions } from "./questions/patient-form.questions.cardiac";
-import { dermatologicalQuestions } from "./questions/patient-form.questions.dermatological";
-import { entQuestions } from "./questions/patient-form.questions.ent";
-import { gynecologicalQuestions } from "./questions/patient-form.questions.gynecological";
-import { infectionQuestions } from "./questions/patient-form.questions.infection";
-import { intoxicationQuestions } from "./questions/patient-form.questions.intoxication";
-import { neurologicalQuestions } from "./questions/patient-form.questions.neurological";
-import { psychologicalQuestions } from "./questions/patient-form.questions.psychological";
-import { respiratoryQuestions } from "./questions/patient-form.questions.respiratory";
-import { traumaQuestions } from "./questions/patient-form.questions.trauma";
-import { urinaryQuestions } from "./questions/patient-form.questions.urinary";
 import type { PatientResponse } from "./service/patient-form-controller.api";
 import type {
 	Answer,
@@ -54,38 +42,9 @@ export class PatientFormControllerComponent {
 
 	protected sharedQuestions = signal<PatientQuestion[]>(sharedQuestions);
 
-	protected specificQuestions = computed<PatientQuestion[]>(() => {
-		const symptom = this.answer().generalSymptom;
-
-		switch (symptom) {
-			case "traumatological":
-				return traumaQuestions;
-			case "abdominal":
-				return abdominalQuestions;
-			case "cardiac":
-				return cardiacQuestions;
-			case "respiratory":
-				return respiratoryQuestions;
-			case "infection":
-				return infectionQuestions;
-			case "neurological":
-				return neurologicalQuestions;
-			case "urinary":
-				return urinaryQuestions;
-			case "gynecological":
-				return gynecologicalQuestions;
-			case "dermatological":
-				return dermatologicalQuestions;
-			case "ent":
-				return entQuestions;
-			case "psychological":
-				return psychologicalQuestions;
-			case "intoxication":
-				return intoxicationQuestions;
-			default:
-				return [];
-		}
-	});
+	protected specificQuestions = computed<PatientQuestion[]>(() =>
+		specificQuestionsFor(this.answer().generalSymptom),
+	);
 
 	protected submittedPatient = signal<PatientResponse | null>(null);
 

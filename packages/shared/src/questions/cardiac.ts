@@ -1,4 +1,4 @@
-import type { PatientQuestion } from "../types/patient-form.types";
+import type { PatientQuestion } from "../patient-questions";
 
 export const cardiacQuestions: PatientQuestion[] = [
 	{
