@@ -1,0 +1,32 @@
+<div class="patientAccess">
+	<span class="patientAccess_eyebrow">Interface patient</span>
+	<h2 class="patientAccess_title">Pensée pour être scannée depuis un mobile</h2>
+	<p class="patientAccess_text">
+		Le questionnaire est optimisé pour l'écran d'un smartphone, comme en salle d'attente.
+		Scannez le QR code avec votre téléphone pour l'ouvrir dans les conditions réelles.
+	</p>
+
+	<div class="patientAccess_qrCard">
+		@if (qrCodeDataUrl()) {
+			<img
+				class="patientAccess_qrImage"
+				[src]="qrCodeDataUrl()"
+				alt="QR code vers le questionnaire patient"
+			/>
+		}
+		<span class="patientAccess_qrHint">À scanner avec l'appareil photo du téléphone</span>
+	</div>
+
+	<div class="patientAccess_divider">
+		<span class="patientAccess_dividerLine"></span>
+		<span class="patientAccess_dividerText">ou</span>
+		<span class="patientAccess_dividerLine"></span>
+	</div>
+
+	<a
+		class="patientAccess_continue"
+		[href]="patientUiUrl"
+	>
+		Continuer sur cet écran quand même
+	</a>
+</div>

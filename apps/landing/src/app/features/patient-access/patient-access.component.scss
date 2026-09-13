@@ -1,0 +1,119 @@
+@use "borders";
+@use "spacing";
+@use "typography";
+
+:host {
+	display: block;
+	width: 100%;
+	max-width: 420px;
+}
+
+.patientAccess {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: spacing.$spacing-12;
+
+	text-align: center;
+
+	&_eyebrow {
+		@include typography.typography-label;
+		font-weight: typography.$font-weight-semibold;
+
+		color: var(--color-primary);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+
+	&_title {
+		font-size: 28px;
+		font-weight: typography.$font-weight-bold;
+		line-height: 1.25;
+		text-wrap: pretty;
+
+		margin: 0;
+		color: var(--color-text-primary);
+	}
+
+	&_text {
+		@include typography.typography-body;
+
+		margin: 0 0 spacing.$spacing-8;
+		line-height: 1.5;
+		text-wrap: pretty;
+		color: var(--color-neutral-600);
+	}
+
+	&_qrCard {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: spacing.$spacing-12;
+
+		width: 100%;
+		padding: spacing.$spacing-24;
+
+		background: var(--color-neutral-0);
+		border: 1px solid var(--color-neutral-200);
+		border-radius: borders.$radius-lg;
+	}
+
+	&_qrImage {
+		display: block;
+
+		width: 220px;
+		height: 220px;
+		max-width: 100%;
+	}
+
+	&_qrHint {
+		@include typography.typography-body-small;
+		font-weight: typography.$font-weight-regular;
+
+		color: var(--color-neutral-500);
+	}
+
+	&_divider {
+		display: flex;
+		align-items: center;
+		gap: spacing.$spacing-12;
+
+		width: 100%;
+		margin: spacing.$spacing-8 0;
+	}
+
+	&_dividerLine {
+		flex: 1;
+		height: 1px;
+		background: var(--color-neutral-200);
+	}
+
+	&_dividerText {
+		@include typography.typography-label;
+
+		color: var(--color-neutral-400);
+		text-transform: uppercase;
+	}
+
+	&_continue {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		width: 100%;
+		min-height: spacing.$spacing-56;
+		padding: spacing.$spacing-16 22px;
+
+		@include typography.typography-body-large;
+
+		color: var(--color-primary);
+		background: var(--color-neutral-0);
+		border: 1.5px solid var(--color-primary);
+		border-radius: 10px;
+		transition: background 150ms ease;
+
+		&:hover {
+			background: var(--color-primary-light);
+		}
+	}
+}
